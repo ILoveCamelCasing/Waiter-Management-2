@@ -5,6 +5,7 @@ using Caliburn.Micro;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.Manager.ViewModels;
+using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.Bootstrapper
@@ -28,6 +29,8 @@ namespace WaiterManagement.Manager.Bootstrapper
 			_kernel = new StandardKernel();
 
 			RegisterViewModels();
+
+			UseViewAttribute.ConfigureViewLocator();
 		}
 
 		protected override void OnExit(object sender, EventArgs e)

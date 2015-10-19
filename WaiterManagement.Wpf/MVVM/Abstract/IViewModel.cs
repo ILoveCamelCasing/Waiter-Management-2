@@ -3,5 +3,7 @@
 	public interface IViewModel
 	{
 		IParentViewModel ParentWindow { get; }
+		void ShowOn(IParentViewModel parentParentViewModel);
+		void Close();
 	}
 }

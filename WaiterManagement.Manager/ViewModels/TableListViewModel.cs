@@ -9,5 +9,10 @@ namespace WaiterManagement.Manager.ViewModels
 		{
 			DisplayName = "Tables";
 		}
+
+		public void AddTable()
+		{
+			Get<IAddTableViewModel>().ShowOn(this);
+		}
 	}
 }
