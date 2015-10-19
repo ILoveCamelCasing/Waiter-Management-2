@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
 using Ninject;
 using Ninject.Extensions.Conventions;
-using WaiterManagement.Manager.Bootstrapper.Abstract;
 using WaiterManagement.Manager.ViewModels;
-using WaiterManagement.Manager.ViewModels.Abstract;
+using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.Bootstrapper
 {
@@ -64,9 +62,9 @@ namespace WaiterManagement.Manager.Bootstrapper
 
 			_kernel.Bind(
 				convention =>
-					convention.From(Assembly.GetAssembly(typeof(ViewModelBase)))
+					convention.FromThisAssembly()
 						.SelectAllClasses()
-						.InNamespaces("Organizer.Desktop.ViewModels")
+						.InNamespaces("WaiterManagement.Manager.ViewModels")
 						.BindAllInterfaces());
 		}
 

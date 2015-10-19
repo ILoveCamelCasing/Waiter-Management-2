@@ -1,8 +1,8 @@
 ﻿using Caliburn.Micro;
 
-namespace WaiterManagement.Manager.ViewModels.Abstract
+namespace WaiterManagement.Wpf.MVVM.Abstract
 {
-	public class ViewModelBase : Conductor<object>, IViewModel
+	public class ViewModelBase : Conductor<object>.Collection.OneActive, IViewModel
 	{
 		public IParentViewModel ParentWindow { get; private set; }
 

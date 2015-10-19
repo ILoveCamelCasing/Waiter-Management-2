@@ -74,16 +74,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bootstrapper\Abstract\IViewModelResolver.cs" />
     <Compile Include="Bootstrapper\ViewModelResolver.cs" />
     <Compile Include="ViewModels\Abstract\IMainWindowViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IParentViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\ParentViewModelBase.cs" />
-    <Compile Include="ViewModels\Abstract\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Abstract\IMenuListViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\ITabItem.cs" />
+    <Compile Include="ViewModels\Abstract\ITableListViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\IWaiterListViewModel.cs" />
+    <Compile Include="ViewModels\MenuListViewModel.cs" />
+    <Compile Include="ViewModels\TableListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\WaiterListViewModel.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuListView.xaml.cs">
+      <DependentUpon>MenuListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableListView.xaml.cs">
+      <DependentUpon>TableListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WaiterListView.xaml.cs">
+      <DependentUpon>WaiterListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +131,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MenuListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TableListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WaiterListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WaiterManagement.Wpf\WaiterManagement.Wpf.csproj">
+      <Project>{ba5a2f7b-dec1-446c-98f8-4241d8ade442}</Project>
+      <Name>WaiterManagement.Wpf</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WaiterManagement.Manager.Bootstrapper.Abstract;
 
-namespace WaiterManagement.Manager.ViewModels.Abstract
+namespace WaiterManagement.Wpf.MVVM.Abstract
 {
 	public abstract class ParentViewModelBase : ViewModelBase, IParentViewModel
 	{
@@ -14,7 +13,7 @@ namespace WaiterManagement.Manager.ViewModels.Abstract
 
 		#region Private Fields
 
-		private Stack<IViewModel> _activatedItems;
+		private readonly Stack<IViewModel> _activatedItems;
 
 		#endregion
 

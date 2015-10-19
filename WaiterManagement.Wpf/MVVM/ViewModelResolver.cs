@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
-namespace WaiterManagement.Manager.Bootstrapper
+namespace WaiterManagement.Wpf.MVVM
 {
 	public sealed class ViewModelResolver : IViewModelResolver
 	{

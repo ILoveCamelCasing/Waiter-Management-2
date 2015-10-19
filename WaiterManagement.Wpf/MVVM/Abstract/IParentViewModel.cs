@@ -1,4 +1,4 @@
-﻿namespace WaiterManagement.Manager.ViewModels.Abstract
+﻿namespace WaiterManagement.Wpf.MVVM.Abstract
 {
 	public interface IParentViewModel : IViewModel
 	{

@@ -1,14 +1,17 @@
-﻿using WaiterManagement.Manager.Bootstrapper.Abstract;
-using WaiterManagement.Manager.ViewModels.Abstract;
+﻿using WaiterManagement.Manager.ViewModels.Abstract;
+using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels
 {
-	public class MainWindowViewModel : ParentViewModelBase
+	public sealed class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
 	{
-		public MainWindowViewModel(IViewModelResolver dependencyResolver)
-			: base(dependencyResolver)
+		public MainWindowViewModel(IMenuListViewModel menuListViewModel, ITableListViewModel tableListViewModel, IWaiterListViewModel waiterListViewModel)
 		{
+			DisplayName = "Waiter manager";
 
+			Items.Add(menuListViewModel);
+			Items.Add(tableListViewModel);
+			Items.Add(waiterListViewModel);
 		}
 	}
 }
