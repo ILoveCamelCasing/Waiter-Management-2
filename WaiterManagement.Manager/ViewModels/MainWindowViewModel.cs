@@ -5,13 +5,14 @@ namespace WaiterManagement.Manager.ViewModels
 {
 	public sealed class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
 	{
-		public MainWindowViewModel(IMenuListViewModel menuListViewModel, ITableListViewModel tableListViewModel, IWaiterListViewModel waiterListViewModel)
+		public MainWindowViewModel(IViewModelResolver viewModelResolver)
+			: base(viewModelResolver)
 		{
 			DisplayName = "Waiter manager";
 
-			Items.Add(menuListViewModel);
-			Items.Add(tableListViewModel);
-			Items.Add(waiterListViewModel);
+			Items.Add(Get<ITableTabViewModel>());
+			//Items.Add(tableTabViewModel);
+			//Items.Add(waiterListViewModel);
 		}
 	}
 }

@@ -77,13 +77,14 @@
     <Compile Include="ViewModels\Abstract\IAddTableViewModel.cs" />
     <Compile Include="ViewModels\Abstract\IMainWindowViewModel.cs" />
     <Compile Include="ViewModels\Abstract\IMenuListViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\ITabItem.cs" />
     <Compile Include="ViewModels\Abstract\ITableListViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\ITableTabViewModel.cs" />
     <Compile Include="ViewModels\Abstract\IWaiterListViewModel.cs" />
     <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\MenuListViewModel.cs" />
     <Compile Include="ViewModels\TableListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\TableTabViewModel.cs" />
     <Compile Include="ViewModels\WaiterListViewModel.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -96,6 +97,9 @@
     </Compile>
     <Compile Include="Views\TableView.xaml.cs">
       <DependentUpon>TableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabView.xaml.cs">
+      <DependentUpon>TabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WaiterListView.xaml.cs">
       <DependentUpon>WaiterListView.xaml</DependentUpon>
@@ -144,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

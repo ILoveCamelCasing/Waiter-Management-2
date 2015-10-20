@@ -5,11 +5,6 @@ namespace WaiterManagement.Wpf.MVVM.Abstract
 {
 	public abstract class ParentViewModelBase : ViewModelBase, IParentViewModel
 	{
-		#region Dependenices
-
-		private readonly IViewModelResolver _viewModelResolver;
-
-		#endregion
 
 		#region Private Fields
 
@@ -19,19 +14,9 @@ namespace WaiterManagement.Wpf.MVVM.Abstract
 
 		#region Constructor
 
-		protected ParentViewModelBase(IViewModelResolver viewModelResolver)
+		protected ParentViewModelBase(IViewModelResolver viewModelResolver) : base(viewModelResolver)
 		{
-			_viewModelResolver = viewModelResolver;
 			_activatedItems = new Stack<IViewModel>();
-		}
-
-		#endregion
-
-		#region Protected methods
-
-		protected T Get<T>() where T : IViewModel
-		{
-			return _viewModelResolver.Resolve<T>();
 		}
 
 		#endregion

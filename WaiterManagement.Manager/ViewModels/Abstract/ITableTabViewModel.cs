@@ -2,7 +2,7 @@
 
 namespace WaiterManagement.Manager.ViewModels.Abstract
 {
-	public interface ITabItem : IViewModel
+	public interface ITableTabViewModel : IViewModel
 	{
 		 
 	}

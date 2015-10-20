@@ -3,7 +3,7 @@ using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels
 {
-	public sealed class TableListViewModel : ParentViewModelBase, ITableListViewModel
+	public sealed class TableListViewModel : ViewModelBase, ITableListViewModel
 	{
 		public TableListViewModel(IViewModelResolver viewModelResolver) : base(viewModelResolver)
 		{
@@ -12,7 +12,7 @@ namespace WaiterManagement.Manager.ViewModels
 
 		public void AddTable()
 		{
-			Get<IAddTableViewModel>().ShowOn(this);
+			Get<IAddTableViewModel>().ShowOn(ParentWindow);
 		}
 	}
 }
