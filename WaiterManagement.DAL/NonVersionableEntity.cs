@@ -1,6 +1,6 @@
 ﻿namespace WaiterManagement.DAL
 {
-	public class Entity : IEntity
+	public class NonVersionableEntity : IEntity
 	{
 		public int Id { get; private set; }
 	}
