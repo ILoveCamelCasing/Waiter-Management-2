@@ -161,6 +161,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaiterManagement.BLL\WaiterManagement.BLL.csproj">
+      <Project>{181D8528-54E3-49D5-B236-3C13E624094F}</Project>
+      <Name>WaiterManagement.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaiterManagement.Wpf\WaiterManagement.Wpf.csproj">
       <Project>{ba5a2f7b-dec1-446c-98f8-4241d8ade442}</Project>
       <Name>WaiterManagement.Wpf</Name>

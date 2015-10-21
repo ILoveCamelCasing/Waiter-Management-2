@@ -1,5 +1,6 @@
 ﻿using System;
 using WaiterManagement.Common;
+using WaiterManagement.Common.Entities.Abstract;
 using Xunit;
 
 namespace WaiterManagement.DAL.Tests
@@ -41,7 +42,7 @@ namespace WaiterManagement.DAL.Tests
 			SystemTime.SetTime(secondTime);
 
 			// Act
-			var newVersion = entity.CreateNewVersion(null);
+			var newVersion = (TestVersionableEntity)entity.CreateNewVersion(null);
 
 			// Assert
 			Assert.Equal(0, newVersion.Id);
@@ -51,6 +52,7 @@ namespace WaiterManagement.DAL.Tests
 			Assert.Equal(true, newVersion.IsNewest);
 			Assert.Equal(firstTime, newVersion.Created);
 			Assert.Equal(secondTime, newVersion.Modified);
+			Assert.Equal("someData",newVersion.SomeField);
 
 			Assert.Equal(false, entity.IsNewest);
 		}

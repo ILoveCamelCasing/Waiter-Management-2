@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
 using Ninject;
 using Ninject.Extensions.Conventions;
+using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.Manager.ViewModels;
 using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
@@ -70,6 +73,21 @@ namespace WaiterManagement.Manager.Bootstrapper
 						.InNamespaces("WaiterManagement.Manager.ViewModels")
 						.BindAllInterfaces());
 		}
+
+		private void RegisterHandlers()
+		{
+			_kernel.Bind(
+				convention =>
+					convention.From(Assembly.GetAssembly(typeof(CommandBus)))
+						.SelectAllClasses()
+						.InNamespaces("WaiterManagement.BLL.Commands.Handlers")
+						.BindAllInterfaces());
+
+			var commandBus = new CommandBus(x => _kernel.GetAll<IHandleCommand>().First(y => y.GetType().GetInterfaces()[1].GetGenericArguments()[0] == x));
+
+			_kernel.Bind<ICommandBus>().ToConstant(commandBus);
+		}
+
 
 
 	}

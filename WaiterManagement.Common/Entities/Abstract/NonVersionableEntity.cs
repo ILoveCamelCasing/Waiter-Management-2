@@ -1,4 +1,4 @@
-﻿namespace WaiterManagement.DAL
+﻿namespace WaiterManagement.Common.Entities.Abstract
 {
 	public class NonVersionableEntity : IEntity
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WaiterManagement.DAL
+namespace WaiterManagement.Common.Entities.Abstract
 {
 	public interface IUnitOfWork : IDisposable
 	{

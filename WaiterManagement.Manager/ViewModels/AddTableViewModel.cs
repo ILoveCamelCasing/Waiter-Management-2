@@ -13,5 +13,16 @@ namespace WaiterManagement.Manager.ViewModels
 		public AddTableViewModel(IViewModelResolver viewModelResolver) : base(viewModelResolver)
 		{
 		}
+
+
+
+
+
+
+
+
+
+
+
 	}
 }

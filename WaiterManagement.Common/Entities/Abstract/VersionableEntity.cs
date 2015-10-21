@@ -1,8 +1,7 @@
 ﻿using System;
 using AutoMapper;
-using WaiterManagement.Common;
 
-namespace WaiterManagement.DAL
+namespace WaiterManagement.Common.Entities.Abstract
 {
 	public class VersionableEntity : IEntity
 	{

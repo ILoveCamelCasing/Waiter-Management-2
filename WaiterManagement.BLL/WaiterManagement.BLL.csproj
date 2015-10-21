@@ -45,9 +45,14 @@
     <Compile Include="Commands\Base\ICommandBus.cs" />
     <Compile Include="Commands\Base\IHandleCommand.cs" />
     <Compile Include="Commands\Concrete\AddTableCommand.cs" />
+    <Compile Include="Commands\Handlers\AddTableHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaiterManagement.Common\WaiterManagement.Common.csproj">
+      <Project>{D89EFE54-8A2B-4CD1-B260-5D5E92A2DEE0}</Project>
+      <Name>WaiterManagement.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaiterManagement.DAL\WaiterManagement.DAL.csproj">
       <Project>{DA852793-39CA-496F-AC37-100CC47E1A6F}</Project>
       <Name>WaiterManagement.DAL</Name>

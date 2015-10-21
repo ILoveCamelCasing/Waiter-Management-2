@@ -1,4 +1,4 @@
-﻿using WaiterManagement.DAL;
+﻿using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.BLL.Commands.Base
 {
