@@ -7,6 +7,8 @@ using Caliburn.Micro;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.Common.Entities.Abstract;
+using WaiterManagement.DAL;
 using WaiterManagement.Manager.ViewModels;
 using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
@@ -31,9 +33,13 @@ namespace WaiterManagement.Manager.Bootstrapper
 		{
 			_kernel = new StandardKernel();
 
+			_kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
+
 			RegisterViewModels();
 
 			UseViewAttribute.ConfigureViewLocator();
+
+			RegisterHandlers();
 		}
 
 		protected override void OnExit(object sender, EventArgs e)

@@ -42,6 +42,14 @@
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
@@ -164,6 +173,14 @@
     <ProjectReference Include="..\WaiterManagement.BLL\WaiterManagement.BLL.csproj">
       <Project>{181D8528-54E3-49D5-B236-3C13E624094F}</Project>
       <Name>WaiterManagement.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaiterManagement.Common\WaiterManagement.Common.csproj">
+      <Project>{D89EFE54-8A2B-4CD1-B260-5D5E92A2DEE0}</Project>
+      <Name>WaiterManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaiterManagement.DAL\WaiterManagement.DAL.csproj">
+      <Project>{DA852793-39CA-496F-AC37-100CC47E1A6F}</Project>
+      <Name>WaiterManagement.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaiterManagement.Wpf\WaiterManagement.Wpf.csproj">
       <Project>{ba5a2f7b-dec1-446c-98f8-4241d8ade442}</Project>

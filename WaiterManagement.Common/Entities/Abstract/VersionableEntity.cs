@@ -15,7 +15,7 @@ namespace WaiterManagement.Common.Entities.Abstract
 
 		protected VersionableEntity()
 		{
-			CommonId = new Guid();
+			CommonId = Guid.NewGuid();
 			Created = SystemTime.Now;
 			Version = 1;
 			IsNewest = true;
