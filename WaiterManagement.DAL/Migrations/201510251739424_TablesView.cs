@@ -7,7 +7,7 @@ namespace WaiterManagement.DAL.Migrations
 		public override void Up()
 		{
 			Sql(DbMigrationExtensions.CreateViewQuery("TablesView",
-				"SELECT [Id] as TableId, [CommonId] as TableGuid, [Title], [Description] From Tables"));
+				"SELECT [Id] as TableId, [CommonId] as TableGuid, [Title], [Description] From Tables WHERE IsNewest=1 AND IsDeleted=0"));
 
 		}
 

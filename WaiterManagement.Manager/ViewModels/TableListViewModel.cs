@@ -16,6 +16,7 @@ namespace WaiterManagement.Manager.ViewModels
 
 		#region Public Properties
 
+		public TableView SelectedElement { get; set; }
 		public BindableCollection<TableView> Elements { get; private set; }
 
 		#endregion
@@ -37,6 +38,14 @@ namespace WaiterManagement.Manager.ViewModels
 		public void AddTable()
 		{
 			Get<IAddTableViewModel>().ShowOn(ParentWindow);
+		}
+
+		public void EditTable()
+		{
+			var vm = Get<IEditTableViewModel>();
+			vm.Initialize(SelectedElement);
+			vm.ShowOn(ParentWindow);
+
 		}
 
 		#endregion

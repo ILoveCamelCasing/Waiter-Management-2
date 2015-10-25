@@ -45,7 +45,9 @@
     <Compile Include="Commands\Base\ICommandBus.cs" />
     <Compile Include="Commands\Base\IHandleCommand.cs" />
     <Compile Include="Commands\Concrete\AddTableCommand.cs" />
+    <Compile Include="Commands\Concrete\EditTableCommand.cs" />
     <Compile Include="Commands\Handlers\AddTableHandler.cs" />
+    <Compile Include="Commands\Handlers\EditTableHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

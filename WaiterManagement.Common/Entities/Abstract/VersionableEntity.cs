@@ -30,7 +30,7 @@ namespace WaiterManagement.Common.Entities.Abstract
 			newVersion.Version++;
 
 			this.IsNewest = false;
-			
+
 			return newVersion;
 		}
 	}

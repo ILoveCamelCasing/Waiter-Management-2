@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.DAL
@@ -16,6 +17,11 @@ namespace WaiterManagement.DAL
 		public void Add<T>(T item) where T : class, IEntity
 		{
 			_dbContext.Set<T>().Add(item);
+		}
+
+		public T Get<T>(int id) where T : class, IEntity
+		{
+			return _dbContext.Set<T>().First(x => x.Id == id);
 		}
 
 		public void Commit()
