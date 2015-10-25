@@ -31,6 +31,12 @@ namespace WaiterManagement.Wpf.MVVM.Abstract
 				base.ActivateItem(_activatedItems.Peek());
 		}
 
+		public void ActivateCurrent()
+		{
+			var currentViewModel = _activatedItems.Peek();
+			base.ActivateItem(currentViewModel);
+		}
+
 		public void ActivateItem(IViewModel parentViewModel)
 		{
 			base.ActivateItem(parentViewModel);

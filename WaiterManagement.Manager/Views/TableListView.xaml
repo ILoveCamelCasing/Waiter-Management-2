@@ -14,6 +14,18 @@
 			<ColumnDefinition/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
+		<ListView x:Name="Elements" Grid.ColumnSpan="2">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn x:Name="TitleColumn" DisplayMemberBinding="{Binding Title}">
+						<GridViewColumnHeader Tag="Title" Content="Title"/>
+					</GridViewColumn>
+					<GridViewColumn x:Name="DescriptionColumn" DisplayMemberBinding="{Binding Description}">
+						<GridViewColumnHeader Tag="Description" Content="Description"/>
+					</GridViewColumn>
+				</GridView>
+			</ListView.View>
+		</ListView>
 		<Button Name="AddTable" Margin="10" Grid.Row="1" Grid.Column="1">Add table</Button>
 	</Grid>
 </UserControl>

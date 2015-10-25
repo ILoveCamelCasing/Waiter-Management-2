@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using WaiterManagement.Common.Entities;
+using WaiterManagement.Common.Views;
 
 namespace WaiterManagement.DAL
 {
@@ -10,6 +11,16 @@ namespace WaiterManagement.DAL
 			
 		}
 
+		#region Entities
+
 		public DbSet<Table> Tables { get; set; } 
+
+		#endregion
+
+		#region Views
+
+		public DbSet<TableView> TablesView { get; set; } 
+
+		#endregion
 	}
 }
