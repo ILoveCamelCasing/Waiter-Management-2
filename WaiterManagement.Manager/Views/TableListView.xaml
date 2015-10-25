@@ -27,6 +27,7 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-		<Button Name="AddTable" Margin="10" Grid.Row="1" Grid.Column="1">Add table</Button>
+		<Button Name="AddTable" Margin="10" Grid.Row="1" Grid.Column="0">Add table</Button>
+		<Button Name="DeleteTable" Margin="10" Grid.Row="1" Grid.Column="1">Delete table</Button>
 	</Grid>
 </UserControl>

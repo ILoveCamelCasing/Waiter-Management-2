@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.Manager.ViewModels.Abstract;
@@ -11,21 +13,34 @@ namespace WaiterManagement.Manager.ViewModels
 		#region Dependencies
 
 		private readonly IViewProvider _viewProvider;
+		private readonly ICommandBus _commandBus;
 
 		#endregion
 
 		#region Public Properties
 
-		public TableView SelectedElement { get; set; }
+		private TableView _selectedElement;
+
+		public TableView SelectedElement
+		{
+			get { return _selectedElement; }
+			set
+			{
+				_selectedElement = value;
+				NotifyOfPropertyChange(() => CanDeleteTable);
+			}
+		}
 		public BindableCollection<TableView> Elements { get; private set; }
 
 		#endregion
 
 		#region Constructors
 
-		public TableListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider) : base(viewModelResolver)
+		public TableListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider, ICommandBus commandBus)
+			: base(viewModelResolver)
 		{
 			_viewProvider = viewProvider;
+			_commandBus = commandBus;
 			DisplayName = "Tables";
 
 			Elements = new BindableCollection<TableView>();
@@ -45,7 +60,17 @@ namespace WaiterManagement.Manager.ViewModels
 			var vm = Get<IEditTableViewModel>();
 			vm.Initialize(SelectedElement);
 			vm.ShowOn(ParentWindow);
+		}
 
+		public void DeleteTable()
+		{
+			_commandBus.SendCommand(new DeleteTableCommand() {Id = SelectedElement.TableId});
+			OnActivate();
+		}
+
+		public bool CanDeleteTable
+		{
+			get { return SelectedElement != null; }
 		}
 
 		#endregion

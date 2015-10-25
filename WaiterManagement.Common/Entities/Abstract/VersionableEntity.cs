@@ -33,5 +33,13 @@ namespace WaiterManagement.Common.Entities.Abstract
 
 			return newVersion;
 		}
+
+		public virtual VersionableEntity CreateDeletedVersion(IUnitOfWork unitOfWork)
+		{
+			var newVersion = CreateNewVersion(unitOfWork);
+			newVersion.IsDeleted = true;
+
+			return newVersion;
+		}
 	}
 }
