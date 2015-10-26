@@ -20,7 +20,8 @@ namespace WaiterManagement.DAL
 
 		#region Views
 
-		public DbSet<TableView> TablesView { get; set; } 
+		public DbSet<TableView> TablesView { get; set; }
+		public DbSet<CategoryView> CategoriesView { get; set; } 
 
 		#endregion
 	}
