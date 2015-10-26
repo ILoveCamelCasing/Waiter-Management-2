@@ -38,7 +38,7 @@ namespace WaiterManagement.Wpf.MVVM
 				string viewTypeName;
 
 				if (useViewAttributes.Count() == 1)
-					viewTypeName = string.Concat(modelType.Namespace.Replace("Model", string.Empty), ".",
+					viewTypeName = string.Concat(modelType.Namespace.Substring(0,modelType.Namespace.IndexOf(".ViewModels")) , ".Views.",
 						useViewAttributes.First().ViewName);
 				else
 				{

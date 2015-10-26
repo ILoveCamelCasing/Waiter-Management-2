@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201510251739424_TablesView.Designer.cs">
       <DependentUpon>201510251739424_TablesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510261454110_Categories.cs" />
+    <Compile Include="Migrations\201510261454110_Categories.Designer.cs">
+      <DependentUpon>201510261454110_Categories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -83,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510251739424_TablesView.resx">
       <DependentUpon>201510251739424_TablesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510261454110_Categories.resx">
+      <DependentUpon>201510261454110_Categories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

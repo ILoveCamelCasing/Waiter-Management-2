@@ -1,13 +1,12 @@
 ﻿using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
-using WaiterManagement.Manager.ViewModels.Abstract;
 using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
-namespace WaiterManagement.Manager.ViewModels
+namespace WaiterManagement.Manager.ViewModels.Table
 {
-	[UseView("TableView")]
-	public class AddTableViewModel : ViewModelBase , IAddTableViewModel
+	[UseView("Table.TableView")]
+	public class AddTableViewModel : ViewModelBase
 	{
 		private readonly ICommandBus _commandBus;
 

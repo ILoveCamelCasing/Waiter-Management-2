@@ -83,30 +83,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Abstract\IAddTableViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IEditTableViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IMainWindowViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IMenuListViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\ITableListViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\ITableTabViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IWaiterListViewModel.cs" />
-    <Compile Include="ViewModels\AddTableViewModel.cs" />
-    <Compile Include="ViewModels\EditTableViewModel.cs" />
-    <Compile Include="ViewModels\MenuListViewModel.cs" />
-    <Compile Include="ViewModels\TableListViewModel.cs" />
+    <Compile Include="ViewModels\Menu\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Menu\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\Table\AddTableViewModel.cs" />
+    <Compile Include="ViewModels\Table\EditTableViewModel.cs" />
+    <Compile Include="ViewModels\Menu\MenuListViewModel.cs" />
+    <Compile Include="ViewModels\Menu\MenuTabViewModel.cs" />
+    <Compile Include="ViewModels\Table\TableListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\TableTabViewModel.cs" />
+    <Compile Include="ViewModels\Table\TableTabViewModel.cs" />
     <Compile Include="ViewModels\WaiterListViewModel.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MenuListView.xaml.cs">
+    <Compile Include="Views\Menu\CategoryListView.xaml.cs">
+      <DependentUpon>CategoryListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\CategoryView.xaml.cs">
+      <DependentUpon>CategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\MenuListView.xaml.cs">
       <DependentUpon>MenuListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TableListView.xaml.cs">
+    <Compile Include="Views\Table\TableListView.xaml.cs">
       <DependentUpon>TableListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TableView.xaml.cs">
+    <Compile Include="Views\Table\TableView.xaml.cs">
       <DependentUpon>TableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TabView.xaml.cs">
@@ -150,15 +152,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MenuListView.xaml">
+    <Page Include="Views\Menu\CategoryListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TableListView.xaml">
+    <Page Include="Views\Menu\CategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TableView.xaml">
+    <Page Include="Views\Menu\MenuListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Table\TableListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Table\TableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

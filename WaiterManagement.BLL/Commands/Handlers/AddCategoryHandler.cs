@@ -5,13 +5,14 @@ using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.BLL.Commands.Handlers
 {
-	public class AddTableHandler : Handler, IHandleCommand<AddTableCommand>
+	public class AddCategoryHandler : Handler, IHandleCommand<AddCategoryCommand>
 	{
-		public AddTableHandler(IUnitOfWork unitUnitOfWork) : base(unitUnitOfWork)
+		public AddCategoryHandler(IUnitOfWork unitUnitOfWork)
+			: base(unitUnitOfWork)
 		{
 		}
 
-		public void Handle(AddTableCommand command)
+		public void Handle(AddCategoryCommand command)
 		{
 			UnitOfWork.Add(new Category{Title = command.Title, Description = command.Description});
 		}

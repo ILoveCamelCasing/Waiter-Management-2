@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WaiterManagement.Manager.Views
+namespace WaiterManagement.Manager.Views.Menu
 {
 	/// <summary>
-	/// Interaction logic for TableView.xaml
+	/// Interaction logic for CategoryView.xaml
 	/// </summary>
-	public partial class TableView : UserControl
+	public partial class CategoryView : UserControl
 	{
-		public TableView()
+		public CategoryView()
 		{
 			InitializeComponent();
 		}

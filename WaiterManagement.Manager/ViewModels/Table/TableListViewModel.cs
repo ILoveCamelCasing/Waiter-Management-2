@@ -3,12 +3,11 @@ using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
-using WaiterManagement.Manager.ViewModels.Abstract;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
-namespace WaiterManagement.Manager.ViewModels
+namespace WaiterManagement.Manager.ViewModels.Table
 {
-	public sealed class TableListViewModel : ViewModelBase, ITableListViewModel
+	public sealed class TableListViewModel : ViewModelBase
 	{
 		#region Dependencies
 
@@ -52,12 +51,12 @@ namespace WaiterManagement.Manager.ViewModels
 
 		public void AddTable()
 		{
-			Get<IAddTableViewModel>().ShowOn(ParentWindow);
+			Get<AddTableViewModel>().ShowOn(ParentWindow);
 		}
 
 		public void EditTable()
 		{
-			var vm = Get<IEditTableViewModel>();
+			var vm = Get<EditTableViewModel>();
 			vm.Initialize(SelectedElement);
 			vm.ShowOn(ParentWindow);
 		}

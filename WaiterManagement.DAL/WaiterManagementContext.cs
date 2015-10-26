@@ -8,14 +8,15 @@ namespace WaiterManagement.DAL
 	{
 		public WaiterManagementContext() : base("WaiterManagement")
 		{
-			
+
 		}
 
 		#region Entities
 
-		public DbSet<Table> Tables { get; set; } 
+		public DbSet<Table> Tables { get; set; }
+		public DbSet<Category> Categories { get; set; }
 
-		#endregion
+	#endregion
 
 		#region Views
 
