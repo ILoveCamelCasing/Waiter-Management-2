@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="ViewModels\Menu\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\Menu\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\Menu\EditCategoryViewModel.cs" />
     <Compile Include="ViewModels\Table\AddTableViewModel.cs" />
     <Compile Include="ViewModels\Table\EditTableViewModel.cs" />
     <Compile Include="ViewModels\Menu\MenuListViewModel.cs" />

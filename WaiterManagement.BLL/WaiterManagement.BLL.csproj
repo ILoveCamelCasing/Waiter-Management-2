@@ -46,11 +46,15 @@
     <Compile Include="Commands\Base\IHandleCommand.cs" />
     <Compile Include="Commands\Concrete\AddCategoryCommand.cs" />
     <Compile Include="Commands\Concrete\AddTableCommand.cs" />
+    <Compile Include="Commands\Concrete\DeleteCategoryCommand.cs" />
     <Compile Include="Commands\Concrete\DeleteTableCommand.cs" />
+    <Compile Include="Commands\Concrete\EditCategoryCommand.cs" />
     <Compile Include="Commands\Concrete\EditTableCommand.cs" />
     <Compile Include="Commands\Handlers\AddCategoryHandler.cs" />
     <Compile Include="Commands\Handlers\AddTableHandler.cs" />
+    <Compile Include="Commands\Handlers\DeleteCategoryHandler.cs" />
     <Compile Include="Commands\Handlers\DeleteTableHandler.cs" />
+    <Compile Include="Commands\Handlers\EditCategoryHandler.cs" />
     <Compile Include="Commands\Handlers\EditTableHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
