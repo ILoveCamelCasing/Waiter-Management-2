@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Core.Objects;
 
 namespace WaiterManagement.Common.Entities.Abstract
 {
@@ -24,14 +27,20 @@ namespace WaiterManagement.Common.Entities.Abstract
 
 		public virtual VersionableEntity CreateNewVersion(IUnitOfWork unitOfWork)
 		{
-			Mapper.CreateMap(GetType(), GetType());
-			var newVersion = (VersionableEntity)Mapper.Map(this, GetType(), GetType());
+			var type = ObjectContext.GetObjectType(GetType());
+			var newVersion = (VersionableEntity)unitOfWork.Add(type,Clone());
 			newVersion.Modified = SystemTime.Now;
 			newVersion.Version++;
 
 			this.IsNewest = false;
 
 			return newVersion;
+		}
+
+		public virtual VersionableEntity Clone()
+		{
+			Mapper.CreateMap(GetType(), ObjectContext.GetObjectType(GetType()));
+			return (VersionableEntity)Mapper.Map(this, GetType(), GetType());
 		}
 
 		public virtual VersionableEntity CreateDeletedVersion(IUnitOfWork unitOfWork)

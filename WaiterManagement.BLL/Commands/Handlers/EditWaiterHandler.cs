@@ -20,8 +20,6 @@ namespace WaiterManagement.BLL.Commands.Handlers
       var waiterNewVersion = (Waiter)waiter.CreateNewVersion(UnitOfWork);
       waiterNewVersion.FirstName = command.FirstName;
       waiterNewVersion.LastName = command.LastName;
-
-      UnitOfWork.Add(waiterNewVersion);
     }
     #endregion
   }

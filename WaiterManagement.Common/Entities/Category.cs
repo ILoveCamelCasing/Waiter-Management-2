@@ -8,5 +8,11 @@ namespace WaiterManagement.Common.Entities
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public virtual ICollection<MenuItem> MenuItems { get; set; }
+
+		public override VersionableEntity CreateNewVersion(IUnitOfWork unitOfWork)
+		{
+			unitOfWork.Load(this, p => p.MenuItems);
+			return base.CreateNewVersion(unitOfWork);
+		}
 	}
 }

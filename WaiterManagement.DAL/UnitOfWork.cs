@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WaiterManagement.Common.Entities.Abstract;
 
@@ -15,14 +16,14 @@ namespace WaiterManagement.DAL
 			_dbContext = new WaiterManagementContext();
 		}
 
-		public void Add(Type entityType, object item)
+		public object Add(Type entityType, object item)
 		{
-			_dbContext.Set(entityType).Add(item);
+			return _dbContext.Set(entityType).Add(item);
 		}
 
-		public void Add<T>(T item) where T : class, IEntity
+		public T Add<T>(T item) where T : class, IEntity
 		{
-			_dbContext.Set<T>().Add(item);
+			return _dbContext.Set<T>().Add(item);
 		}
 
 		async Task IUnitOfWork.AddAsync<T>(T item)
@@ -33,6 +34,20 @@ namespace WaiterManagement.DAL
 		public T Get<T>(int id) where T : class, IEntity
 		{
 			return _dbContext.Set<T>().First(x => x.Id == id);
+		}
+
+		public void Load<TEntity, TProperty>(TEntity item, Expression<Func<TEntity, TProperty>> navigationProperty) 
+			where TProperty : class 
+			where TEntity : class
+		{
+			_dbContext.Entry(item).Reference(navigationProperty).Load();
+		}
+
+		public void Load<TEntity, TElement>(TEntity item, Expression<Func<TEntity, System.Collections.Generic.ICollection<TElement>>> navigationProperty)
+			where TEntity : class
+			where TElement : class
+		{
+			_dbContext.Entry(item).Collection(navigationProperty).Load();
 		}
 
 		async Task<T> IUnitOfWork.GetAsync<T>(int id)

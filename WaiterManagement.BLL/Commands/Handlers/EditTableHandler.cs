@@ -18,8 +18,6 @@ namespace WaiterManagement.BLL.Commands.Handlers
 			var newVersion = (Table)currentTable.CreateNewVersion(UnitOfWork);
 			newVersion.Title = command.Title;
 			newVersion.Description = command.Description;
-
-			UnitOfWork.Add(newVersion);
 		}
 	}
 }

@@ -7,85 +7,102 @@ using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels.Table
 {
-	public sealed class TableListViewModel : ViewModelBase
-	{
-		#region Dependencies
+  public sealed class TableListViewModel : ViewModelBase
+  {
+    #region Dependencies
 
-		private readonly IViewProvider _viewProvider;
-		private readonly ICommandBus _commandBus;
+    private readonly IViewProvider _viewProvider;
+    private readonly ICommandBus _commandBus;
 
-		#endregion
+    #endregion
 
-		#region Public Properties
+    #region Private Fields
+    private bool _isBusy;
 
-		private TableView _selectedElement;
+    private TableView _selectedElement;
+    #endregion
 
-		public TableView SelectedElement
-		{
-			get { return _selectedElement; }
-			set
-			{
-				_selectedElement = value;
-				NotifyOfPropertyChange(() => CanDeleteTable);
-			}
-		}
-		public BindableCollection<TableView> Elements { get; private set; }
+    #region Public Properties
 
-		#endregion
+    public TableView SelectedElement
+    {
+      get { return _selectedElement; }
+      set
+      {
+        _selectedElement = value;
+        NotifyOfPropertyChange(() => CanDeleteTable);
+      }
+    }
+    public BindableCollection<TableView> Elements { get; private set; }
 
-		#region Constructors
+    public bool IsBusy
+    {
+      get
+      {
+        return _isBusy;
+      }
+      set
+      {
+        _isBusy = value;
+        NotifyOfPropertyChange(() => IsBusy);
+      }
+    }
 
-		public TableListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider, ICommandBus commandBus)
-			: base(viewModelResolver)
-		{
-			_viewProvider = viewProvider;
-			_commandBus = commandBus;
-			DisplayName = "Tables";
+    #endregion
 
-			Elements = new BindableCollection<TableView>();
-		}
+    #region Constructors
 
-		#endregion
+    public TableListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider, ICommandBus commandBus)
+      : base(viewModelResolver)
+    {
+      _viewProvider = viewProvider;
+      _commandBus = commandBus;
+      DisplayName = "Tables";
 
-		#region Public methods
+      Elements = new BindableCollection<TableView>();
+      IsBusy = true;
+    }
 
-		public void AddTable()
-		{
-			Get<AddTableViewModel>().ShowOn(ParentWindow);
-		}
+    #endregion
 
-		public void EditTable()
-		{
-			var vm = Get<EditTableViewModel>();
-			vm.Initialize(SelectedElement);
-			vm.ShowOn(ParentWindow);
-		}
+    #region Public methods
 
-		public void DeleteTable()
-		{
-			_commandBus.SendCommand(new DeleteTableCommand() {Id = SelectedElement.TableId});
-			OnActivate();
-		}
+    public void AddTable()
+    {
+      Get<AddTableViewModel>().ShowOn(ParentWindow);
+    }
 
-		public bool CanDeleteTable
-		{
-			get { return SelectedElement != null; }
-		}
+    public void EditTable()
+    {
+      var vm = Get<EditTableViewModel>();
+      vm.Initialize(SelectedElement);
+      vm.ShowOn(ParentWindow);
+    }
 
-		#endregion
+    public void DeleteTable()
+    {
+      _commandBus.SendCommand(new DeleteTableCommand() { Id = SelectedElement.TableId });
+      OnActivate();
+    }
 
-		#region Ovverides
+    public bool CanDeleteTable
+    {
+      get { return SelectedElement != null; }
+    }
 
-		protected override void OnActivate()
-		{
-			base.OnActivate();
+    #endregion
 
-			Elements.Clear();
-			Elements.AddRange(_viewProvider.Get<TableView>());
+    #region Ovverides
 
-			NotifyOfPropertyChange(() => Elements);
-		}
+    protected override async void OnActivate()
+    {
+      base.OnActivate();
 
-		#endregion
-	}
+      Elements.Clear();
+      Elements.AddRange(await _viewProvider.GetAsync<TableView>());
+      IsBusy = false;
+    }
+
+    #endregion
+  }
 }

@@ -19,8 +19,6 @@ namespace WaiterManagement.BLL.Commands.Handlers
 			newVersion.Title = command.Title;
 			newVersion.Description = command.Description;
 			newVersion.Category = UnitOfWork.Get<Category>(command.CategoryId);
-
-			UnitOfWork.Add(newVersion);
 		}
 	}
 }

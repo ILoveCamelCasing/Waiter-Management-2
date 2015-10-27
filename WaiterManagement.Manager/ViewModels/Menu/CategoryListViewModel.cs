@@ -7,7 +7,7 @@ using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels.Menu
 {
-	public class CategoryListViewModel: ViewModelBase
+	public class CategoryListViewModel : ViewModelBase
 	{
 		#region Dependencies
 
@@ -18,11 +18,25 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 
 		#region Private fields
 
+		private bool _isBusy;
 		private CategoryView _selectedElement;
 
 		#endregion
 
 		#region Public Properties
+
+		public bool IsBusy
+		{
+			get
+			{
+				return _isBusy;
+			}
+			set
+			{
+				_isBusy = value;
+				NotifyOfPropertyChange(() => IsBusy);
+			}
+		}
 
 		public CategoryView SelectedElement
 		{
@@ -51,6 +65,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			_commandBus = commandBus;
 
 			Elements = new BindableCollection<CategoryView>();
+			IsBusy = true;
 		}
 
 		#endregion
@@ -61,7 +76,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		{
 			Get<AddCategoryViewModel>().ShowOn(ParentWindow);
 		}
-		
+
 		public void DeleteCategory()
 		{
 			_commandBus.SendCommand(new DeleteCategoryCommand() { Id = SelectedElement.CategoryId });
@@ -92,6 +107,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			Elements.AddRange(_viewProvider.Get<CategoryView>());
 
 			NotifyOfPropertyChange(() => Elements);
+			IsBusy = false;
 		}
 
 		#endregion

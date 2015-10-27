@@ -7,7 +7,7 @@ namespace WaiterManagement.DAL
 {
 	public class ViewProvider : IViewProvider, IDisposable
 	{
-		private readonly WaiterManagementContext _db;
+		private WaiterManagementContext _db;
 
 		public ViewProvider()
 		{
@@ -16,17 +16,20 @@ namespace WaiterManagement.DAL
 
 		public IQueryable<T> Get<T>() where T : class, IView
 		{
+			_db.Dispose();
+			_db = new WaiterManagementContext();
+
 			return _db.Set<T>();
-    }
+		}
 
-    async Task<IQueryable<T>> IViewProvider.GetAsync<T>()
-    {
-      return await Task.Run(() => Get<T>());
-    }
+		async Task<IQueryable<T>> IViewProvider.GetAsync<T>()
+		{
+			return await Task.Run(() => Get<T>());
+		}
 
-    public void Dispose()
+		public void Dispose()
 		{
 			_db.Dispose();
 		}
-  }
+	}
 }

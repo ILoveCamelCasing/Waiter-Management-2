@@ -18,6 +18,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 
 		#region Private fields
 
+		private bool _isBusy;
 		private MenuItemView _selectedElement;
 
 		#endregion
@@ -40,6 +41,18 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			get { return SelectedElement != null; }
 		}
 
+		public bool IsBusy
+		{
+			get
+			{
+				return _isBusy;
+			}
+			set
+			{
+				_isBusy = value;
+				NotifyOfPropertyChange(() => IsBusy);
+			}
+		}
 		#endregion
 
 		#region Constructor
@@ -61,7 +74,9 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		{
 			Get<AddMenuItemViewModel>().ShowOn(ParentWindow);
 		}
+    #endregion
 
+    #region Public Methods
 		public void ManageCategories()
 		{
 			Get<CategoryListViewModel>().ShowOn(ParentWindow);
@@ -92,6 +107,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			Elements.AddRange(_viewProvider.Get<MenuItemView>());
 
 			NotifyOfPropertyChange(() => Elements);
+			IsBusy = false;
 		}
 
 		#endregion
