@@ -3,6 +3,7 @@ using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
+using WaiterManagement.Manager.ViewModels.Table;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels.Menu
@@ -42,9 +43,9 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		{
 			Get<AddCategoryViewModel>().ShowOn(ParentWindow);
 		}
-		public void DeleteTable()
+		public void DeleteCategory()
 		{
-			//_commandBus.SendCommand(new DeleteCategoryCommand() { Id = SelectedElement.CategoryId });
+			_commandBus.SendCommand(new DeleteCategoryCommand() { Id = SelectedElement.CategoryId });
 			OnActivate();
 		}
 
@@ -56,6 +57,13 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		public void BackToMenuItems()
 		{
 			Close();
+		}
+
+		public void EditCategory()
+		{
+			var vm = Get<EditCategoryViewModel>();
+			vm.Initialize(SelectedElement);
+			vm.ShowOn(ParentWindow);
 		}
 
 		protected override void OnActivate()
