@@ -25,8 +25,9 @@ namespace WaiterManagement.Common.Entities.Abstract
 			IsDeleted = false;
 		}
 
-		public virtual VersionableEntity CreateNewVersion(IUnitOfWork unitOfWork)
+		public VersionableEntity CreateNewVersion(IUnitOfWork unitOfWork)
 		{
+			LoadAll(unitOfWork);
 			var type = ObjectContext.GetObjectType(GetType());
 			var newVersion = (VersionableEntity)unitOfWork.Add(type,Clone());
 			newVersion.Modified = SystemTime.Now;
@@ -41,6 +42,11 @@ namespace WaiterManagement.Common.Entities.Abstract
 		{
 			Mapper.CreateMap(GetType(), ObjectContext.GetObjectType(GetType()));
 			return (VersionableEntity)Mapper.Map(this, GetType(), GetType());
+		}
+
+		public virtual void LoadAll(IUnitOfWork unitOfWork)
+		{
+			
 		}
 
 		public virtual VersionableEntity CreateDeletedVersion(IUnitOfWork unitOfWork)
