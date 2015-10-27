@@ -21,7 +21,7 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
 
     #region Constructors
     public AddWaiterViewModel(IViewModelResolver viewModelResolver, ICommandBus commandBus)
-      :base(viewModelResolver)
+      : base(viewModelResolver)
     {
       if (commandBus == null)
         throw new ArgumentNullException("commandBus");
@@ -34,6 +34,7 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
     public void Save()
     {
       _commandBus.SendCommand(new AddWaiterCommand() { FirstName = FirstName, LastName = LastName });
+
       Close();
     }
 

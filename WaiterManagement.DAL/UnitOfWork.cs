@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.DAL
@@ -18,13 +19,22 @@ namespace WaiterManagement.DAL
 		{
 			_dbContext.Set<T>().Add(item);
 		}
+    async Task IUnitOfWork.AddAsync<T>(T item)
+    {
+      await Task.Run(() => Add(item));
+    }
 
-		public T Get<T>(int id) where T : class, IEntity
+    public T Get<T>(int id) where T : class, IEntity
 		{
 			return _dbContext.Set<T>().First(x => x.Id == id);
 		}
 
-		public void Commit()
+    async Task<T> IUnitOfWork.GetAsync<T>(int id)
+    {
+      return await Task.Run(() => Get<T>(id));
+    }
+
+    public void Commit()
 		{
 			_dbContext.SaveChanges();
 		}
@@ -65,5 +75,5 @@ namespace WaiterManagement.DAL
 		{
 			_dbContext.Dispose();
 		}
-	}
+  }
 }

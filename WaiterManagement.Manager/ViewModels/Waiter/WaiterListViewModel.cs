@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
+using System.Windows;
+using System.Windows.Threading;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.Common.Views;
@@ -18,6 +20,7 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
 
     #region Private Fields
     private WaiterView _selectedElement;
+    private bool _isBusy;
     #endregion
 
     #region Constructors
@@ -57,8 +60,15 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
 
     public bool IsBusy
     {
-      get;
-      private set;
+      get
+      {
+        return _isBusy;
+      }
+      private set
+      {
+        _isBusy = value;
+        NotifyOfPropertyChange(() => IsBusy);
+      }
     }
     #endregion
 
@@ -91,12 +101,12 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
     #endregion
 
     #region Overrides
-    protected override void OnActivate()
+    protected override async void OnActivate()
     {
       base.OnActivate();
 
-      Elements.Clear();
-      Elements.AddRange(_viewProvider.Get<WaiterView>());
+      Elements.Clear();      
+      Elements.AddRange(await _viewProvider.GetAsync<WaiterView>());
       IsBusy = false;
     }
     #endregion

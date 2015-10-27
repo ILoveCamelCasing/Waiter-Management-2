@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using WaiterManagement.Common.Views.Abstract;
 
 namespace WaiterManagement.DAL
@@ -16,11 +17,16 @@ namespace WaiterManagement.DAL
 		public IQueryable<T> Get<T>() where T : class, IView
 		{
 			return _db.Set<T>();
-		}
+    }
 
-		public void Dispose()
+    async Task<IQueryable<T>> IViewProvider.GetAsync<T>()
+    {
+      return await Task.Run(() => Get<T>());
+    }
+
+    public void Dispose()
 		{
 			_db.Dispose();
 		}
-	}
+  }
 }
