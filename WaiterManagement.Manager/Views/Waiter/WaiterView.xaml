@@ -16,9 +16,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label>First name</Label>
-        <TextBox Name="Title" Margin="10" Grid.Column="1"></TextBox>
+        <TextBox Name="FirstName" Margin="10" Grid.Column="1"></TextBox>
         <Label Grid.Row="1">Last name</Label>
-        <TextBox Name="Description" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
+        <TextBox Name="LastName" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
         <Button Name="Save" Grid.Row="2" Grid.Column="0" Margin="10">Save</Button>
         <Button Name="Cancel" Grid.Row="2" Grid.Column="1" Margin="10">Cancel</Button>
     </Grid>

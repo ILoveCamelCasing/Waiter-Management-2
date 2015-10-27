@@ -49,6 +49,7 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
       {
         _selectedElement = value;
         NotifyOfPropertyChange(() => SelectedElement);
+        NotifyOfPropertyChange(() => CanDeleteWaiter);
       }
     }
 
@@ -74,7 +75,7 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
       editWaiterViewModel.ShowOn(ParentWindow);
     }
 
-    public void DeleteTable()
+    public void DeleteWaiter()
     {
       _commandBus.SendCommand(new DeleteWaiterCommand() { Id = SelectedElement.WaiterId });
       OnActivate();

@@ -14,7 +14,6 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
     #endregion
 
     #region Public Properties
-
     public string FirstName { get; set; }
     public string LastName { get; set; }
 
