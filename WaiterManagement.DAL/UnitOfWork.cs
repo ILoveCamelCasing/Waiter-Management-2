@@ -15,26 +15,32 @@ namespace WaiterManagement.DAL
 			_dbContext = new WaiterManagementContext();
 		}
 
+		public void Add(Type entityType, object item)
+		{
+			_dbContext.Set(entityType).Add(item);
+		}
+
 		public void Add<T>(T item) where T : class, IEntity
 		{
 			_dbContext.Set<T>().Add(item);
 		}
-    async Task IUnitOfWork.AddAsync<T>(T item)
-    {
-      await Task.Run(() => Add(item));
-    }
 
-    public T Get<T>(int id) where T : class, IEntity
+		async Task IUnitOfWork.AddAsync<T>(T item)
+		{
+			await Task.Run(() => Add(item));
+		}
+
+		public T Get<T>(int id) where T : class, IEntity
 		{
 			return _dbContext.Set<T>().First(x => x.Id == id);
 		}
 
-    async Task<T> IUnitOfWork.GetAsync<T>(int id)
-    {
-      return await Task.Run(() => Get<T>(id));
-    }
+		async Task<T> IUnitOfWork.GetAsync<T>(int id)
+		{
+			return await Task.Run(() => Get<T>(id));
+		}
 
-    public void Commit()
+		public void Commit()
 		{
 			_dbContext.SaveChanges();
 		}
@@ -75,5 +81,5 @@ namespace WaiterManagement.DAL
 		{
 			_dbContext.Dispose();
 		}
-  }
+	}
 }

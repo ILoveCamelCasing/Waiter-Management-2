@@ -18,13 +18,13 @@
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Button Name="ManageCategories" Margin="10">Manage categories</Button>
-		<ListView x:Name="Elements" Grid.ColumnSpan="2" Grid.Row="1" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditTable]">
+		<ListView x:Name="Elements" Grid.ColumnSpan="2" Grid.Row="1" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditMenuItem]">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn x:Name="TitleColumn" DisplayMemberBinding="{Binding Title}">
 						<GridViewColumnHeader Tag="Title" Content="Title"/>
 					</GridViewColumn>
-					<GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding Category}">
+					<GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding CategoryTitle}">
 						<GridViewColumnHeader Tag="Category" Content="Category"/>
 					</GridViewColumn>
 					<GridViewColumn x:Name="DescriptionColumn" DisplayMemberBinding="{Binding Description}">
@@ -33,7 +33,7 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-		<Button Name="AddItem" Margin="10" Grid.Row="2" Grid.Column="0">Add item</Button>
-		<Button Name="DeleteItem" Margin="10" Grid.Row="2" Grid.Column="1">Delete item</Button>
+		<Button Name="AddMenuItem" Margin="10" Grid.Row="2" Grid.Column="0">Add item</Button>
+		<Button Name="DeleteMenuItem" Margin="10" Grid.Row="2" Grid.Column="1">Delete item</Button>
 	</Grid>
 </UserControl>

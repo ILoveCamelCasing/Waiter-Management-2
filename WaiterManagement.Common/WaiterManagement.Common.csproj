@@ -52,6 +52,7 @@
     <Compile Include="Entities\Abstract\NonVersionableEntity.cs" />
     <Compile Include="Entities\Abstract\VersionableEntity.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\MenuItem.cs" />
     <Compile Include="Entities\Table.cs" />
     <Compile Include="Entities\Waiter.cs" />
     <Compile Include="SystemTime.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Views\Abstract\IView.cs" />
     <Compile Include="Views\Abstract\IViewProvider.cs" />
     <Compile Include="Views\CategoryView.cs" />
+    <Compile Include="Views\MenuItemView.cs" />
     <Compile Include="Views\TableView.cs" />
     <Compile Include="Views\WaiterView.cs" />
   </ItemGroup>

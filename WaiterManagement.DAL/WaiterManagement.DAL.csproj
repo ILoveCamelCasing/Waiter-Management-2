@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201510270622387_WaiterAndWaitersView.Designer.cs">
       <DependentUpon>201510270622387_WaiterAndWaitersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510270855429_MenuItems And MenuItemsView.cs" />
+    <Compile Include="Migrations\201510270855429_MenuItems And MenuItemsView.Designer.cs">
+      <DependentUpon>201510270855429_MenuItems And MenuItemsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -104,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510270622387_WaiterAndWaitersView.resx">
       <DependentUpon>201510270622387_WaiterAndWaitersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510270855429_MenuItems And MenuItemsView.resx">
+      <DependentUpon>201510270855429_MenuItems And MenuItemsView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

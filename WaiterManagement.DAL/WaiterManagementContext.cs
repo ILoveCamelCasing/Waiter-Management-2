@@ -5,23 +5,30 @@ using WaiterManagement.DAL.Migrations;
 
 namespace WaiterManagement.DAL
 {
-  public class WaiterManagementContext : DbContext
-  {
-    public WaiterManagementContext() : base("WaiterManagement")
-    {
-      Database.SetInitializer(new MigrateDatabaseToLatestVersion<WaiterManagementContext, Configuration>());
-    }
+	public class WaiterManagementContext : DbContext
+	{
+		public WaiterManagementContext()
+			: base("WaiterManagement")
+		{
+			Database.SetInitializer(new MigrateDatabaseToLatestVersion<WaiterManagementContext, Configuration>());
+		}
 
-    #region Entities
-    public DbSet<Table> Tables { get; set; }
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Waiter> Waiters { get; set; }
-    #endregion
+		#region Entities
 
-    #region Views
-    public DbSet<TableView> TablesView { get; set; }
-    public DbSet<CategoryView> CategoriesView { get; set; }
-    public DbSet<WaiterView> WaitersView { get; set; }
-    #endregion
-  }
+		public DbSet<Table> Tables { get; set; }
+		public DbSet<Category> Categories { get; set; }
+		public DbSet<Waiter> Waiters { get; set; }
+		public DbSet<MenuItem> MenuItems { get; set; }
+
+		#endregion
+
+		#region Views
+
+		public DbSet<TableView> TablesView { get; set; }
+		public DbSet<CategoryView> CategoriesView { get; set; }
+		public DbSet<WaiterView> WaitersView { get; set; }
+		public DbSet<MenuItemView> MenuItemsView { get; set; }
+
+		#endregion
+	}
 }

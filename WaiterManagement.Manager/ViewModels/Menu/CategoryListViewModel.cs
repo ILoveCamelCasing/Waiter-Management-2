@@ -3,19 +3,26 @@ using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
-using WaiterManagement.Manager.ViewModels.Table;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels.Menu
 {
 	public class CategoryListViewModel: ViewModelBase
 	{
+		#region Dependencies
+
 		private readonly IViewProvider _viewProvider;
 		private readonly ICommandBus _commandBus;
 
-		#region Public Properties
+		#endregion
+
+		#region Private fields
 
 		private CategoryView _selectedElement;
+
+		#endregion
+
+		#region Public Properties
 
 		public CategoryView SelectedElement
 		{
@@ -28,7 +35,14 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		}
 		public BindableCollection<CategoryView> Elements { get; private set; }
 
+		public bool CanDeleteCategory
+		{
+			get { return SelectedElement != null; }
+		}
+
 		#endregion
+
+		#region Constructor
 
 		public CategoryListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider, ICommandBus commandBus)
 			: base(viewModelResolver)
@@ -39,19 +53,19 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			Elements = new BindableCollection<CategoryView>();
 		}
 
+		#endregion
+
+		#region Public methods
+
 		public void AddCategory()
 		{
 			Get<AddCategoryViewModel>().ShowOn(ParentWindow);
 		}
+		
 		public void DeleteCategory()
 		{
 			_commandBus.SendCommand(new DeleteCategoryCommand() { Id = SelectedElement.CategoryId });
 			OnActivate();
-		}
-
-		public bool CanDeleteCategory
-		{
-			get { return SelectedElement != null; }
 		}
 
 		public void BackToMenuItems()
@@ -66,6 +80,10 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			vm.ShowOn(ParentWindow);
 		}
 
+		#endregion
+
+		#region Ovverrides
+
 		protected override void OnActivate()
 		{
 			base.OnActivate();
@@ -75,5 +93,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 
 			NotifyOfPropertyChange(() => Elements);
 		}
+
+		#endregion
 	}
 }

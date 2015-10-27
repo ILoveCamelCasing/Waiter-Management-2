@@ -109,8 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\Menu\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Menu\AddMenuItemViewModel.cs" />
     <Compile Include="ViewModels\Menu\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\Menu\EditCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Menu\EditMenuItemViewModel.cs" />
     <Compile Include="ViewModels\Table\AddTableViewModel.cs" />
     <Compile Include="ViewModels\Table\EditTableViewModel.cs" />
     <Compile Include="ViewModels\Menu\MenuListViewModel.cs" />
@@ -130,6 +132,9 @@
     </Compile>
     <Compile Include="Views\Menu\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\MenuItemView.xaml.cs">
+      <DependentUpon>MenuItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu\MenuListView.xaml.cs">
       <DependentUpon>MenuListView.xaml</DependentUpon>
@@ -192,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Menu\CategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\MenuItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
