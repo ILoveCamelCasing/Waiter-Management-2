@@ -4,36 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:xtdToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
 			 >
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="50"/>
-			<RowDefinition/>
-			<RowDefinition Height="50"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
-		<Button Name="ManageCategories" Margin="10">Manage categories</Button>
-		<ListView x:Name="Elements" Grid.ColumnSpan="2" Grid.Row="1" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditTable]">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn x:Name="TitleColumn" DisplayMemberBinding="{Binding Title}">
-						<GridViewColumnHeader Tag="Title" Content="Title"/>
-					</GridViewColumn>
-					<GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding Category}">
-						<GridViewColumnHeader Tag="Category" Content="Category"/>
-					</GridViewColumn>
-					<GridViewColumn x:Name="DescriptionColumn" DisplayMemberBinding="{Binding Description}">
-						<GridViewColumnHeader Tag="Description" Content="Description"/>
-					</GridViewColumn>
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<Button Name="AddItem" Margin="10" Grid.Row="2" Grid.Column="0">Add item</Button>
-		<Button Name="DeleteItem" Margin="10" Grid.Row="2" Grid.Column="1">Delete item</Button>
-	</Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Name="ManageCategories" Margin="10">Manage categories</Button>
+        <xtdToolkit:BusyIndicator Grid.ColumnSpan="2" Grid.Row="1" IsBusy="{Binding IsBusy}">
+            <ListView x:Name="Elements" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditTable]">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="TitleColumn" DisplayMemberBinding="{Binding Title}">
+                            <GridViewColumnHeader Tag="Title" Content="Title"/>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding Category}">
+                            <GridViewColumnHeader Tag="Category" Content="Category"/>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="DescriptionColumn" DisplayMemberBinding="{Binding Description}">
+                            <GridViewColumnHeader Tag="Description" Content="Description"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </xtdToolkit:BusyIndicator>
+        <Button Name="AddItem" Margin="10" Grid.Row="2" Grid.Column="0">Add item</Button>
+        <Button Name="DeleteItem" Margin="10" Grid.Row="2" Grid.Column="1">Delete item</Button>
+    </Grid>
 </UserControl>

@@ -10,14 +10,32 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 {
 	public class CategoryListViewModel: ViewModelBase
 	{
-		private readonly IViewProvider _viewProvider;
+    #region Dependencies
+    private readonly IViewProvider _viewProvider;
 		private readonly ICommandBus _commandBus;
+    #endregion
 
-		#region Public Properties
+    #region Private Fields
+    private CategoryView _selectedElement;
 
-		private CategoryView _selectedElement;
+    private bool _isBusy;
+    #endregion
 
-		public CategoryView SelectedElement
+    #region Public Properties
+    public bool IsBusy
+    {
+      get
+      {
+        return _isBusy;
+      }
+      set
+      {
+        _isBusy = value;
+        NotifyOfPropertyChange(() => IsBusy);
+      }
+    }
+
+    public CategoryView SelectedElement
 		{
 			get { return _selectedElement; }
 			set
@@ -28,18 +46,22 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		}
 		public BindableCollection<CategoryView> Elements { get; private set; }
 
-		#endregion
+    #endregion
 
-		public CategoryListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider, ICommandBus commandBus)
+    #region Constructors
+    public CategoryListViewModel(IViewModelResolver viewModelResolver, IViewProvider viewProvider, ICommandBus commandBus)
 			: base(viewModelResolver)
 		{
 			_viewProvider = viewProvider;
 			_commandBus = commandBus;
 
 			Elements = new BindableCollection<CategoryView>();
+      IsBusy = true;
 		}
+    #endregion
 
-		public void AddCategory()
+    #region Public Methods
+    public void AddCategory()
 		{
 			Get<AddCategoryViewModel>().ShowOn(ParentWindow);
 		}
@@ -65,15 +87,17 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 			vm.Initialize(SelectedElement);
 			vm.ShowOn(ParentWindow);
 		}
+    #endregion
 
-		protected override void OnActivate()
+    #region Overrides
+    protected override async void OnActivate()
 		{
 			base.OnActivate();
 
 			Elements.Clear();
-			Elements.AddRange(_viewProvider.Get<CategoryView>());
-
-			NotifyOfPropertyChange(() => Elements);
+			Elements.AddRange(await _viewProvider.GetAsync<CategoryView>());
+      IsBusy = false;
 		}
-	}
+    #endregion
+  }
 }
