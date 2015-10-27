@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201510261738201_CategoriesView.Designer.cs">
       <DependentUpon>201510261738201_CategoriesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510270622387_WaiterAndWaitersView.cs" />
+    <Compile Include="Migrations\201510270622387_WaiterAndWaitersView.Designer.cs">
+      <DependentUpon>201510270622387_WaiterAndWaitersView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510261738201_CategoriesView.resx">
       <DependentUpon>201510261738201_CategoriesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510270622387_WaiterAndWaitersView.resx">
+      <DependentUpon>201510270622387_WaiterAndWaitersView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

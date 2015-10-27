@@ -1,4 +1,5 @@
-﻿using WaiterManagement.Wpf.MVVM.Abstract;
+﻿using WaiterManagement.Wpf.MVVM;
+using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels.Menu
 {

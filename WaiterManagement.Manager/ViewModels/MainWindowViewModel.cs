@@ -1,5 +1,6 @@
 ﻿using WaiterManagement.Manager.ViewModels.Menu;
 using WaiterManagement.Manager.ViewModels.Table;
+using WaiterManagement.Manager.ViewModels.Waiter;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels
@@ -13,7 +14,7 @@ namespace WaiterManagement.Manager.ViewModels
 
 			Items.Add(Get<TableTabViewModel>());
 			Items.Add(Get<MenuTabViewModel>());
-			//Items.Add(waiterListViewModel);
+			Items.Add(Get<WaiterTabViewModel>());
 		}
 	}
 }
