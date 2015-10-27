@@ -13,7 +13,7 @@ namespace WaiterManagement.BLL.Commands.Handlers
 
 		public void Handle(AddTableCommand command)
 		{
-			UnitOfWork.Add(new Category{Title = command.Title, Description = command.Description});
+			UnitOfWork.Add(new Table{Title = command.Title, Description = command.Description});
 		}
 	}
 }
