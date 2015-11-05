@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using AutoMapper;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Core.Objects;
 
 namespace WaiterManagement.Common.Entities.Abstract
