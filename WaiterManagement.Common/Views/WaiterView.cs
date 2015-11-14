@@ -13,5 +13,6 @@ namespace WaiterManagement.Common.Views
     public Guid WaiterGuid { get; private set; }
     public string FirstName { get; private set;}
     public string LastName { get; private set; }
+    public string Login { get; private set; }
   }
 }
