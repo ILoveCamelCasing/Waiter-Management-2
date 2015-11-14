@@ -7,5 +7,7 @@ namespace WaiterManagement.BLL.Commands.Concrete
   {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    public string Login { get; set; }
+    public string FirstHash { get; set; }
   }
 }
