@@ -13,12 +13,12 @@ namespace WaiterManagement.Common.Views
     public class UserView : IView
     {
         [Key]
-        public int Id { get; private set; }
-        public Guid CommonId { get; private set; }
+        public int Id { get; set; }
+        public Guid CommonId { get; set; }
         /// <summary>
         /// CommonId użytkownika (kelnera bądź stołu)
         /// </summary>
-        public Guid UserId { get; private set; }
-        public string SecondHash { get; private set; }
+        public Guid UserId { get; set; }
+        public string SecondHash { get; set; }
     }
 }
