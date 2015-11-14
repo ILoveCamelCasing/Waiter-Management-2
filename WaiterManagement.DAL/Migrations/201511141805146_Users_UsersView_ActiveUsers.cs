@@ -36,7 +36,6 @@ namespace WaiterManagement.DAL.Migrations
 
 			Sql(DbMigrationExtensions.CreateViewQuery("UsersView",
 				"SELECT [Id], [CommonId], [UserId], [SecondHash] From Users WHERE IsNewest=1 AND IsDeleted=0"));
-
 		}
 
 		public override void Down()

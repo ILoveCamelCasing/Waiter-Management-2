@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Abstract\IEntity.cs" />
+    <Compile Include="Entities\Abstract\ILoginableEntity.cs" />
     <Compile Include="Entities\Abstract\IUnitOfWork.cs" />
     <Compile Include="Entities\Abstract\NonVersionableEntity.cs" />
     <Compile Include="Entities\Abstract\VersionableEntity.cs" />

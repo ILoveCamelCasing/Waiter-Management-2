@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201511141805146_Users_UsersView_ActiveUsers.Designer.cs">
       <DependentUpon>201511141805146_Users_UsersView_ActiveUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511141933554_LoginableWaiterAndTable.cs" />
+    <Compile Include="Migrations\201511141933554_LoginableWaiterAndTable.Designer.cs">
+      <DependentUpon>201511141933554_LoginableWaiterAndTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511141805146_Users_UsersView_ActiveUsers.resx">
       <DependentUpon>201511141805146_Users_UsersView_ActiveUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511141933554_LoginableWaiterAndTable.resx">
+      <DependentUpon>201511141933554_LoginableWaiterAndTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
