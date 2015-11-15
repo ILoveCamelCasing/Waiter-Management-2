@@ -9,9 +9,10 @@ namespace WaiterManagement.Common.Views
 	public class TableView : IView
 	{
 		[Key]
-		public int TableId { get; private set; }
-		public Guid TableGuid { get; private set; }
-		public string Title { get; private set; }
-		public string Description { get; private set; }
+		public int TableId { get; set; }
+		public Guid TableGuid { get; set; }
+		public string Title { get; set; }
+		public string Description { get; set; }
+    public string Login { get; set; }
 	}
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Manager", "WaiterManagement.Manager\WaiterManagement.Manager.csproj", "{9F91B875-9B46-49C6-91AD-85A658B32A09}"
 EndProject
@@ -20,6 +20,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.BLL.Tests", "WaiterManagement.BLL.Tests\WaiterManagement.BLL.Tests.csproj", "{99A819E7-9676-4E13-AA98-8C696FF50BF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Table", "WaiterManagement.Table\WaiterManagement.Table.csproj", "{A776D839-5539-471A-B1C2-32AD97F5EB4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Service", "WaiterManagement.Service\WaiterManagement.Service.csproj", "{24E28153-FC7C-4069-B201-B7A89B3A6106}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Service.Tests", "WaiterManagement.Service.Tests\WaiterManagement.Service.Tests.csproj", "{41674F42-786C-4977-B43D-9BA88EFB6C19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Common.Tests", "WaiterManagement.Common.Tests\WaiterManagement.Common.Tests.csproj", "{B12098FD-7D77-40CC-9593-224DD2E9005A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,18 @@ Global
 		{A776D839-5539-471A-B1C2-32AD97F5EB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A776D839-5539-471A-B1C2-32AD97F5EB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A776D839-5539-471A-B1C2-32AD97F5EB4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E28153-FC7C-4069-B201-B7A89B3A6106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E28153-FC7C-4069-B201-B7A89B3A6106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E28153-FC7C-4069-B201-B7A89B3A6106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E28153-FC7C-4069-B201-B7A89B3A6106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41674F42-786C-4977-B43D-9BA88EFB6C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41674F42-786C-4977-B43D-9BA88EFB6C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41674F42-786C-4977-B43D-9BA88EFB6C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41674F42-786C-4977-B43D-9BA88EFB6C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

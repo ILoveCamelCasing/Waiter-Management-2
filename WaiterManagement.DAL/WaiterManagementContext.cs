@@ -19,7 +19,8 @@ namespace WaiterManagement.DAL
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Waiter> Waiters { get; set; }
 		public DbSet<MenuItem> MenuItems { get; set; }
-
+		public DbSet<User> Users { get; set; }
+		public DbSet<ActiveUser> ActiveUsers { get; set; }
 		#endregion
 
 		#region Views
@@ -28,7 +29,7 @@ namespace WaiterManagement.DAL
 		public DbSet<CategoryView> CategoriesView { get; set; }
 		public DbSet<WaiterView> WaitersView { get; set; }
 		public DbSet<MenuItemView> MenuItemsView { get; set; }
-
+		public DbSet<UserView> UsersView { get; set; }
 		#endregion
 	}
 }
