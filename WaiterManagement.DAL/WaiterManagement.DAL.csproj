@@ -100,6 +100,10 @@
     <Compile Include="Migrations\201511142212433_LoginableWaiterViewAndTableView.Designer.cs">
       <DependentUpon>201511142212433_LoginableWaiterViewAndTableView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511152131088_Tables Unicate Title.cs" />
+    <Compile Include="Migrations\201511152131088_Tables Unicate Title.Designer.cs">
+      <DependentUpon>201511152131088_Tables Unicate Title.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -143,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511142212433_LoginableWaiterViewAndTableView.resx">
       <DependentUpon>201511142212433_LoginableWaiterViewAndTableView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511152131088_Tables Unicate Title.resx">
+      <DependentUpon>201511152131088_Tables Unicate Title.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
