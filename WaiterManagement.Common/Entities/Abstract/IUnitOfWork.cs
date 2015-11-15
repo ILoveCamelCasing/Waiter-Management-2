@@ -10,6 +10,7 @@ namespace WaiterManagement.Common.Entities.Abstract
 		void Revert();
 		object Add(Type entityType, object item);
 		T Add<T>(T item) where T : class, IEntity;
+		bool AnyActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity;
 		Task AddAsync<T>(T item) where T : class, IEntity;
 		T Get<T>(int id) where T : class, IEntity;
 		void Load<TEntity, TProperty>(TEntity item, Expression<Func<TEntity, TProperty>> navigationProperty)
