@@ -14,7 +14,7 @@ namespace WaiterManagement.Common.Tests
             var password = "password";
 
             var firstHash = HashUtility.CreateFirstHash(login, password);
-            var secondHash = HashUtility.CreateSecondHash(firstHash);
+            var secondHash = HashUtility.CreateSecondHashFromFirst(firstHash);
 
             Assert.IsTrue(HashUtility.ValidatePassword(firstHash, secondHash));
         }

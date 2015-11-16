@@ -104,6 +104,10 @@
     <Compile Include="Migrations\201511152131088_Tables Unicate Title.Designer.cs">
       <DependentUpon>201511152131088_Tables Unicate Title.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511162326220_Zmiany w encjach logowania.cs" />
+    <Compile Include="Migrations\201511162326220_Zmiany w encjach logowania.Designer.cs">
+      <DependentUpon>201511162326220_Zmiany w encjach logowania.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -150,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511152131088_Tables Unicate Title.resx">
       <DependentUpon>201511152131088_Tables Unicate Title.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511162326220_Zmiany w encjach logowania.resx">
+      <DependentUpon>201511162326220_Zmiany w encjach logowania.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

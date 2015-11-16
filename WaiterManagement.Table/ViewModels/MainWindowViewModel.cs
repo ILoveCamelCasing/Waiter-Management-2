@@ -2,12 +2,14 @@
 
 namespace WaiterManagement.Table.ViewModels
 {
-	public sealed class MainWindowViewModel : ViewModelBase
+	public sealed class MainWindowViewModel : ParentViewModelBase
 	{
 		public MainWindowViewModel(IViewModelResolver viewModelResolver) 
 			: base(viewModelResolver)
 		{
 			DisplayName = "Table application";
+
+			Get<AccessViewModel>().ShowOn(this);
 		}
 	}
 }

@@ -9,11 +9,11 @@ namespace WaiterManagement.Common.Views
 	public class MenuItemView : IView
 	{
 		[Key]
-		public int MenuItemId { get; private set; }
-		public Guid MenuItemGuid { get; private set; }
-		public string Title { get; private set; }
-		public string Description { get; private set; }
-		public int CategoryId { get; private set; }
-		public string CategoryTitle { get; private set; }
+		public int MenuItemId { get; set; }
+		public Guid MenuItemGuid { get; set; }
+		public string Title { get; set; }
+		public string Description { get; set; }
+		public int CategoryId { get; set; }
+		public string CategoryTitle { get; set; }
 	}
 }

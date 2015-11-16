@@ -11,6 +11,7 @@ using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.DAL;
 using WaiterManagement.Manager.ViewModels;
+using WaiterManagement.Wpf.Controls;
 using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
@@ -42,6 +43,8 @@ namespace WaiterManagement.Manager.Bootstrapper
 			UseViewAttribute.ConfigureViewLocator();
 
 			RegisterHandlers();
+
+			PasswordBoxHelper.Register();
 		}
 
 		protected override void OnExit(object sender, EventArgs e)

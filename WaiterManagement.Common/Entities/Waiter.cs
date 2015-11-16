@@ -1,19 +1,17 @@
-﻿using System;
-using WaiterManagement.Common.Entities.Abstract;
+﻿using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.Common.Entities
 {
-  public class Waiter : VersionableEntity, ILoginableEntity
-  {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+	public class Waiter : VersionableEntity, ILoginableEntity
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
 
-    #region ILoginableEntity
-    public string Login
-    {
-      get;
-      set;
-    }
-    #endregion
-  }
+		#region ILoginableEntity
+
+		public User User { get; set; }
+
+		#endregion
+
+	}
 }

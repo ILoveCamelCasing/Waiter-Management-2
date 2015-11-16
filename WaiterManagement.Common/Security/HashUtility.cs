@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Linq;
 using System.Security.Cryptography;
 
 namespace WaiterManagement.Common.Security
@@ -65,6 +63,7 @@ namespace WaiterManagement.Common.Security
         #endregion
 
         #region Public Methods
+
         /// <summary>
         /// Generowanie pierwszego hasha, używającego jako ziarnka soli string uzyskany z logina
         /// </summary>
@@ -82,7 +81,7 @@ namespace WaiterManagement.Common.Security
             return String.Format("{0}{1}{2}{1}{3}", PBKDF2_ITERATIONS, DELIMITER, Convert.ToBase64String(salt), Convert.ToBase64String(hash)); 
         }
 
-        public static string CreateSecondHash(string firstHash)
+        public static string CreateSecondHashFromFirst(string firstHash)
         {
             // Generowanie ziarenka soli
             RNGCryptoServiceProvider cryptoServiceProvider = new RNGCryptoServiceProvider();
@@ -94,6 +93,11 @@ namespace WaiterManagement.Common.Security
             return String.Format("{0}{1}{2}{1}{3}", PBKDF2_ITERATIONS, DELIMITER, Convert.ToBase64String(salt), Convert.ToBase64String(hash));
         }
 
+	    public static string CreateSecondHash(string password, string login)
+	    {
+		    return CreateSecondHashFromFirst(CreateFirstHash(password, login));
+	    }
+
         public static bool ValidatePassword(string firstHash, string secondHash)
         {
             string[] split = secondHash.Split(new char[] { DELIMITER });
@@ -104,6 +108,7 @@ namespace WaiterManagement.Common.Security
             byte[] testHash = PBKDF2(firstHash, salt, iterations, hash.Length);
             return SlowEquals(hash, testHash);
         }
+
         #endregion
     }
 }

@@ -57,6 +57,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PasswordBoxHelper.cs" />
     <Compile Include="MVVM\Abstract\IParentViewModel.cs" />
     <Compile Include="MVVM\Abstract\IViewModel.cs" />
     <Compile Include="MVVM\Abstract\IViewModelResolver.cs" />
