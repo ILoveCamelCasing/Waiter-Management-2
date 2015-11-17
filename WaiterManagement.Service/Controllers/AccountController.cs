@@ -7,6 +7,7 @@ using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
+using WaiterManagement.Service.Models;
 
 namespace WaiterManagement.Service.Controllers
 {
@@ -34,35 +35,35 @@ namespace WaiterManagement.Service.Controllers
 
 		#endregion
 
-		#region GET Methods
+		#region Post Methods
 
 		[ResponseType(typeof(Guid))]
-		[HttpGet]
-		public IHttpActionResult LoginWaiter(string login, string firstHash)
+		[HttpPost]
+		public IHttpActionResult LoginWaiter([FromBody] LoginModel loginModel)
 		{
-			return Login<WaiterView>(login, firstHash);
+			return Login<WaiterView>(loginModel);
 		}
 
 		[ResponseType(typeof(Guid))]
-		[HttpGet]
-		public IHttpActionResult LoginTable(string login, string firstHash)
+		[HttpPost]
+		public IHttpActionResult LoginTable([FromBody] LoginModel loginModel)
 		{
-			return Login<TableView>(login, firstHash);
+			return Login<TableView>(loginModel);
 		}
 
 		#endregion
 
 		#region Private methods
 
-		private IHttpActionResult Login<T>(string login, string firstHash) where T : class, ILoginableView
+		private IHttpActionResult Login<T>(LoginModel loginModel) where T : class, ILoginableView
 		{
 			//Sprawdzenie istnienie użytkownik w bazie danych
-			var user = _viewProvider.Get<T>().FirstOrDefault(w => w.Login == login);
+			var user = _viewProvider.Get<T>().FirstOrDefault(w => w.Login == loginModel.Login);
 			if (user == null)
-				return BadRequest(String.Format("No user for login {0}.", login));
+				return BadRequest(String.Format("No user for login {0}.", loginModel.Login));
 
 			//Walidacja hasła
-			if (!HashUtility.ValidatePassword(firstHash, user.SecondHash))
+			if (!HashUtility.ValidatePassword(loginModel.FirstHash, user.SecondHash))
 				return BadRequest("Wrong password."); //??
 
 			//Generowanie i zapis tokena 
