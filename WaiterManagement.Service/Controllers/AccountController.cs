@@ -14,14 +14,11 @@ namespace WaiterManagement.Service.Controllers
 	public class AccountController : ApiController
 	{
 		#region Private Fields
-
 		private readonly IUnitOfWork _unitOfWork; //TODO: DI (?), TODO: Jakiś rozszerzony interfejs dostępu do danych (zarówno widoki jak i tabele, zwracanie IQueryable ?
 		private readonly IViewProvider _viewProvider;
-
 		#endregion
 
 		#region Constructors
-
 		public AccountController(IUnitOfWork unitOfWork, IViewProvider viewProvider)
 		{
 			if (unitOfWork == null)
@@ -32,11 +29,9 @@ namespace WaiterManagement.Service.Controllers
 			_unitOfWork = unitOfWork;
 			_viewProvider = viewProvider;
 		}
-
 		#endregion
 
-		#region Post Methods
-
+		#region POST Methods
 		[ResponseType(typeof(Guid))]
 		[HttpPost]
 		public IHttpActionResult LoginWaiter([FromBody] LoginModel loginModel)
@@ -50,11 +45,9 @@ namespace WaiterManagement.Service.Controllers
 		{
 			return Login<TableView>(loginModel);
 		}
-
 		#endregion
 
 		#region Private methods
-
 		private IHttpActionResult Login<T>(LoginModel loginModel) where T : class, ILoginableView
 		{
 			//Sprawdzenie istnienie użytkownik w bazie danych
@@ -74,7 +67,6 @@ namespace WaiterManagement.Service.Controllers
 			//Zwracanie tokena
 			return Ok(userGuid);
 		}
-
 		#endregion
 	}
 }
