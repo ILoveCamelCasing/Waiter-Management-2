@@ -98,8 +98,5 @@ namespace WaiterManagement.Manager.Bootstrapper
 
 			_kernel.Bind<ICommandBus>().ToConstant(commandBus);
 		}
-
-
-
 	}
 }

@@ -2,6 +2,6 @@
 {
 	public interface ILoginableEntity
 	{
-		User User { get; }
+		User User { get; set; }
 	}
 }

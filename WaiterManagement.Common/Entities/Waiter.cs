@@ -13,5 +13,10 @@ namespace WaiterManagement.Common.Entities
 
 		#endregion
 
+		public override void LoadAll(IUnitOfWork unitOfWork)
+		{
+			unitOfWork.Load(this, p => p.User);
+		}
+
 	}
 }

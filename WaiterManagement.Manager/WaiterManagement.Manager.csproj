@@ -110,6 +110,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Menu\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\Menu\AddMenuItemViewModel.cs" />
     <Compile Include="ViewModels\Menu\CategoryListViewModel.cs" />
@@ -126,6 +127,9 @@
     <Compile Include="ViewModels\Waiter\EditWaiterViewModel.cs" />
     <Compile Include="ViewModels\Waiter\WaiterListViewModel.cs" />
     <Compile Include="ViewModels\Waiter\WaiterTabViewModel.cs" />
+    <Compile Include="Views\ChangePasswordView.xaml.cs">
+      <DependentUpon>ChangePasswordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
@@ -140,6 +144,9 @@
     </Compile>
     <Compile Include="Views\Menu\MenuListView.xaml.cs">
       <DependentUpon>MenuListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Table\EditTableView.xaml.cs">
+      <DependentUpon>EditTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Table\TableListView.xaml.cs">
       <DependentUpon>TableListView.xaml</DependentUpon>
@@ -191,6 +198,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ChangePasswordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Menu\MenuListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Table\EditTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

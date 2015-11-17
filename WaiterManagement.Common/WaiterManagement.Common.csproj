@@ -68,6 +68,7 @@
     <Compile Include="Entities\Table.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Waiter.cs" />
+    <Compile Include="Extensions\ExpressionExtensions.cs" />
     <Compile Include="Security\HashUtility.cs" />
     <Compile Include="SystemTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

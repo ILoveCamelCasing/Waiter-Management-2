@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WaiterManagement.Common.Entities.Abstract;
+using WaiterManagement.Common.Extensions;
 
 namespace WaiterManagement.DAL
 {
@@ -28,13 +29,22 @@ namespace WaiterManagement.DAL
 
 		public bool AnyActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity
 		{
-			Expression<Func<T, bool>> isActualExpression = entity => entity.IsNewest && !entity.IsDeleted;
-			return _dbContext.Set<T>().Any(AndAlso(predicate,isActualExpression));
+			return _dbContext.Set<T>().Any(GetActualPredicate(predicate));
+		}
+
+		public T GetActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity
+		{
+			return _dbContext.Set<T>().First(GetActualPredicate(predicate));
 		}
 
 		async Task IUnitOfWork.AddAsync<T>(T item)
 		{
 			await Task.Run(() => Add(item));
+		}
+
+		public object Get(Type entityType ,int id)
+		{
+			return _dbContext.Set(entityType).Find(id);
 		}
 
 		public T Get<T>(int id) where T : class, IEntity
@@ -103,41 +113,11 @@ namespace WaiterManagement.DAL
 			_dbContext.Dispose();
 		}
 
-		// TODO: Przenieść do oddzielnej klasy jako metoda rozszerzająca
-		private static Expression<Func<T, bool>> AndAlso<T>(
-			Expression<Func<T, bool>> expr1,
-			Expression<Func<T, bool>> expr2)
+		private static Expression<Func<T, bool>> GetActualPredicate<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity
 		{
-			var parameter = Expression.Parameter(typeof(T));
-
-			var leftVisitor = new ReplaceExpressionVisitor(expr1.Parameters[0], parameter);
-			var left = leftVisitor.Visit(expr1.Body);
-
-			var rightVisitor = new ReplaceExpressionVisitor(expr2.Parameters[0], parameter);
-			var right = rightVisitor.Visit(expr2.Body);
-
-			return Expression.Lambda<Func<T, bool>>(
-				Expression.AndAlso(left, right), parameter);
-		}
-
-		private class ReplaceExpressionVisitor
-			: ExpressionVisitor
-		{
-			private readonly Expression _oldValue;
-			private readonly Expression _newValue;
-
-			public ReplaceExpressionVisitor(Expression oldValue, Expression newValue)
-			{
-				_oldValue = oldValue;
-				_newValue = newValue;
-			}
-
-			public override Expression Visit(Expression node)
-			{
-				if (node == _oldValue)
-					return _newValue;
-				return base.Visit(node);
-			}
+			Expression<Func<T, bool>> isActualExpression = entity => entity.IsNewest && !entity.IsDeleted;
+			var actualPredicate = isActualExpression.AndAlso(predicate);
+			return actualPredicate;
 		}
 	}
 }
