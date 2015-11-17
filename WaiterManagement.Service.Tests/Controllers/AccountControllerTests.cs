@@ -9,6 +9,7 @@ using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.Service.Controllers;
+using WaiterManagement.Service.Models;
 
 namespace WaiterManagement.Service.Tests.Controllers
 {
@@ -55,8 +56,10 @@ namespace WaiterManagement.Service.Tests.Controllers
 
 			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object);
 
+      var loginModel = new LoginModel() { Login = waiterLogin, FirstHash = waiterFirstHash };
+
 			//Act
-			var actionResult = accountController.LoginWaiter(waiterLogin, waiterFirstHash);
+			var actionResult = accountController.LoginWaiter(loginModel);
 
 			//Assert
 			var okNegotiatedContentResult = actionResult as OkNegotiatedContentResult<Guid>;
@@ -82,8 +85,10 @@ namespace WaiterManagement.Service.Tests.Controllers
 
 			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object);
 
+      var loginModel = new LoginModel() { Login = tableLogin, FirstHash = tableFirstHash };
+
 			//Act
-			var actionResult = accountController.LoginTable(tableLogin, tableFirstHash);
+			var actionResult = accountController.LoginTable(loginModel);
 
 			//Assert
 			var okNegotiatedContentResult = actionResult as OkNegotiatedContentResult<Guid>;
