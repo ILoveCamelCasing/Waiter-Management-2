@@ -9,8 +9,11 @@ namespace WaiterManagement.BLL.Commands.Handlers
 {
 	public class AddTableHandler : Handler, IHandleCommand<AddTableCommand>
 	{
-		public AddTableHandler(IUnitOfWork unitUnitOfWork) : base(unitUnitOfWork)
+		private readonly IPasswordManager _passwordManager;
+
+		public AddTableHandler(IUnitOfWork unitUnitOfWork,IPasswordManager passwordManager) : base(unitUnitOfWork)
 		{
+			_passwordManager = passwordManager;
 		}
 
 		public void Handle(AddTableCommand command)
@@ -18,8 +21,8 @@ namespace WaiterManagement.BLL.Commands.Handlers
 			if(UnitOfWork.AnyActual<Table>(x => x.Title == command.Title))
 				throw new InvalidOperationException("Table with the same name exists.");
 
-			var login = string.Format("Table{0}", command.Title);
-			var secondHash = HashUtility.CreateSecondHash(command.Password, login);
+			var login = command.Title;
+			var secondHash = _passwordManager.CreateSecondHash(command.Password, login);
 
 			var addedUser = UnitOfWork.Add(new User() {SecondHash = secondHash, Login = login});
 

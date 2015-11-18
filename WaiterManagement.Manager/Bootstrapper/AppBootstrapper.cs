@@ -8,6 +8,7 @@ using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.Common.Entities.Abstract;
+using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.DAL;
 using WaiterManagement.Manager.ViewModels;
@@ -37,6 +38,7 @@ namespace WaiterManagement.Manager.Bootstrapper
 
 			_kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
 			_kernel.Bind<IViewProvider>().To<ViewProvider>().InTransientScope();
+			_kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
 
 			RegisterViewModels();
 
