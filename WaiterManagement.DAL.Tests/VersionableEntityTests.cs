@@ -1,4 +1,5 @@
 ﻿using System;
+using NSubstitute;
 using WaiterManagement.Common;
 using WaiterManagement.Common.Entities.Abstract;
 using Xunit;
@@ -40,9 +41,12 @@ namespace WaiterManagement.DAL.Tests
 
 			var secondTime = DateTime.Now;
 			SystemTime.SetTime(secondTime);
+			
+			var unitOfWorkMock = Substitute.For<IUnitOfWork>();
+			unitOfWorkMock.Add(Arg.Any<Type>(), Arg.Any<TestVersionableEntity>()).Returns(x => x.Args()[1]);
 
 			// Act
-			var newVersion = (TestVersionableEntity)entity.CreateNewVersion(null);
+			var newVersion = (TestVersionableEntity)entity.CreateNewVersion(unitOfWorkMock);
 
 			// Assert
 			Assert.Equal(0, newVersion.Id);
