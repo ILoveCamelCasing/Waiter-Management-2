@@ -65,6 +65,9 @@
     <Compile Include="Entities\ActiveUser.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\MenuItem.cs" />
+    <Compile Include="Entities\MenuItemsQuantity.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderStatus.cs" />
     <Compile Include="Entities\Table.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Waiter.cs" />

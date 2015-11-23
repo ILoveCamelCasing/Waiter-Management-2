@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201511162326220_Zmiany w encjach logowania.Designer.cs">
       <DependentUpon>201511162326220_Zmiany w encjach logowania.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511232256426_Orders and MenuItemsQuantities.cs" />
+    <Compile Include="Migrations\201511232256426_Orders and MenuItemsQuantities.Designer.cs">
+      <DependentUpon>201511232256426_Orders and MenuItemsQuantities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -157,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511162326220_Zmiany w encjach logowania.resx">
       <DependentUpon>201511162326220_Zmiany w encjach logowania.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511232256426_Orders and MenuItemsQuantities.resx">
+      <DependentUpon>201511232256426_Orders and MenuItemsQuantities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,12 +15,20 @@ namespace WaiterManagement.DAL
 
 		#region Entities
 
+		// Manager entities
 		public DbSet<Table> Tables { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Waiter> Waiters { get; set; }
 		public DbSet<MenuItem> MenuItems { get; set; }
+
+		// Access entities
 		public DbSet<User> Users { get; set; }
 		public DbSet<ActiveUser> ActiveUsers { get; set; }
+
+		// Order entities
+		public DbSet<Order> Orders { get; set; }
+		public DbSet<MenuItemsQuantity> MenuItemsQuantities { get; set; }
+
 		#endregion
 
 		#region Views
