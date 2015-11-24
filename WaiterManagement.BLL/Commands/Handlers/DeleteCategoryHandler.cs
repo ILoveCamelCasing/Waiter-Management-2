@@ -1,5 +1,6 @@
 ﻿using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
+using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
 

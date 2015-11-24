@@ -1,7 +1,7 @@
 ﻿using System;
 using WaiterManagement.BLL.Commands.Base;
 
-namespace WaiterManagement.BLL.Commands.Concrete
+namespace WaiterManagement.BLL.Commands.Concrete.ManagerCommands
 {
 	public class ChangePasswordCommand : ICommand
 	{

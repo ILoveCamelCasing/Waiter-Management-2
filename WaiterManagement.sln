@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Manager", "WaiterManagement.Manager\WaiterManagement.Manager.csproj", "{9F91B875-9B46-49C6-91AD-85A658B32A09}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Service.Tests", "WaiterManagement.Service.Tests\WaiterManagement.Service.Tests.csproj", "{41674F42-786C-4977-B43D-9BA88EFB6C19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Common.Tests", "WaiterManagement.Common.Tests\WaiterManagement.Common.Tests.csproj", "{B12098FD-7D77-40CC-9593-224DD2E9005A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Table.Tests", "WaiterManagement.Table.Tests\WaiterManagement.Table.Tests.csproj", "{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B12098FD-7D77-40CC-9593-224DD2E9005A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using System;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
+using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels

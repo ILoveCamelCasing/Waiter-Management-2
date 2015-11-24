@@ -1,77 +1,38 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WaiterManagement.Service.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WaiterManagement.Service.App_Start.NinjectWebCommon), "Stop")]
+using System.Web.Http;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject.Web.Common;
+using Ninject.Web.WebApi;
+using WaiterManagement.Service;
 
-namespace WaiterManagement.Service.App_Start
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+
+namespace WaiterManagement.Service
 {
-  using System;
-  using System.Web;
+	public static class NinjectWebCommon
+	{
 
-  using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+		private static ServiceBootstrapper _bootstrapper;
 
-  using Ninject;
-  using Ninject.Web.Common;
-  using DAL;
-  using Common.Views.Abstract;
-  using Common.Entities.Abstract;
-  using System.Web.Http;
-  using Ninject.Web.WebApi;
+		/// <summary>
+		/// Starts the application
+		/// </summary>
+		public static void Start()
+		{
+			DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+			DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
 
-  public static class NinjectWebCommon
-  {
-    private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+			_bootstrapper = ServiceBootstrapper.GetInstance();
 
-    /// <summary>
-    /// Starts the application
-    /// </summary>
-    public static void Start()
-    {
-      DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
-      DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-      var kernel = CreateKernel();
-      bootstrapper.Initialize(() => kernel);
+			GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(_bootstrapper.Kernel);
+		}
 
-      GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
-    }
-
-    /// <summary>
-    /// Stops the application.
-    /// </summary>
-    public static void Stop()
-    {
-      bootstrapper.ShutDown();
-    }
-
-    /// <summary>
-    /// Creates the kernel that will manage your application.
-    /// </summary>
-    /// <returns>The created kernel.</returns>
-    private static IKernel CreateKernel()
-    {
-      var kernel = new StandardKernel();
-      try
-      {
-        kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-        kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
-        RegisterServices(kernel);
-
-        return kernel;
-      }
-      catch
-      {
-        kernel.Dispose();
-        throw;
-      }
-    }
-
-    /// <summary>
-    /// Load your modules or register your services here!
-    /// </summary>
-    /// <param name="kernel">The kernel.</param>
-    private static void RegisterServices(IKernel kernel)
-    {
-      kernel.Bind<IViewProvider>().To<ViewProvider>();
-      kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-    }
-  }
+		/// <summary>
+		/// Stops the application.
+		/// </summary>
+		public static void Stop()
+		{
+			_bootstrapper.ShutDown();
+		}
+	}
 }

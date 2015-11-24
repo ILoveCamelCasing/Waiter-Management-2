@@ -57,6 +57,10 @@
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Ninject, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Ninject.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +84,10 @@
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -178,6 +186,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ServiceBootstrapper.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -186,7 +195,7 @@
     </Compile>
     <Compile Include="Hubs\OrderHub.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="OwinStartup.cs" />
+    <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

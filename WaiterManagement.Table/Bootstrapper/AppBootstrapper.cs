@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
+using Microsoft.AspNet.SignalR.Client;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.Table.ViewModels;

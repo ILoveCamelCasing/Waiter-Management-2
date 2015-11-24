@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
+using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.Wpf.MVVM.Abstract;

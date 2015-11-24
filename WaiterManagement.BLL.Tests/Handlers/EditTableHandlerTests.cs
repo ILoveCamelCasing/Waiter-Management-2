@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using NSubstitute;
 using Ploeh.AutoFixture.Xunit2;
 using WaiterManagement.BLL.Commands.Concrete;
+using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.BLL.Commands.Handlers;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;

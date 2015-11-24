@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Threading;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete;
+using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.Manager.ViewModels.Waiter;
