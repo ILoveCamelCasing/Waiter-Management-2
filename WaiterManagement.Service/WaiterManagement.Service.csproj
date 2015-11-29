@@ -194,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\OrderHub.cs" />
+    <Compile Include="Hubs\TableHub.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

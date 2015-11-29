@@ -46,7 +46,7 @@ namespace WaiterManagement.Manager.Bootstrapper
 
 			RegisterHandlers();
 
-			PasswordBoxHelper.Register();
+			//PasswordBoxHelper.Register();
 		}
 
 		protected override void OnExit(object sender, EventArgs e)

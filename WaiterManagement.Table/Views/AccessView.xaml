@@ -21,7 +21,7 @@
 		<Label Grid.Row="1">Login</Label>
 		<TextBox Name="Login" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
 		<Label Grid.Row="2">Password</Label>
-		<PasswordBox Grid.Row="2" Grid.Column="1" Margin="10" controls:PasswordBoxHelper.BoundPassword="{Binding UserPassword, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"></PasswordBox>
+		<PasswordBox Grid.Row="2" Grid.Column="1" Margin="10" controls:PasswordBoxHelper.BoundPassword="{Binding UserPassword, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"></PasswordBox>
 		<Button Name="LoginToServer" Grid.Row="3" Grid.Column="1" Margin="10">Login</Button>
 	</Grid>
 </UserControl>

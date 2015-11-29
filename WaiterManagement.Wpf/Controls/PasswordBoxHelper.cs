@@ -6,13 +6,15 @@ namespace WaiterManagement.Wpf.Controls
 {
 	public static class PasswordBoxHelper
 	{
-		public static void Register()
-		{
-			ConventionManager.AddElementConvention<PasswordBox>(
-			PasswordBoxHelper.BoundPasswordProperty,
-			"Password",
-			"PasswordChanged");
-		}
+		//public static void Register()
+		//{
+		//	ConventionManager.AddElementConvention<PasswordBox>(
+		//	PasswordBoxHelper.BoundPasswordProperty,
+		//	"Password",
+		//	"PasswordChanged");
+		//}
+
+		private static bool _updating = false;
 
 		public static readonly DependencyProperty BoundPasswordProperty =
 			DependencyProperty.RegisterAttached("BoundPassword",
@@ -22,23 +24,11 @@ namespace WaiterManagement.Wpf.Controls
 
 		public static string GetBoundPassword(DependencyObject d)
 		{
-			var box = d as PasswordBox;
-			if (box != null)
-			{
-				// this funny little dance here ensures that we've hooked the
-				// PasswordChanged event once, and only once.
-				box.PasswordChanged -= PasswordChanged;
-				box.PasswordChanged += PasswordChanged;
-			}
-
 			return (string)d.GetValue(BoundPasswordProperty);
 		}
 
 		public static void SetBoundPassword(DependencyObject d, string value)
 		{
-			if (string.Equals(value, GetBoundPassword(d)))
-				return; // and this is how we prevent infinite recursion
-
 			d.SetValue(BoundPasswordProperty, value);
 		}
 
@@ -46,19 +36,34 @@ namespace WaiterManagement.Wpf.Controls
 			DependencyObject d,
 			DependencyPropertyChangedEventArgs e)
 		{
-			var box = d as PasswordBox;
+			PasswordBox password = d as PasswordBox;
+			if (password != null)
+			{
+				// Disconnect the handler while we're updating.
+				password.PasswordChanged -= PasswordChanged;
+			}
 
-			if (box == null)
-				return;
-
-			box.Password = GetBoundPassword(d);
+			if (e.NewValue != null)
+			{
+				if (!_updating)
+				{
+					password.Password = e.NewValue.ToString();
+				}
+			}
+			else
+			{
+				password.Password = string.Empty;
+			}
+			// Now, reconnect the handler.
+			password.PasswordChanged += PasswordChanged;
 		}
 
 		private static void PasswordChanged(object sender, RoutedEventArgs e)
 		{
 			PasswordBox password = sender as PasswordBox;
-
+			_updating = true;
 			SetBoundPassword(password, password.Password);
+			_updating = false;
 		}
 
 	}

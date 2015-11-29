@@ -48,7 +48,7 @@ namespace WaiterManagement.Service.Controllers
 		#endregion
 
 		#region Private methods
-		private IHttpActionResult Login<T>(LoginModel loginModel) where T : class, ILoginableView
+		private IHttpActionResult Login<T>([FromBody] LoginModel loginModel) where T : class, ILoginableView
 		{
 			//Sprawdzenie istnienie użytkownik w bazie danych
 			var user = _viewProvider.Get<T>().FirstOrDefault(w => w.Login == loginModel.Login);

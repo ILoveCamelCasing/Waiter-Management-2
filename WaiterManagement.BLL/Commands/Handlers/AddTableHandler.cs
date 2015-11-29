@@ -1,6 +1,5 @@
 ﻿using System;
 using WaiterManagement.BLL.Commands.Base;
-using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
@@ -23,7 +22,7 @@ namespace WaiterManagement.BLL.Commands.Handlers
 				throw new InvalidOperationException("Table with the same name exists.");
 
 			var login = command.Title;
-			var secondHash = _passwordManager.CreateSecondHash(command.Password, login);
+			var secondHash = _passwordManager.CreateSecondHash(login, command.Password);
 
 			var addedUser = UnitOfWork.Add(new User() {SecondHash = secondHash, Login = login});
 
