@@ -1,6 +1,5 @@
 ﻿using Caliburn.Micro;
 using WaiterManagement.BLL.Commands.Base;
-using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
@@ -54,6 +53,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 				NotifyOfPropertyChange(() => IsBusy);
 			}
 		}
+
 		#endregion
 
 		#region Constructor
@@ -75,9 +75,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		{
 			Get<AddMenuItemViewModel>().ShowOn(ParentWindow);
 		}
-    #endregion
 
-    #region Public Methods
 		public void ManageCategories()
 		{
 			Get<CategoryListViewModel>().ShowOn(ParentWindow);

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.AspNet.SignalR.Client;
-using WaiterManagement.Common.Security;
-using WaiterManagement.Wpf.MVVM.Abstract;
+﻿using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Table.ViewModels
 {
@@ -63,14 +60,8 @@ namespace WaiterManagement.Table.ViewModels
 			if (_accessProvider.Login(Login, UserPassword))
 			{
 				Close();
+				Get<OrderViewModel>().ShowOn(ParentWindow);
 			}
-			//var hubConnection = new HubConnection("http://localhost:8080/");
-			//var tableHubProxy = hubConnection.CreateHubProxy("tableHub");
-
-			//tableHubProxy.On<Guid>("Login", token => this.Close());
-
-			//hubConnection.Start().Wait();
-			//tableHubProxy.Invoke("Login", Login, _passwordManager.CreateFirstHash(Login, UserPassword));
 		}
 	}
 }
