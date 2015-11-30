@@ -6,27 +6,66 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
+			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<xctk:BusyIndicator Grid.Row="0" IsBusy="{Binding IsBusy}">
-			<ListView x:Name="Elements" Grid.ColumnSpan="2" Grid.Row="1" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditMenuItem]">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Label>Menu</Label>
+			<xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsBusy}">
+				<ListView x:Name="Elements" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditMenuItem]">
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Width="60">
+								<GridViewColumnHeader Content="Add" />
+								<GridViewColumn.CellTemplate>
+									<DataTemplate >
+										<Button Width="40" Tag="{Binding}" Content="Add" cal:Message.Attach="[Event Click] = [Action AddNewItem($this.Tag)]" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+							<GridViewColumn DisplayMemberBinding="{Binding Title}">
+								<GridViewColumnHeader Tag="Title" Content="Title"/>
+							</GridViewColumn>
+							<GridViewColumn DisplayMemberBinding="{Binding CategoryTitle}">
+								<GridViewColumnHeader Tag="Category" Content="Category"/>
+							</GridViewColumn>
+							<GridViewColumn DisplayMemberBinding="{Binding Description}">
+								<GridViewColumnHeader Tag="Description" Content="Description"/>
+							</GridViewColumn>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</xctk:BusyIndicator>
+		</Grid>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+			<Label>Your order</Label>
+			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditMenuItem]">
 				<ListView.View>
 					<GridView>
-						<GridViewColumn x:Name="TitleColumn" DisplayMemberBinding="{Binding Title}">
+						<GridViewColumn DisplayMemberBinding="{Binding Title}">
 							<GridViewColumnHeader Tag="Title" Content="Title"/>
 						</GridViewColumn>
-						<GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding CategoryTitle}">
+						<GridViewColumn DisplayMemberBinding="{Binding Quantities}">
 							<GridViewColumnHeader Tag="Category" Content="Category"/>
 						</GridViewColumn>
-						<GridViewColumn x:Name="DescriptionColumn" DisplayMemberBinding="{Binding Description}">
+						<GridViewColumn DisplayMemberBinding="{Binding Ordered}">
 							<GridViewColumnHeader Tag="Description" Content="Description"/>
 						</GridViewColumn>
 					</GridView>
 				</ListView.View>
 			</ListView>
-		</xctk:BusyIndicator>
+		</Grid>
 	</Grid>
 </UserControl>

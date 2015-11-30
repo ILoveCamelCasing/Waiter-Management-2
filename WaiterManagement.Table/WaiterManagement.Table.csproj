@@ -110,6 +110,7 @@
     </ApplicationDefinition>
     <Compile Include="AccessProvider.cs" />
     <Compile Include="IAccessProvider.cs" />
+    <Compile Include="Model\OrderMenuItemModel.cs" />
     <Compile Include="ViewModels\AccessViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
