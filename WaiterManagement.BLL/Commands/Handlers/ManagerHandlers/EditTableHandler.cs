@@ -1,11 +1,10 @@
 ﻿using System;
 using WaiterManagement.BLL.Commands.Base;
-using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
 
-namespace WaiterManagement.BLL.Commands.Handlers
+namespace WaiterManagement.BLL.Commands.Handlers.ManagerHandlers
 {
 	public class EditTableHandler: Handler, IHandleCommand<EditTableCommand>
 	{

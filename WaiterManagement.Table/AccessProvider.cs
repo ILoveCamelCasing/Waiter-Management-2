@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Dynamic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WaiterManagement.Common.Security;
@@ -14,7 +11,17 @@ namespace WaiterManagement.Table
 {
 	public class AccessProvider : IAccessProvider
 	{
+		#region Dependencies
+
 		private readonly IPasswordManager _passwordManager;
+
+		#endregion
+
+		#region Public properties
+
+		public string TableLogin { get; private set; }
+
+		#endregion
 
 		public AccessProvider(IPasswordManager passwordManager)
 		{
@@ -23,6 +30,8 @@ namespace WaiterManagement.Table
 
 		public bool Login(string login, string password)
 		{
+			TableLogin = login;
+
 			using (var client = new HttpClient())
 			{
 				client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);

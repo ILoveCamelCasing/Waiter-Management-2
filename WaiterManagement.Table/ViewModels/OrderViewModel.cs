@@ -4,8 +4,11 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using Caliburn.Micro;
+using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
+using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Views;
+using WaiterManagement.Table.Connection;
 using WaiterManagement.Table.Model;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
@@ -13,6 +16,12 @@ namespace WaiterManagement.Table.ViewModels
 {
 	public class OrderViewModel : ViewModelBase
 	{
+		#region Dependencies
+
+		private readonly ITableConnectionProvider _tableConnectionProvider;
+
+		#endregion
+
 		#region Private fields
 
 		private bool _isBusy;
@@ -37,12 +46,16 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
+		public string OrderText { get { return "Send new order"; } }
+
 		#endregion
 
 		#region Constructor
 
-		public OrderViewModel(IViewModelResolver viewModelResolver) : base(viewModelResolver)
+		public OrderViewModel(IViewModelResolver viewModelResolver, ITableConnectionProvider tableConnectionProvider) : base(viewModelResolver)
 		{
+			_tableConnectionProvider = tableConnectionProvider;
+
 			Elements = new BindableCollection<MenuItemView>();
 			AddedElements = new BindableCollection<OrderMenuItemModel>();
 		}
@@ -50,6 +63,11 @@ namespace WaiterManagement.Table.ViewModels
 		#endregion
 
 		#region Public methods
+
+		public void Order()
+		{
+			_tableConnectionProvider.MakeNewOrder(AddedElements.Where(x => x.Ordered == false));
+		}
 
 		public void AddNewItem(MenuItemView addingMenuItem)
 		{
@@ -79,10 +97,10 @@ namespace WaiterManagement.Table.ViewModels
 		{
 			base.OnActivate();
 
-			RefreshMenuAsync();
+			RefreshMenu();
 		}
 
-		private void RefreshMenuAsync()
+		private void RefreshMenu()
 		{
 			IsBusy = true;
 			Elements.Clear();
@@ -103,7 +121,6 @@ namespace WaiterManagement.Table.ViewModels
 
 			NotifyOfPropertyChange(() => Elements);
 			IsBusy = false;
-
 		}
 
 		#endregion

@@ -6,6 +6,7 @@ using Microsoft.AspNet.SignalR.Client;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.Common.Security;
+using WaiterManagement.Table.Connection;
 using WaiterManagement.Table.ViewModels;
 using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
@@ -31,6 +32,7 @@ namespace WaiterManagement.Table.Bootstrapper
 			_kernel = new StandardKernel();
 			_kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
 			_kernel.Bind<IAccessProvider>().To<AccessProvider>().InSingletonScope();
+			_kernel.Bind<ITableConnectionProvider>().To<TableConnectionProvider>().InSingletonScope();
 
 			RegisterViewModels();
 

@@ -2,7 +2,8 @@
 {
 	public enum OrderStatus
 	{
-		InProgress = 1,
+		Created = 1,
+		Assigned,
 		Completed,
 		Cancelled
 	}

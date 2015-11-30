@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.Common.Models;
 
 namespace WaiterManagement.BLL.Commands.Concrete.ServiceCommands
 {
 	public class AddOrderCommand : ICommand
 	{
-		public int TableId { get; set; }
-
-		// Key: Id, Value: Quantity
-		public Dictionary<int,int> MenuItemsQuantities { get; set; }
+		public string TableLogin { get; set; }
+		public IEnumerable<OrderingMenuItem> MenuItemsQuantities { get; set; }
 	}
 }

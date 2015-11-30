@@ -5,7 +5,7 @@ using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
 
-namespace WaiterManagement.BLL.Commands.Handlers
+namespace WaiterManagement.BLL.Commands.Handlers.ManagerHandlers
 {
 	public class AddTableHandler : Handler, IHandleCommand<AddTableCommand>
 	{

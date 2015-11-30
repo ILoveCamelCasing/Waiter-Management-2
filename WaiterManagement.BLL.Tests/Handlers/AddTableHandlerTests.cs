@@ -5,6 +5,7 @@ using Ploeh.AutoFixture.Xunit2;
 using WaiterManagement.BLL.Commands.Concrete;
 using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.BLL.Commands.Handlers;
+using WaiterManagement.BLL.Commands.Handlers.ManagerHandlers;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;

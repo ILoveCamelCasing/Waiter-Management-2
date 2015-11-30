@@ -63,19 +63,20 @@
     <Compile Include="Commands\Concrete\ManagerCommands\EditTableCommand.cs" />
     <Compile Include="Commands\Concrete\ManagerCommands\EditWaiterCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\AddOrderCommand.cs" />
-    <Compile Include="Commands\Handlers\AddCategoryHandler.cs" />
-    <Compile Include="Commands\Handlers\AddMenuItemHandler.cs" />
-    <Compile Include="Commands\Handlers\AddTableHandler.cs" />
-    <Compile Include="Commands\Handlers\ChangePasswordHandler.cs" />
-    <Compile Include="Commands\Handlers\DeleteCategoryHandler.cs" />
-    <Compile Include="Commands\Handlers\AddWaiterHandler.cs" />
-    <Compile Include="Commands\Handlers\DeleteMenuItemHandler.cs" />
-    <Compile Include="Commands\Handlers\DeleteTableHandler.cs" />
-    <Compile Include="Commands\Handlers\EditCategoryHandler.cs" />
-    <Compile Include="Commands\Handlers\DeleteWaiterHandler.cs" />
-    <Compile Include="Commands\Handlers\EditMenuItemHandler.cs" />
-    <Compile Include="Commands\Handlers\EditTableHandler.cs" />
-    <Compile Include="Commands\Handlers\EditWaiterHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\AddCategoryHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\AddMenuItemHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\AddTableHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\ChangePasswordHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\DeleteCategoryHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\AddWaiterHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\DeleteMenuItemHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\DeleteTableHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\EditCategoryHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\DeleteWaiterHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\EditMenuItemHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\EditTableHandler.cs" />
+    <Compile Include="Commands\Handlers\ManagerHandlers\EditWaiterHandler.cs" />
+    <Compile Include="Commands\Handlers\ServiceHandlers\AddOrderHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

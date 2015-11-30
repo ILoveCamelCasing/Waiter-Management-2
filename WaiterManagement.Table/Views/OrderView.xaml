@@ -10,6 +10,7 @@
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
+			<ColumnDefinition Width="10"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Grid>
@@ -19,7 +20,7 @@
 			</Grid.RowDefinitions>
 			<Label>Menu</Label>
 			<xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsBusy}">
-				<ListView x:Name="Elements" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditMenuItem]">
+				<ListView x:Name="Elements" SelectionMode="Single">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Width="60">
@@ -44,28 +45,29 @@
 				</ListView>
 			</xctk:BusyIndicator>
 		</Grid>
-		<Grid Grid.Column="1">
+		<Grid Grid.Column="2">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
 				<RowDefinition/>
 				<RowDefinition Height="50"/>
 			</Grid.RowDefinitions>
 			<Label>Your order</Label>
-			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single" cal:Message.Attach="[Event MouseDoubleClick] = [Action EditMenuItem]">
+			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single">
 				<ListView.View>
 					<GridView>
 						<GridViewColumn DisplayMemberBinding="{Binding Title}">
 							<GridViewColumnHeader Tag="Title" Content="Title"/>
 						</GridViewColumn>
 						<GridViewColumn DisplayMemberBinding="{Binding Quantities}">
-							<GridViewColumnHeader Tag="Category" Content="Category"/>
+							<GridViewColumnHeader Tag="Category" Content="Quantities"/>
 						</GridViewColumn>
 						<GridViewColumn DisplayMemberBinding="{Binding Ordered}">
-							<GridViewColumnHeader Tag="Description" Content="Description"/>
+							<GridViewColumnHeader Tag="Description" Content="Ordered"/>
 						</GridViewColumn>
 					</GridView>
 				</ListView.View>
 			</ListView>
+			<Button Grid.Row="2" Margin="0 10" x:Name="Order" Content="{Binding OrderText}" />
 		</Grid>
 	</Grid>
 </UserControl>
