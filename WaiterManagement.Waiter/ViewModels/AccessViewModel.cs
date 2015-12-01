@@ -1,7 +1,7 @@
-﻿using WaiterManagement.Table.Connection;
+﻿using WaiterManagement.Waiter.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
-namespace WaiterManagement.Table.ViewModels
+namespace WaiterManagement.Waiter.ViewModels
 {
 	public class AccessViewModel : ViewModelBase
 	{
@@ -61,7 +61,6 @@ namespace WaiterManagement.Table.ViewModels
 			if (_accessProvider.Login(Login, UserPassword))
 			{
 				Close();
-				Get<OrderViewModel>().ShowOn(ParentWindow);
 			}
 		}
 	}

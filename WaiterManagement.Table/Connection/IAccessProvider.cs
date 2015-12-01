@@ -1,4 +1,4 @@
-﻿namespace WaiterManagement.Table
+﻿namespace WaiterManagement.Table.Connection
 {
 	public interface IAccessProvider
 	{

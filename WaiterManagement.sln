@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Common.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Table.Tests", "WaiterManagement.Table.Tests\WaiterManagement.Table.Tests.csproj", "{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Waiter", "WaiterManagement.Waiter\WaiterManagement.Waiter.csproj", "{A97FA24C-03C1-4B3C-A602-3EB381D459FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AFC09F5-E8D5-4F93-A2A2-6C7C4F84CCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

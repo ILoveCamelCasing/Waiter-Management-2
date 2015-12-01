@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WaiterManagement.Common.Security;
 
-namespace WaiterManagement.Table
+namespace WaiterManagement.Waiter.Connection
 {
 	public class AccessProvider : IAccessProvider
 	{
@@ -19,7 +19,7 @@ namespace WaiterManagement.Table
 
 		#region Public properties
 
-		public string TableLogin { get; private set; }
+		public string WaiterLogin { get; private set; }
 
 		#endregion
 
@@ -30,7 +30,7 @@ namespace WaiterManagement.Table
 
 		public bool Login(string login, string password)
 		{
-			TableLogin = login;
+			WaiterLogin = login;
 
 			using (var client = new HttpClient())
 			{
@@ -41,7 +41,7 @@ namespace WaiterManagement.Table
 				myObject.login = login;
 				myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
 
-				var result = client.PostAsync("/api/Account/LoginTable", new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json")).Result;
+				var result = client.PostAsync("/api/Account/LoginWaiter", new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json")).Result;
 				var resultContent = result.Content.ReadAsStringAsync().Result;
 
 				return true;

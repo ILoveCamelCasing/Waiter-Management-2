@@ -7,6 +7,7 @@ using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.Common.Entities.Abstract;
+using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.DAL;
 
@@ -88,8 +89,9 @@ namespace WaiterManagement.Service
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
-			kernel.Bind<IViewProvider>().To<ViewProvider>();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+			kernel.Bind<IViewProvider>().To<ViewProvider>().InSingletonScope();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
+			kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
 
 			RegisterHandlers(kernel);
 		}
