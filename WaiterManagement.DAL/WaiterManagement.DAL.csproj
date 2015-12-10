@@ -112,6 +112,10 @@
     <Compile Include="Migrations\201511232256426_Orders and MenuItemsQuantities.Designer.cs">
       <DependentUpon>201511232256426_Orders and MenuItemsQuantities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512080844286_Added authenticated users view.cs" />
+    <Compile Include="Migrations\201512080844286_Added authenticated users view.Designer.cs">
+      <DependentUpon>201512080844286_Added authenticated users view.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -164,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511232256426_Orders and MenuItemsQuantities.resx">
       <DependentUpon>201511232256426_Orders and MenuItemsQuantities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512080844286_Added authenticated users view.resx">
+      <DependentUpon>201512080844286_Added authenticated users view.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

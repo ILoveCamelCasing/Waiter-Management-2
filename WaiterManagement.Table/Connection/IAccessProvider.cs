@@ -4,5 +4,6 @@
 	{
 		bool Login(string login, string password);
 		string TableLogin { get; }
+		string Token { get; }
 	}
 }

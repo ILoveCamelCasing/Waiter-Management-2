@@ -82,6 +82,7 @@
     <Compile Include="Views\Abstract\ILoginableView.cs" />
     <Compile Include="Views\Abstract\IView.cs" />
     <Compile Include="Views\Abstract\IViewProvider.cs" />
+    <Compile Include="Views\AuthenticatedUsersView.cs" />
     <Compile Include="Views\CategoryView.cs" />
     <Compile Include="Views\MenuItemView.cs" />
     <Compile Include="Views\TableView.cs" />

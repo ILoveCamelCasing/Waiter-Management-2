@@ -3,10 +3,12 @@ using Microsoft.AspNet.SignalR.Hubs;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete.ServiceCommands;
 using WaiterManagement.Common.Models;
+using WaiterManagement.Service.Security;
 
 namespace WaiterManagement.Service.Hubs
 {
 	[HubName("tableHub")]
+	[CustomAuthorize]
 	public class TableHub : Hub
 	{
 		#region Dependencies

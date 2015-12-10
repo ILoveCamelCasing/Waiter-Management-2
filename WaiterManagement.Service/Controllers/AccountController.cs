@@ -63,6 +63,7 @@ namespace WaiterManagement.Service.Controllers
 			var userGuid = Guid.NewGuid();
 			var activeUser = new ActiveUser() { UserId = user.UserId, UserToken = userGuid, TokenCreation = DateTime.Now };
 			_unitOfWork.Add(activeUser);
+			_unitOfWork.Commit();
 
 			//Zwracanie tokena
 			return Ok(userGuid);

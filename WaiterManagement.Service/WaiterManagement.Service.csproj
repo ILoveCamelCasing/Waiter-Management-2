@@ -198,6 +198,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\CustomAuthorizeAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

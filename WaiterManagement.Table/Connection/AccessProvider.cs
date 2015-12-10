@@ -20,6 +20,7 @@ namespace WaiterManagement.Table.Connection
 		#region Public properties
 
 		public string TableLogin { get; private set; }
+		public string Token { get; private set; }
 
 		#endregion
 
@@ -32,6 +33,7 @@ namespace WaiterManagement.Table.Connection
 		{
 			TableLogin = login;
 
+			
 			using (var client = new HttpClient())
 			{
 				client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
@@ -42,8 +44,13 @@ namespace WaiterManagement.Table.Connection
 				myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
 
 				var result = client.PostAsync("/api/Account/LoginTable", new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json")).Result;
-				var resultContent = result.Content.ReadAsStringAsync().Result;
+				var resultString = result.Content.ReadAsStringAsync().Result.Replace("\"","");
+				
+				Guid guid;
+				if (!Guid.TryParse(resultString, out guid))
+					return false;
 
+				Token = resultString;
 				return true;
 			}
 		}
