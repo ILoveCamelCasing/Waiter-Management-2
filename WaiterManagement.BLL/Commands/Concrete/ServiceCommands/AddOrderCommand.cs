@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
 
 namespace WaiterManagement.BLL.Commands.Concrete.ServiceCommands
@@ -8,5 +9,6 @@ namespace WaiterManagement.BLL.Commands.Concrete.ServiceCommands
 	{
 		public string TableLogin { get; set; }
 		public IEnumerable<OrderingMenuItem> MenuItemsQuantities { get; set; }
+		public ITableApp Table { get; set; }
 	}
 }

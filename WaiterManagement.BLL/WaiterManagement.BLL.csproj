@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -77,6 +81,12 @@
     <Compile Include="Commands\Handlers\ManagerHandlers\EditTableHandler.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\EditWaiterHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\AddOrderHandler.cs" />
+    <Compile Include="Events\Base\EventBus.cs" />
+    <Compile Include="Events\Base\IEvent.cs" />
+    <Compile Include="Events\Base\IEventBus.cs" />
+    <Compile Include="Events\Base\IHandleEvent.cs" />
+    <Compile Include="Events\Concrete\Service\AddedOrder.cs" />
+    <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

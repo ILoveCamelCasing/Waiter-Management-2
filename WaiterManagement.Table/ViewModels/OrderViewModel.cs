@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Windows;
 using Caliburn.Micro;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
+using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Views;
+using WaiterManagement.Table.Bootstrapper;
 using WaiterManagement.Table.Connection;
 using WaiterManagement.Table.Model;
 using WaiterManagement.Wpf.MVVM.Abstract;
@@ -25,6 +28,7 @@ namespace WaiterManagement.Table.ViewModels
 		#region Private fields
 
 		private bool _isBusy;
+		private string _message;
 
 		#endregion
 
@@ -48,13 +52,25 @@ namespace WaiterManagement.Table.ViewModels
 
 		public string OrderText { get { return "Send new order"; } }
 
+		public string Message
+		{
+			get { return _message; }
+			set
+			{
+				_message = value;
+				NotifyOfPropertyChange(() => Message);
+			}
+		}
+
 		#endregion
 
 		#region Constructor
 
-		public OrderViewModel(IViewModelResolver viewModelResolver, ITableConnectionProvider tableConnectionProvider) : base(viewModelResolver)
+		public OrderViewModel(IViewModelResolver viewModelResolver, ITableConnectionProvider tableConnectionProvider, ITableAppSubscriber tableAppSubscriber) : base(viewModelResolver)
 		{
 			_tableConnectionProvider = tableConnectionProvider;
+
+			tableAppSubscriber.Notify += message => Application.Current.Dispatcher.Invoke(() => Message = message);
 
 			Elements = new BindableCollection<MenuItemView>();
 			AddedElements = new BindableCollection<OrderMenuItemModel>();

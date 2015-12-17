@@ -8,11 +8,6 @@ namespace WaiterManagement.BLL.Commands.Handlers.ManagerHandlers
 {
 	public class EditTableHandler: Handler, IHandleCommand<EditTableCommand>
 	{
-		public EditTableHandler(IUnitOfWork unitUnitOfWork)
-			: base(unitUnitOfWork)
-		{
-		}
-
 		public void Handle(EditTableCommand command)
 		{
 			if (UnitOfWork.AnyActual<Table>(x => x.Title == command.Title && x.Id != command.Id))

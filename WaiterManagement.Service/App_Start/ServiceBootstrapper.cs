@@ -6,6 +6,8 @@ using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.BLL.Events;
+using WaiterManagement.BLL.Events.Base;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views.Abstract;
@@ -106,8 +108,16 @@ namespace WaiterManagement.Service
 						.BindAllInterfaces());
 
 			var commandBus = new CommandBus(x => kernel.GetAll<IHandleCommand>().First(y => y.GetType().GetInterfaces()[1].GetGenericArguments()[0] == x));
-
 			kernel.Bind<ICommandBus>().ToConstant(commandBus);
+
+			kernel.Bind(
+				convention =>
+					convention.From(Assembly.GetAssembly(typeof(EventBus)))
+						.SelectAllClasses()
+						.InNamespaces("WaiterManagement.BLL.Events.Handlers")
+						.BindAllInterfaces());
+
+			kernel.Bind<IEventBus>().ToMethod(c => new EventBus(x => kernel.GetAll<IHandleEvent>().Where(y => y.GetType().GetInterfaces().Any(z => z.IsGenericType && z.GetGenericArguments()[0] == x))));
 		}
 
 		#endregion

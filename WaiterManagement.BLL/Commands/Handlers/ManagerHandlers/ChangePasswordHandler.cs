@@ -8,10 +8,6 @@ namespace WaiterManagement.BLL.Commands.Handlers.ManagerHandlers
 {
 	public class ChangePasswordHandler : Handler, IHandleCommand<ChangePasswordCommand>
 	{
-		public ChangePasswordHandler(IUnitOfWork unitUnitOfWork) : base(unitUnitOfWork)
-		{
-		}
-
 		public void Handle(ChangePasswordCommand command)
 		{
 			var entity = ((VersionableEntity) UnitOfWork.Get(command.EntityType, command.EntityId));

@@ -16,6 +16,7 @@ namespace WaiterManagement.BLL.Commands.Base
 			var handler = (IHandleCommand<T>)_handlersFactory(typeof(T));
 			handler.Handle(command);
 			handler.UnitOfWork.Commit();
+			handler.EventBus.HandleEvents();
 		}
 	}
 }

@@ -1,17 +1,11 @@
 ﻿using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete.ManagerCommands;
 using WaiterManagement.Common.Entities;
-using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.BLL.Commands.Handlers.ManagerHandlers
 {
 	public class DeleteCategoryHandler : Handler, IHandleCommand<DeleteCategoryCommand>
 	{
-		public DeleteCategoryHandler(IUnitOfWork unitUnitOfWork)
-			: base(unitUnitOfWork)
-		{
-		}
-
 		public void Handle(DeleteCategoryCommand command)
 		{
 			var currentTable = UnitOfWork.Get<Category>(command.Id);

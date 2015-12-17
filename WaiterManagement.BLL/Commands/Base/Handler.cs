@@ -1,14 +1,15 @@
-﻿using WaiterManagement.Common.Entities.Abstract;
+﻿using Ninject;
+using WaiterManagement.BLL.Events.Base;
+using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.BLL.Commands.Base
 {
 	public abstract class Handler : IHandleCommand
 	{
-		public IUnitOfWork UnitOfWork { get; private set; }
+		[Inject]
+		public IUnitOfWork UnitOfWork { get; set; }
 
-		protected Handler(IUnitOfWork unitUnitOfWork)
-		{
-			UnitOfWork = unitUnitOfWork;
-		}
+		[Inject]
+		public IEventBus EventBus { get; set; }
 	}
 }

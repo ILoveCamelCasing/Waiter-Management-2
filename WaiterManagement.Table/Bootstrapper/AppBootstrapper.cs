@@ -5,6 +5,7 @@ using Caliburn.Micro;
 using Microsoft.AspNet.SignalR.Client;
 using Ninject;
 using Ninject.Extensions.Conventions;
+using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Table.Connection;
 using WaiterManagement.Table.ViewModels;
@@ -35,6 +36,10 @@ namespace WaiterManagement.Table.Bootstrapper
 			_kernel.Bind<ITableConnectionProvider>().To<TableConnectionProvider>().InSingletonScope();
 
 			RegisterViewModels();
+
+			var tableApp = new TableApp();
+			_kernel.Bind<ITableApp>().ToConstant(tableApp);
+			_kernel.Bind<ITableAppSubscriber>().ToConstant(tableApp);
 
 			UseViewAttribute.ConfigureViewLocator();
 		}

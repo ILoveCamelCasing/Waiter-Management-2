@@ -108,6 +108,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bootstrapper\TableApp.cs" />
     <Compile Include="Connection\AccessProvider.cs" />
     <Compile Include="Connection\ITableConnectionProvider.cs" />
     <Compile Include="Connection\TableConnectionProvider.cs" />
