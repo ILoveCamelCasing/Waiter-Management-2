@@ -100,11 +100,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper\AppBootstrapper.cs" />
+    <Compile Include="Views\NotifyView.xaml.cs">
+      <DependentUpon>NotifyView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AccessView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotifyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

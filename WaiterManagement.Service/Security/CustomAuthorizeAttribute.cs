@@ -23,7 +23,8 @@ namespace WaiterManagement.Service.Security
 			{
 				var login = request.Headers["login"];
 				var token = new Guid(request.Headers["token"]);
-				return _viewProvider.Get<AuthenticatedUsersView>().Any(x => x.Login == login && x.Token == token);
+				var authenticated = _viewProvider.Get<AuthenticatedUsersView>().Any(x => x.Login == login && x.Token == token);
+				return authenticated;
 			}
 			catch (Exception ex)
 			{

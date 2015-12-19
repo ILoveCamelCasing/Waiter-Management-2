@@ -7,10 +7,12 @@ using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Events.Base;
+using WaiterManagement.Common;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.DAL;
+using WaiterManagement.Service.Hubs;
 
 namespace WaiterManagement.Service
 {
@@ -93,6 +95,7 @@ namespace WaiterManagement.Service
 			kernel.Bind<IViewProvider>().To<ViewProvider>().InSingletonScope();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
 			kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
+			kernel.Bind<ICallingService>().To<CallingService>().InSingletonScope();
 
 			RegisterHandlers(kernel);
 		}
