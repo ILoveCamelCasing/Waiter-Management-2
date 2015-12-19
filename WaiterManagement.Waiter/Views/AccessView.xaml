@@ -18,7 +18,8 @@
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<Label Grid.Row="1">Login</Label>
+        <Label Grid.Row="0" Grid.Column="1" Visibility="{Binding WrongUsernameOrPassword}">Wrong username or password</Label>
+        <Label Grid.Row="1">Login</Label>
 		<TextBox Name="Login" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
 		<Label Grid.Row="2">Password</Label>
 		<PasswordBox Grid.Row="2" Grid.Column="1" Margin="10" controls:PasswordBoxHelper.BoundPassword="{Binding UserPassword, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"></PasswordBox>

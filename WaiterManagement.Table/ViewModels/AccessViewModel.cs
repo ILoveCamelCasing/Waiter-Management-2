@@ -1,5 +1,5 @@
-﻿using WaiterManagement.Common.Security;
-using WaiterManagement.Table.Connection;
+﻿using System.Windows;
+using WaiterManagement.Common.Security;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Table.ViewModels
@@ -16,6 +16,7 @@ namespace WaiterManagement.Table.ViewModels
 
 		private string _login;
 		private string _userPassword;
+		private Visibility _wrongUsernameOrPassword;
 
 		#endregion
 
@@ -49,21 +50,39 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
+		public Visibility WrongUsernameOrPassword
+		{
+			get
+			{
+				return _wrongUsernameOrPassword;
+			}
+			set
+			{
+				_wrongUsernameOrPassword = value;
+				NotifyOfPropertyChange(() => WrongUsernameOrPassword);
+			}
+		}
+
 		#endregion
 
 		public AccessViewModel(IViewModelResolver viewModelResolver, IAccessProvider accessProvider)
 			: base(viewModelResolver)
 		{
 			_accessProvider = accessProvider;
+			_wrongUsernameOrPassword = Visibility.Hidden;
 		}
 
 		public void LoginToServer()
 		{
+			WrongUsernameOrPassword = Visibility.Hidden;
+
 			if (_accessProvider.LogIn(Login, UserPassword))
 			{
 				Close();
 				Get<OrderViewModel>().ShowOn(ParentWindow);
 			}
+			else
+				WrongUsernameOrPassword = Visibility.Visible;
 		}
 	}
 }

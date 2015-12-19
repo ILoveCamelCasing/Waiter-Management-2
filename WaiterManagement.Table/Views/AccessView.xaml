@@ -18,6 +18,7 @@
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Visibility="{Binding WrongUsernameOrPassword}">Wrong username or password</Label>
 		<Label Grid.Row="1">Login</Label>
 		<TextBox Name="Login" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
 		<Label Grid.Row="2">Password</Label>
