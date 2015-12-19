@@ -19,6 +19,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		private string _login;
 		private string _userPassword;
 		private Visibility _wrongUsernameOrPassword;
+		private bool _isBusy;
 
 		#endregion
 
@@ -64,7 +65,18 @@ namespace WaiterManagement.Waiter.ViewModels
 				NotifyOfPropertyChange(() => WrongUsernameOrPassword);
 			}
 		}
-
+		public bool IsBusy
+		{
+			get
+			{
+				return _isBusy;
+			}
+			set
+			{
+				_isBusy = value;
+				NotifyOfPropertyChange(() => IsBusy);
+			}
+		}
 		#endregion
 
 		public AccessViewModel(IViewModelResolver viewModelResolver, IAccessProvider accessProvider, IWaiterConnectionProvider waiterConnectionProvider)
@@ -75,11 +87,15 @@ namespace WaiterManagement.Waiter.ViewModels
 			_wrongUsernameOrPassword = Visibility.Hidden;
 		}
 
-		public void LoginToServer()
+		public async void LoginToServer()
 		{
 			WrongUsernameOrPassword = Visibility.Hidden;
 
-			if (_accessProvider.LogIn(Login, UserPassword))
+			IsBusy = true;
+			var loginSucceeded = await _accessProvider.LogIn(Login, UserPassword);
+			IsBusy = false;
+
+			if (loginSucceeded)
 			{
 				_waiterConnectionProvider.Connect();
 				Close();
