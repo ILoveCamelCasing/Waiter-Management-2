@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.BLL.Events.Base;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views.Abstract;
@@ -99,6 +100,8 @@ namespace WaiterManagement.Manager.Bootstrapper
 			var commandBus = new CommandBus(x => _kernel.GetAll<IHandleCommand>().First(y => y.GetType().GetInterfaces()[1].GetGenericArguments()[0] == x));
 
 			_kernel.Bind<ICommandBus>().ToConstant(commandBus);
+			_kernel.Bind<IEventBus>().ToMethod(c => new EventBus(x => _kernel.GetAll<IHandleEvent>().Where(y => y.GetType().GetInterfaces().Any(z => z.IsGenericType && z.GetGenericArguments()[0] == x))));
+
 		}
 	}
 }

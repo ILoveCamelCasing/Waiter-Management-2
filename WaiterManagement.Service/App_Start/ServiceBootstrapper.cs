@@ -6,7 +6,6 @@ using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using WaiterManagement.BLL.Commands.Base;
-using WaiterManagement.BLL.Events;
 using WaiterManagement.BLL.Events.Base;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;

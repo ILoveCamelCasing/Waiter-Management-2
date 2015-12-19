@@ -1,0 +1,9 @@
+﻿using WaiterManagement.Common.Models;
+
+namespace WaiterManagement.Common.Apps
+{
+	public interface IWaiterApp
+	{
+		void NewOrder(NewOrderModel order);
+	}
+}

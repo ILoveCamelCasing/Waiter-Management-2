@@ -3,17 +3,17 @@ using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Manager.ViewModels.Waiter
 {
-  [UseView("TabView")]
-  public class WaiterTabViewModel : ParentViewModelBase
-  {
-    #region Constructors
-    public WaiterTabViewModel(IViewModelResolver viewModelResolver)
-      :base(viewModelResolver)
-    {
-      DisplayName = "Waiters";
+	[UseView("TabView")]
+	public class WaiterTabViewModel : ParentViewModelBase
+	{
+		#region Constructors
+		public WaiterTabViewModel(IViewModelResolver viewModelResolver)
+			: base(viewModelResolver)
+		{
+			DisplayName = "Waiters";
 
-      Get<WaiterListViewModel>().ShowOn(this);
-    }
-    #endregion
-  }
+			Get<WaiterListViewModel>().ShowOn(this);
+		}
+		#endregion
+	}
 }
