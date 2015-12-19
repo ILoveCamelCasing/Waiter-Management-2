@@ -12,7 +12,7 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 		{
 			var order = new Order() {Created = SystemTime.Now, Status = OrderStatus.Created};
 			UnitOfWork.Add(order);
-			EventBus.PublishEvent(new AddedOrder(){Order = order, Table = command.Table});
+			EventBus.PublishEvent(new AddedOrder(){Order = order,TableTitle = command.TableLogin, Table = command.Table});
 		}
 	}
 }

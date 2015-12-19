@@ -1,4 +1,5 @@
-﻿using WaiterManagement.Table.Connection;
+﻿using WaiterManagement.Common.Security;
+using WaiterManagement.Table.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Table.ViewModels
@@ -58,7 +59,7 @@ namespace WaiterManagement.Table.ViewModels
 
 		public void LoginToServer()
 		{
-			if (_accessProvider.Login(Login, UserPassword))
+			if (_accessProvider.LogIn(Login, UserPassword))
 			{
 				Close();
 				Get<OrderViewModel>().ShowOn(ParentWindow);

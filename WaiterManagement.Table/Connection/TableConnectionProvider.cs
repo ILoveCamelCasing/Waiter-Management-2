@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNet.SignalR.Client;
 using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
+using WaiterManagement.Common.Security;
 using WaiterManagement.Table.Model;
 
 namespace WaiterManagement.Table.Connection
@@ -31,7 +32,7 @@ namespace WaiterManagement.Table.Connection
 			_hubProxy.Invoke("MakeNewOrder",
 				new NewOrderModel()
 				{
-					TableLogin = _accessProvider.TableLogin,
+					TableLogin = _accessProvider.Login,
 					OrderingMenuItems =
 						orderingElements.Select(x => new OrderingMenuItem() { MenuItemId = x.Id, Quantities = x.Quantities })
 				}).Wait();
@@ -40,7 +41,7 @@ namespace WaiterManagement.Table.Connection
 		private void Connect()
 		{
 			_hubConnection = new HubConnection(ConfigurationManager.AppSettings["ServerPath"]);
-			_hubConnection.Headers.Add("login", _accessProvider.TableLogin);
+			_hubConnection.Headers.Add("login", _accessProvider.Login);
 			_hubConnection.Headers.Add("token", _accessProvider.Token);
 			_hubProxy = _hubConnection.CreateHubProxy("tableHub");
 			_hubProxy.On<string>("NotifyTable", message => _tableApp.NotifyTable(message));

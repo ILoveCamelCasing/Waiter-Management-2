@@ -4,6 +4,6 @@ namespace WaiterManagement.Common.Apps
 {
 	public interface IWaiterApp
 	{
-		void NewOrder(NewOrderModel order);
+		void NewOrder(OrderModel order);
 	}
 }

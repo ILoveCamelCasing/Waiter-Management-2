@@ -1,4 +1,5 @@
-﻿using WaiterManagement.Waiter.Connection;
+﻿using WaiterManagement.Common.Security;
+using WaiterManagement.Waiter.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Waiter.ViewModels
@@ -8,6 +9,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		#region Dependencies
 
 		private readonly IAccessProvider _accessProvider;
+		private readonly IWaiterConnectionProvider _waiterConnectionProvider;
 
 		#endregion
 
@@ -50,17 +52,20 @@ namespace WaiterManagement.Waiter.ViewModels
 
 		#endregion
 
-		public AccessViewModel(IViewModelResolver viewModelResolver, IAccessProvider accessProvider)
+		public AccessViewModel(IViewModelResolver viewModelResolver, IAccessProvider accessProvider, IWaiterConnectionProvider waiterConnectionProvider)
 			: base(viewModelResolver)
 		{
 			_accessProvider = accessProvider;
+			_waiterConnectionProvider = waiterConnectionProvider;
 		}
 
 		public void LoginToServer()
 		{
-			if (_accessProvider.Login(Login, UserPassword))
+			if (_accessProvider.LogIn(Login, UserPassword))
 			{
+				_waiterConnectionProvider.Connect();
 				Close();
+				Get<OrdersViewModel>().ShowOn(ParentWindow);
 			}
 		}
 	}

@@ -86,6 +86,7 @@
     <Compile Include="Events\Base\IEventBus.cs" />
     <Compile Include="Events\Base\IHandleEvent.cs" />
     <Compile Include="Events\Concrete\Service\AddedOrder.cs" />
+    <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyAllWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

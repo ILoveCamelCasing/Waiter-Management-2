@@ -2,6 +2,7 @@
 using Microsoft.AspNet.SignalR.Hubs;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete.ServiceCommands;
+using WaiterManagement.Common;
 using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Service.Security;
@@ -20,9 +21,11 @@ namespace WaiterManagement.Service.Hubs
 
 		#region Constructor
 
-		public TableHub(ICommandBus commundBus)
+		public TableHub(ICommandBus commundBus, ICallingService callingService)
 		{
 			_commundBus = commundBus;
+
+			callingService.SetRetriveTableMethod(() => Clients.All);
 		}
 
 		#endregion

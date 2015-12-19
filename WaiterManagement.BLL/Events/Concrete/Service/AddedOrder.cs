@@ -8,5 +8,6 @@ namespace WaiterManagement.BLL.Events.Concrete.Service
 	{
 		public Order Order { get; set; }
 		public ITableApp Table { get; set; }
+		public string TableTitle { get; set; }
 	}
 }

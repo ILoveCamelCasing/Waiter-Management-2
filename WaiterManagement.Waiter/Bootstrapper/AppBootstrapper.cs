@@ -4,6 +4,7 @@ using System.Windows;
 using Caliburn.Micro;
 using Ninject;
 using Ninject.Extensions.Conventions;
+using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Waiter.Connection;
 using WaiterManagement.Waiter.ViewModels;
@@ -31,9 +32,14 @@ namespace WaiterManagement.Waiter.Bootstrapper
 			_kernel = new StandardKernel();
 			_kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
 			_kernel.Bind<IAccessProvider>().To<AccessProvider>().InSingletonScope();
-			_kernel.Bind<ITableConnectionProvider>().To<TableConnectionProvider>().InSingletonScope();
+			_kernel.Bind<IWaiterConnectionProvider>().To<WaiterConnectionProvider>().InSingletonScope();
 
 			RegisterViewModels();
+
+
+			var waiterApp = new WaiterApp();
+			_kernel.Bind<IWaiterApp>().ToConstant(waiterApp);
+			_kernel.Bind<IWaiterAppSubscriber>().ToConstant(waiterApp);
 
 			UseViewAttribute.ConfigureViewLocator();
 		}

@@ -109,10 +109,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper\TableApp.cs" />
-    <Compile Include="Connection\AccessProvider.cs" />
     <Compile Include="Connection\ITableConnectionProvider.cs" />
     <Compile Include="Connection\TableConnectionProvider.cs" />
-    <Compile Include="Connection\IAccessProvider.cs" />
     <Compile Include="Model\OrderMenuItemModel.cs" />
     <Compile Include="ViewModels\AccessViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -128,6 +126,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper\AppBootstrapper.cs" />
+    <Compile Include="Views\NotifyView.xaml.cs">
+      <DependentUpon>NotifyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
@@ -136,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotifyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

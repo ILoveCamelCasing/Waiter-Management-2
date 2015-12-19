@@ -5,9 +5,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WaiterManagement.Common.Security;
 
-namespace WaiterManagement.Waiter.Connection
+namespace WaiterManagement.Common.Security
 {
 	public class AccessProvider : IAccessProvider
 	{
@@ -19,7 +18,8 @@ namespace WaiterManagement.Waiter.Connection
 
 		#region Public properties
 
-		public string WaiterLogin { get; private set; }
+		public string Login { get; private set; }
+		public string Token { get; private set; }
 
 		#endregion
 
@@ -28,10 +28,11 @@ namespace WaiterManagement.Waiter.Connection
 			_passwordManager = passwordManager;
 		}
 
-		public bool Login(string login, string password)
+		public bool LogIn(string login, string password)
 		{
-			WaiterLogin = login;
+			Login = login;
 
+			
 			using (var client = new HttpClient())
 			{
 				client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
@@ -41,9 +42,14 @@ namespace WaiterManagement.Waiter.Connection
 				myObject.login = login;
 				myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
 
-				var result = client.PostAsync("/api/Account/LoginWaiter", new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json")).Result;
-				var resultContent = result.Content.ReadAsStringAsync().Result;
+				var result = client.PostAsync(ConfigurationManager.AppSettings["LoginPath"], new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json")).Result;
+				var resultString = result.Content.ReadAsStringAsync().Result.Replace("\"","");
+				
+				Guid guid;
+				if (!Guid.TryParse(resultString, out guid))
+					return false;
 
+				Token = resultString;
 				return true;
 			}
 		}
