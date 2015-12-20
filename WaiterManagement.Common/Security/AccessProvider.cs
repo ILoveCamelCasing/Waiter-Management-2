@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace WaiterManagement.Common.Security
 {
@@ -28,7 +29,7 @@ namespace WaiterManagement.Common.Security
 			_passwordManager = passwordManager;
 		}
 
-		public bool LogIn(string login, string password)
+		public async Task<bool> LogIn(string login, string password)
 		{
 			Login = login;
 
@@ -42,8 +43,8 @@ namespace WaiterManagement.Common.Security
 				myObject.login = login;
 				myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
 
-				var result = client.PostAsync(ConfigurationManager.AppSettings["LoginPath"], new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json")).Result;
-				var resultString = result.Content.ReadAsStringAsync().Result.Replace("\"","");
+				var result = await client.PostAsync(ConfigurationManager.AppSettings["LoginPath"], new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json"));
+				var resultString = (await result.Content.ReadAsStringAsync()).Replace("\"","");
 				
 				Guid guid;
 				if (!Guid.TryParse(resultString, out guid))
