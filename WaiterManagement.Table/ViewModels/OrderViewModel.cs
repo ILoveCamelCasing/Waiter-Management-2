@@ -69,7 +69,7 @@ namespace WaiterManagement.Table.ViewModels
 		{
 			_tableConnectionProvider = tableConnectionProvider;
 
-			tableAppSubscriber.Notify += message => Application.Current.Dispatcher.Invoke(() => Message = message);
+			tableAppSubscriber.NotifyEvent += message => Application.Current.Dispatcher.Invoke(() => Message = message);
 
 			Elements = new BindableCollection<MenuItemView>();
 			AddedElements = new BindableCollection<OrderMenuItemModel>();

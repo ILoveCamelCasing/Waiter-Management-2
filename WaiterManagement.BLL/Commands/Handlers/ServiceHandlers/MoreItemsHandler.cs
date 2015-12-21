@@ -2,17 +2,15 @@
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete.ServiceCommands;
 using WaiterManagement.BLL.Events.Concrete.Service;
-using WaiterManagement.Common;
 using WaiterManagement.Common.Entities;
 
 namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 {
-	public class AddOrderHandler : Handler, IHandleCommand<AddOrderCommand>
+	public class MoreItemsHandler : Handler, IHandleCommand<MoreItemsCommand>
 	{
-		public void Handle(AddOrderCommand command)
+		public void Handle(MoreItemsCommand command)
 		{
-			var order = new Order() {Created = SystemTime.Now, Status = OrderStatus.Created};
-			UnitOfWork.Add(order);
+			var order = UnitOfWork.Get<Order>(command.OrderId);
 			var menuItemsIds = command.MenuItemsQuantities.Select(x => x.MenuItemId).ToArray();
 			var menuItems = UnitOfWork.GetWhere<MenuItem>(x => menuItemsIds.Contains(x.Id)).ToArray();
 			foreach (var menuItemsQuantityModel in command.MenuItemsQuantities)
@@ -25,7 +23,8 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 				};
 				UnitOfWork.Add(menuItemsQuantities);
 			}
-			EventBus.PublishEvent(new AddedOrder(){Order = order,TableTitle = command.TableLogin, Table = command.Table});
+			EventBus.PublishEvent(new AddedMoreItems() { OrderId = command.OrderId });
+
 		}
 	}
 }

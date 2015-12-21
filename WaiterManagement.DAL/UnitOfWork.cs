@@ -32,6 +32,11 @@ namespace WaiterManagement.DAL
 			return _dbContext.Set<T>().Any(GetActualPredicate(predicate));
 		}
 
+		public IQueryable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity
+		{
+			return _dbContext.Set<T>().Where(predicate);
+		}
+
 		public T GetActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity
 		{
 			return _dbContext.Set<T>().First(GetActualPredicate(predicate));

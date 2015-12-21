@@ -39,5 +39,14 @@ namespace WaiterManagement.Service.Hubs
 				Table = Clients.Caller
 			});
 		}
+
+		public void OrderMoreItems(MoreItemsModel model)
+		{
+			_commundBus.SendCommand(new MoreItemsCommand()
+			{
+				OrderId = model.OrderId,
+				MenuItemsQuantities = model.OrderingMenuItems
+			});
+		}
 	}
 }

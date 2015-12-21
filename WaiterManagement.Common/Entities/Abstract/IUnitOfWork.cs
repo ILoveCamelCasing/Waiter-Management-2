@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace WaiterManagement.Common.Entities.Abstract
 		Task AddAsync<T>(T item) where T : class, IEntity;
 		T Get<T>(int id) where T : class, IEntity;
 		object Get(Type entityType, int id);
+		IQueryable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity;
 		T GetActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity;
 		void Load<TEntity, TProperty>(TEntity item, Expression<Func<TEntity, TProperty>> navigationProperty)
 			where TProperty : class

@@ -62,7 +62,7 @@ namespace WaiterManagement.Table.Connection
 			_hubConnection.Headers.Add("token", _accessProvider.Token);
 			_hubProxy = _hubConnection.CreateHubProxy("tableHub");
 			_hubProxy.On<string>("NotifyTable", message => _tableApp.NotifyTable(message));
-			_hubProxy.On<int>("SendOrderId", id => _currentOrder.CurrentOrderId = id);
+			_hubProxy.On<int>("SendOrderId", id => _tableApp.SendOrderId(id));
 			_hubConnection.Start().Wait();
 		}
 	}

@@ -2,6 +2,6 @@
 {
 	public interface ICurrentOrder
 	{
-		int CurrentOrderId { get; set; }
+		int CurrentOrderId { get; }
 	}
 }
