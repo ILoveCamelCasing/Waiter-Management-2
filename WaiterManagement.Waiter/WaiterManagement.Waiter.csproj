@@ -111,7 +111,6 @@
     <Compile Include="Connection\WaiterConnectionProvider.cs" />
     <Compile Include="ViewModels\AccessViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\NotifyViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="Views\AccessView.xaml.cs">
       <DependentUpon>AccessView.xaml</DependentUpon>
@@ -124,8 +123,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper\AppBootstrapper.cs" />
-    <Compile Include="Views\NotifyView.xaml.cs">
-      <DependentUpon>NotifyView.xaml</DependentUpon>
+    <Compile Include="Views\OrdersView.xaml.cs">
+      <DependentUpon>OrdersView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccessView.xaml">
       <SubType>Designer</SubType>
@@ -135,7 +134,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NotifyView.xaml">
+    <Page Include="Views\OrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

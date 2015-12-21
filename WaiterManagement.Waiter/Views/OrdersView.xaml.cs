@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WaiterManagement.Waiter.Views
 {
 	/// <summary>
-	/// Interaction logic for NotifyView.xaml
+	/// Interaction logic for OrdersView.xaml
 	/// </summary>
-	public partial class NotifyView : UserControl
+	public partial class OrdersView : UserControl
 	{
-		public NotifyView()
+		public OrdersView()
 		{
 			InitializeComponent();
 		}
