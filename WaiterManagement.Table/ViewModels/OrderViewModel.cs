@@ -26,6 +26,7 @@ namespace WaiterManagement.Table.ViewModels
 
 		private bool _isBusy;
 		private string _message;
+		private bool _isSomethingOrdered;
 
 		#endregion
 
@@ -47,8 +48,9 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
-		public string OrderText { get { return "Send new order"; } }
-
+		public bool IsSomethingOrdered { get { return _isSomethingOrdered; } set { _isSomethingOrdered = value; NotifyOfPropertyChange(() => OrderText); }}
+		public string OrderText { get { return IsSomethingOrdered ? "Order more items" : "Send new order"; } }
+		
 		public string Message
 		{
 			get { return _message; }
@@ -79,12 +81,39 @@ namespace WaiterManagement.Table.ViewModels
 
 		public void Order()
 		{
-			_tableConnectionProvider.MakeNewOrder(AddedElements.Where(x => x.Ordered == false));
+			if (IsSomethingOrdered)
+			{
+				var notOrderedItems = AddedElements.Where(x => x.Ordered == false).ToArray();
+				_tableConnectionProvider.OrderMoreItems(notOrderedItems);
+				foreach (var item in notOrderedItems)
+				{
+					AddedElements.Remove(item);
+					var sameTypeElement = AddedElements.FirstOrDefault(x => x.Title == item.Title);
+					if (sameTypeElement != null)
+						sameTypeElement.Quantities += item.Quantities;
+					else
+					{
+						item.Ordered = true;
+						AddedElements.Add(item);
+					}
+				}
+			}
+			else
+			{
+				_tableConnectionProvider.MakeNewOrder(AddedElements);
+				foreach (var element in AddedElements)
+				{
+					element.Ordered = true;
+				}
+				IsSomethingOrdered = true;
+			}
+
+			AddedElements.Refresh();
 		}
 
 		public void AddNewItem(MenuItemView addingMenuItem)
 		{
-			var element = AddedElements.FirstOrDefault(x => x.Id == addingMenuItem.MenuItemId);
+			var element = AddedElements.FirstOrDefault(x => x.Id == addingMenuItem.MenuItemId && !x.Ordered);
 			if (element != null)
 			{
 				element.Quantities++;

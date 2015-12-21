@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
-using Microsoft.AspNet.SignalR.Client;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Table.Connection;
+using WaiterManagement.Table.Model;
 using WaiterManagement.Table.ViewModels;
 using WaiterManagement.Wpf.MVVM;
 using WaiterManagement.Wpf.MVVM.Abstract;
@@ -40,6 +40,8 @@ namespace WaiterManagement.Table.Bootstrapper
 			var tableApp = new TableApp();
 			_kernel.Bind<ITableApp>().ToConstant(tableApp);
 			_kernel.Bind<ITableAppSubscriber>().ToConstant(tableApp);
+
+			_kernel.Bind<ICurrentOrder>().To<CurrentOrder>().InSingletonScope();
 
 			UseViewAttribute.ConfigureViewLocator();
 		}

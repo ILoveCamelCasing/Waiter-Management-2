@@ -111,6 +111,8 @@
     <Compile Include="Bootstrapper\TableApp.cs" />
     <Compile Include="Connection\ITableConnectionProvider.cs" />
     <Compile Include="Connection\TableConnectionProvider.cs" />
+    <Compile Include="Model\CurrentOrder.cs" />
+    <Compile Include="Model\ICurrentOrder.cs" />
     <Compile Include="Model\OrderMenuItemModel.cs" />
     <Compile Include="ViewModels\AccessViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

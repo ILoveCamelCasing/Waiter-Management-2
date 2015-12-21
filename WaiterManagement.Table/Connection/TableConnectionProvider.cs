@@ -17,17 +17,18 @@ namespace WaiterManagement.Table.Connection
 
 		private readonly IAccessProvider _accessProvider;
 		private readonly ITableApp _tableApp;
+		private readonly ICurrentOrder _currentOrder;
 
-		public TableConnectionProvider(IAccessProvider accessProvider, ITableApp tableApp)
+		public TableConnectionProvider(IAccessProvider accessProvider, ITableApp tableApp, ICurrentOrder currentOrder)
 		{
 			_accessProvider = accessProvider;
 			_tableApp = tableApp;
+			_currentOrder = currentOrder;
 		}
 
 		public void MakeNewOrder(IEnumerable<OrderMenuItemModel> orderingElements)
 		{
-			if(_hubConnection == null || _hubConnection.State != ConnectionState.Connected)
-				Connect();
+			Connect();
 
 			_hubProxy.Invoke("MakeNewOrder",
 				new NewOrderModel()
@@ -38,13 +39,30 @@ namespace WaiterManagement.Table.Connection
 				}).Wait();
 		}
 
+		public void OrderMoreItems(IEnumerable<OrderMenuItemModel> orderingElements)
+		{
+			Connect();
+
+			_hubProxy.Invoke("OrderMoreItems",
+				new MoreItemsModel()
+				{
+					OrderId = _currentOrder.CurrentOrderId,
+					OrderingMenuItems =
+						orderingElements.Select(x => new OrderingMenuItem() {MenuItemId = x.Id, Quantities = x.Quantities})
+				}).Wait();
+		}
+
 		private void Connect()
 		{
+			if (_hubConnection != null && _hubConnection.State == ConnectionState.Connected)
+				return;
+
 			_hubConnection = new HubConnection(ConfigurationManager.AppSettings["ServerPath"]);
 			_hubConnection.Headers.Add("login", _accessProvider.Login);
 			_hubConnection.Headers.Add("token", _accessProvider.Token);
 			_hubProxy = _hubConnection.CreateHubProxy("tableHub");
 			_hubProxy.On<string>("NotifyTable", message => _tableApp.NotifyTable(message));
+			_hubProxy.On<int>("SendOrderId", id => _currentOrder.CurrentOrderId = id);
 			_hubConnection.Start().Wait();
 		}
 	}
