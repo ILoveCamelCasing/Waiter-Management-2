@@ -7,5 +7,6 @@ namespace WaiterManagement.Table.Connection
 	{
 		void MakeNewOrder(IEnumerable<OrderMenuItemModel> orderingElements);
 		void OrderMoreItems(IEnumerable<OrderMenuItemModel> orderingElements);
+		void CallWaiter();
 	}
 }

@@ -14,7 +14,9 @@ namespace WaiterManagement.Common.Entities.Abstract
 		bool AnyActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity;
 		Task AddAsync<T>(T item) where T : class, IEntity;
 		T Get<T>(int id) where T : class, IEntity;
+		T Get<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity;
 		object Get(Type entityType, int id);
+		T GetFirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity;
 		IQueryable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity;
 		T GetActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity;
 		void Load<TEntity, TProperty>(TEntity item, Expression<Func<TEntity, TProperty>> navigationProperty)

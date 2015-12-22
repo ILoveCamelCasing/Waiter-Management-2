@@ -55,6 +55,7 @@
 				<RowDefinition Height="30"/>
 				<RowDefinition/>
 				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
 			</Grid.RowDefinitions>
 			<Label>Your order</Label>
 			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single">
@@ -73,6 +74,7 @@
 				</ListView.View>
 			</ListView>
 			<Button Grid.Row="2" Margin="0 10" x:Name="Order" Content="{Binding OrderText}" />
+			<Button Grid.Row="3" Margin="0 10" x:Name="CallWaiter">Call the waiter</Button>
 		</Grid>
 	</Grid>
 </UserControl>

@@ -71,6 +71,7 @@
     <Compile Include="Commands\Concrete\ManagerCommands\EditTableCommand.cs" />
     <Compile Include="Commands\Concrete\ManagerCommands\EditWaiterCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\AddOrderCommand.cs" />
+    <Compile Include="Commands\Concrete\ServiceCommands\CallWaiterCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\MoreItemsCommand.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\AddCategoryHandler.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\AddMenuItemHandler.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Commands\Handlers\ManagerHandlers\EditTableHandler.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\EditWaiterHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\AddOrderHandler.cs" />
+    <Compile Include="Commands\Handlers\ServiceHandlers\CallWaiterHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\MoreItemsHandler.cs" />
     <Compile Include="Events\Base\EventBus.cs" />
     <Compile Include="Events\Base\IEvent.cs" />

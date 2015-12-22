@@ -32,6 +32,11 @@ namespace WaiterManagement.DAL
 			return _dbContext.Set<T>().Any(GetActualPredicate(predicate));
 		}
 
+		public T GetFirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity
+		{
+			return _dbContext.Set<T>().FirstOrDefault(predicate);
+		}
+
 		public IQueryable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity
 		{
 			return _dbContext.Set<T>().Where(predicate);
@@ -45,6 +50,11 @@ namespace WaiterManagement.DAL
 		async Task IUnitOfWork.AddAsync<T>(T item)
 		{
 			await Task.Run(() => Add(item));
+		}
+
+		public T Get<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity
+		{
+			return _dbContext.Set<T>().First(predicate);
 		}
 
 		public object Get(Type entityType ,int id)

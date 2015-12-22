@@ -11,7 +11,8 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 	{
 		public void Handle(AddOrderCommand command)
 		{
-			var order = new Order() {Created = SystemTime.Now, Status = OrderStatus.Created};
+			var table = UnitOfWork.Get<Table>(x => x.User.Login == command.TableLogin);
+			var order = new Order() {Created = SystemTime.Now, Status = OrderStatus.Created, Table = table};
 			UnitOfWork.Add(order);
 			var menuItemsIds = command.MenuItemsQuantities.Select(x => x.MenuItemId).ToArray();
 			var menuItems = UnitOfWork.GetWhere<MenuItem>(x => menuItemsIds.Contains(x.Id)).ToArray();

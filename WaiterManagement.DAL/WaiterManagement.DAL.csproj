@@ -116,6 +116,14 @@
     <Compile Include="Migrations\201512080844286_Added authenticated users view.Designer.cs">
       <DependentUpon>201512080844286_Added authenticated users view.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512221821296_Added table to Order.cs" />
+    <Compile Include="Migrations\201512221821296_Added table to Order.Designer.cs">
+      <DependentUpon>201512221821296_Added table to Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512221906553_Added Waiter to Order and Orders View.cs" />
+    <Compile Include="Migrations\201512221906553_Added Waiter to Order and Orders View.Designer.cs">
+      <DependentUpon>201512221906553_Added Waiter to Order and Orders View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -171,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512080844286_Added authenticated users view.resx">
       <DependentUpon>201512080844286_Added authenticated users view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512221821296_Added table to Order.resx">
+      <DependentUpon>201512221821296_Added table to Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512221906553_Added Waiter to Order and Orders View.resx">
+      <DependentUpon>201512221906553_Added Waiter to Order and Orders View.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

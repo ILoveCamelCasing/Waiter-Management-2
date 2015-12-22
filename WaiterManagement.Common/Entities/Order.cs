@@ -8,5 +8,7 @@ namespace WaiterManagement.Common.Entities
 		public DateTime Created { get; set; }
 		public OrderStatus Status { get; set; }
 		public string Comment { get; set; }
+		public Table Table { get; set; }
+		public Waiter Waiter { get; set; }
 	}
 }

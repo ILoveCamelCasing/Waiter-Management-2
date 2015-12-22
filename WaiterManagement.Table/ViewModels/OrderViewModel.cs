@@ -131,6 +131,11 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
+		public void CallWaiter()
+		{
+			_tableConnectionProvider.CallWaiter();
+		}
+
 		#endregion
 
 		#region Ovverrides

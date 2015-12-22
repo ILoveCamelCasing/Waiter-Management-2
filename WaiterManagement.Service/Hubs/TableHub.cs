@@ -30,10 +30,13 @@ namespace WaiterManagement.Service.Hubs
 
 		#endregion
 
+		#region Hub methods
+
 		public void MakeNewOrder(NewOrderModel order)
 		{
 			_commundBus.SendCommand(new AddOrderCommand()
 			{
+				
 				TableLogin = order.TableLogin,
 				MenuItemsQuantities = order.OrderingMenuItems,
 			});
@@ -47,5 +50,25 @@ namespace WaiterManagement.Service.Hubs
 				MenuItemsQuantities = model.OrderingMenuItems
 			});
 		}
+
+		public void CallWaiter()
+		{
+			_commundBus.SendCommand(new CallWaiterCommand()
+			{
+				TableLogin = GetCallerLogin()
+			});
+		}
+
+		#endregion
+
+		#region Private methods
+
+		private string GetCallerLogin()
+		{
+			var login = Context.Headers["login"];
+			return login;
+		}
+
+		#endregion
 	}
 }

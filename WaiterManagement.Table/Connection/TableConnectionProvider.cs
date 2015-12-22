@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using Microsoft.AspNet.SignalR.Client;
@@ -50,6 +49,13 @@ namespace WaiterManagement.Table.Connection
 					OrderingMenuItems =
 						orderingElements.Select(x => new OrderingMenuItem() {MenuItemId = x.Id, Quantities = x.Quantities})
 				}).Wait();
+		}
+
+		public void CallWaiter()
+		{
+			Connect();
+
+			_hubProxy.Invoke("CallWaiter").Wait();
 		}
 
 		private void Connect()
