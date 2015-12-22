@@ -133,7 +133,14 @@ namespace WaiterManagement.Table.ViewModels
 
 		public void CallWaiter()
 		{
-			_tableConnectionProvider.CallWaiter();
+			try
+			{
+				_tableConnectionProvider.CallWaiter();
+			}
+			catch (Exception ex)
+			{
+				Message = "Error emerged. No waiter called.";
+			}
 		}
 
 		#endregion

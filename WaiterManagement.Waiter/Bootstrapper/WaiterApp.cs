@@ -16,6 +16,11 @@ namespace WaiterManagement.Waiter.Bootstrapper
 			if (handler != null)
 				Task.Factory.StartNew(() => handler(order));
 		}
+
+		public void CallWaiter(string tableLogin)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public interface IWaiterAppSubscriber

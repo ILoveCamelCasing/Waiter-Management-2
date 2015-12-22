@@ -22,7 +22,18 @@ namespace WaiterManagement.Service.Hubs
 
 		public ITableApp GetTable(string login)
 		{
+			if (_tables == null)
+				throw new InvalidOperationException("Method to getting table not set.");
+
 			return _tables.Invoke().User(login);
+		}
+
+		public IWaiterApp GetWaiter(string login)
+		{
+			if (_waiters == null)
+				throw new InvalidOperationException("Method to getting waiters not set.");
+
+			return _waiters.Invoke().User(login);
 		}
 
 		public ITableApp GetTables()
