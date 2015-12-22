@@ -7,6 +7,6 @@
 	public interface IHandleEvent<in TEvent> : IHandleEvent
 		where TEvent : IEvent
 	{
-		void Handle(TEvent command);
+		void Handle(TEvent @event);
 	}
 }

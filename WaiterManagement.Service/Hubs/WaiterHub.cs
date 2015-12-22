@@ -13,10 +13,10 @@ namespace WaiterManagement.Service.Hubs
 	{
 		private readonly ICommandBus _commandBus;
 
-		public WaiterHub(ICommandBus commandBus, ICallingService callingService)
+		public WaiterHub(ICommandBus commandBus, ICallingServiceSubscriber callingService)
 		{
 			_commandBus = commandBus;
-			callingService.SetRetriveWaiterMethod(() => Clients.All);
+			callingService.SetRetriveWaiterMethod(() => Clients);
 		}
 	}
 }

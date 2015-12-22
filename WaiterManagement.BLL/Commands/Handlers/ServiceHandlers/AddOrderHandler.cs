@@ -25,7 +25,7 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 				};
 				UnitOfWork.Add(menuItemsQuantities);
 			}
-			EventBus.PublishEvent(new AddedOrder(){Order = order,TableTitle = command.TableLogin, Table = command.Table});
+			EventBus.PublishEvent(new AddedOrder(){Order = order,TableTitle = command.TableLogin});
 		}
 	}
 }

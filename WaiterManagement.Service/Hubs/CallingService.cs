@@ -1,38 +1,50 @@
 ﻿using System;
+using Microsoft.AspNet.SignalR.Hubs;
 using WaiterManagement.Common;
 using WaiterManagement.Common.Apps;
 
 namespace WaiterManagement.Service.Hubs
 {
-	public class CallingService : ICallingService
+	public class CallingService : ICallingService, ICallingServiceSubscriber
 	{
-		private Func<ITableApp> _retriveTable;
-		private Func<IWaiterApp> _retriveWaiters;
+		private Func<IHubCallerConnectionContext<ITableApp>> _tables;
+		private Func<IHubCallerConnectionContext<IWaiterApp>> _waiters;
 
-		public void SetRetriveTableMethod(Func<ITableApp> action)
+		public void SetRetriveTableMethod(Func<IHubCallerConnectionContext<ITableApp>> tables)
 		{
-			_retriveTable = action;
+			_tables = tables;
 		}
 
-		public void SetRetriveWaiterMethod(Func<IWaiterApp> action)
+		public void SetRetriveWaiterMethod(Func<IHubCallerConnectionContext<IWaiterApp>> waiters)
 		{
-			_retriveWaiters = action;
+			_waiters = waiters;
+		}
+
+		public ITableApp GetTable(string login)
+		{
+			return _tables.Invoke().User(login);
 		}
 
 		public ITableApp GetTables()
 		{
-			if(_retriveTable == null)
+			if(_tables == null)
 				throw new InvalidOperationException("Method to getting table not set.");
 
-			return _retriveTable.Invoke();
+			return _tables.Invoke().All;
 		}
 
 		public IWaiterApp GetWaiters()
 		{
-			if(_retriveWaiters == null)
+			if(_waiters == null)
 				throw new InvalidOperationException("Method to getting waiters not set.");
 
-			return _retriveWaiters.Invoke();
+			return _waiters.Invoke().All;
 		}
+	}
+
+	public interface ICallingServiceSubscriber
+	{
+		void SetRetriveTableMethod(Func<IHubCallerConnectionContext<ITableApp>> tables);
+		void SetRetriveWaiterMethod(Func<IHubCallerConnectionContext<IWaiterApp>> waiters);
 	}
 }

@@ -21,11 +21,11 @@ namespace WaiterManagement.Service.Hubs
 
 		#region Constructor
 
-		public TableHub(ICommandBus commundBus, ICallingService callingService)
+		public TableHub(ICommandBus commundBus, ICallingServiceSubscriber callingService)
 		{
 			_commundBus = commundBus;
 
-			callingService.SetRetriveTableMethod(() => Clients.All);
+			callingService.SetRetriveTableMethod(() => Clients);
 		}
 
 		#endregion
@@ -36,7 +36,6 @@ namespace WaiterManagement.Service.Hubs
 			{
 				TableLogin = order.TableLogin,
 				MenuItemsQuantities = order.OrderingMenuItems,
-				Table = Clients.Caller
 			});
 		}
 

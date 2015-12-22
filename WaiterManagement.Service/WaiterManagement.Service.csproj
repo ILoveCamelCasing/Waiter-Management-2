@@ -198,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\CallingService.cs" />
+    <Compile Include="Hubs\CustomIdUserProvider.cs" />
     <Compile Include="Hubs\TableHub.cs" />
     <Compile Include="Hubs\WaiterHub.cs" />
     <Compile Include="Models\LoginModel.cs" />

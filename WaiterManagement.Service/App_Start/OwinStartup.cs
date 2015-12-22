@@ -2,6 +2,7 @@
 using Microsoft.AspNet.SignalR.Ninject;
 using Microsoft.Owin;
 using Owin;
+using WaiterManagement.Service.Hubs;
 
 [assembly: OwinStartup(typeof(WaiterManagement.Service.OwinStartup))]
 namespace WaiterManagement.Service
@@ -10,6 +11,7 @@ namespace WaiterManagement.Service
 	{
 		public void Configuration(IAppBuilder app)
 		{
+
 			app.MapSignalR(Configure());
 		}
 

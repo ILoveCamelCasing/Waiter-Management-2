@@ -9,6 +9,5 @@ namespace WaiterManagement.BLL.Commands.Concrete.ServiceCommands
 	{
 		public string TableLogin { get; set; }
 		public IEnumerable<OrderingMenuItem> MenuItemsQuantities { get; set; }
-		public ITableApp Table { get; set; }
 	}
 }

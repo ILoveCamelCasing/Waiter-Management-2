@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using Microsoft.AspNet.SignalR;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
@@ -95,9 +96,16 @@ namespace WaiterManagement.Service
 			kernel.Bind<IViewProvider>().To<ViewProvider>().InSingletonScope();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
 			kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
-			kernel.Bind<ICallingService>().To<CallingService>().InSingletonScope();
+
+			var callingService = new CallingService();
+			kernel.Bind<ICallingService>().ToConstant(callingService);//.To<CallingService>().InSingletonScope();
+			kernel.Bind<ICallingServiceSubscriber>().ToConstant(callingService);
 
 			RegisterHandlers(kernel);
+
+
+			var idProvider = new CustomIdUserProvider();
+			kernel.Bind<IUserIdProvider>().ToConstant(idProvider);
 		}
 
 		private static void RegisterHandlers(IKernel kernel)
