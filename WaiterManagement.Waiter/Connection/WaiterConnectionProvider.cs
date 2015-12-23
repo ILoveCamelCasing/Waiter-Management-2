@@ -4,6 +4,7 @@ using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Waiter.Bootstrapper;
+using System.Threading.Tasks;
 
 namespace WaiterManagement.Waiter.Connection
 {
@@ -21,14 +22,14 @@ namespace WaiterManagement.Waiter.Connection
 			_waiterApp = waiterApp;
 		}
 
-		public void Connect()
+		public async Task Connect()
 		{
 			_hubConnection = new HubConnection(ConfigurationManager.AppSettings["ServerPath"]);
 			_hubConnection.Headers.Add("login", _accessProvider.Login);
 			_hubConnection.Headers.Add("token", _accessProvider.Token);
 			_hubProxy = _hubConnection.CreateHubProxy("waiterHub");
 			_hubProxy.On<OrderModel>("NewOrder", order => _waiterApp.NewOrder(order));
-			_hubConnection.Start().Wait();
+			await _hubConnection.Start();
 		}
 	}
 }
