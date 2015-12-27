@@ -1,7 +1,11 @@
-﻿namespace WaiterManagement.Waiter.Connection
+﻿using System.Threading.Tasks;
+
+namespace WaiterManagement.Waiter.Connection
 {
 	public interface IWaiterConnectionProvider
 	{
-		void Connect();
+		Task Connect();
+
+		void AcceptOrder(int orderId);
 	}
 }

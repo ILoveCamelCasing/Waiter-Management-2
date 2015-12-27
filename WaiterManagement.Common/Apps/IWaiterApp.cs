@@ -4,7 +4,8 @@ namespace WaiterManagement.Common.Apps
 {
 	public interface IWaiterApp
 	{
-		void NewOrder(OrderModel order);
+		void NewOrderMade(OrderModel order);
+		void AcceptedOrderInfoUpdated(AcceptedOrderCurrentStateModel acceptedOrder);
 		void CallWaiter(string tableLogin);
 	}
 }

@@ -16,7 +16,7 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 
 		public void Handle(AddedOrder command)
 		{
-			_callingService.GetWaiters().NewOrder(new OrderModel(){OrderId = command.Order.Id, TableTitle = command.TableTitle});
+			_callingService.GetWaiters().NewOrderMade(new OrderModel(){OrderId = command.Order.Id, TableTitle = command.TableTitle});
 		}
 	}
 }

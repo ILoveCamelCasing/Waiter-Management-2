@@ -81,6 +81,10 @@
     <Compile Include="Entities\Waiter.cs" />
     <Compile Include="Extensions\ExpressionExtensions.cs" />
     <Compile Include="ICallingService.cs" />
+    <Compile Include="Models\AcceptedOrderCurrentStateModel.cs" />
+    <Compile Include="Models\AcceptedOrderMenuItem.cs" />
+    <Compile Include="Models\AcceptedOrderMenuItemQuantity.cs" />
+    <Compile Include="Models\AcceptOrderModel.cs" />
     <Compile Include="Models\MoreItemsModel.cs" />
     <Compile Include="Models\NewOrderModel.cs" />
     <Compile Include="Models\OrderingMenuItem.cs" />

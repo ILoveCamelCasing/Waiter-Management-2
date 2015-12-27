@@ -97,7 +97,7 @@ namespace WaiterManagement.Waiter.ViewModels
 
 			if (loginSucceeded)
 			{
-				_waiterConnectionProvider.Connect();
+				await _waiterConnectionProvider.Connect();
 				Close();
 				Get<OrdersViewModel>().ShowOn(ParentWindow);
 			}
