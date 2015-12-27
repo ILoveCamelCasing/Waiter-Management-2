@@ -78,25 +78,21 @@ namespace WaiterManagement.Waiter.ViewModels
 			AcceptedOrders.Add(order);
 		}
 
-		public async void AcceptedOrderSelectionChanged()
+		public void AcceptedOrderSelectionChanged()
 		{
 			var orderId = SelectedAcceptedOrder.OrderId;
 			IEnumerable<MenuItemsQuantity> menuItems = null;
 
 			if (!_acceptedOrdersCache.TryGetValue(orderId, out menuItems))
 			{
-				using (var client = new HttpClient()) //TODO: Koniecznie wywalić do oddzielnej klasy!!
+				SelectedAcceptedOrderMenuItems.Add(new MenuItemsQuantity()
 				{
-					client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
-					var responseMessage = await client.GetAsync(String.Format("api/waiter/getorder?orderId={0}", orderId));
-					var responseString = await responseMessage.Content.ReadAsStringAsync();
-					menuItems = JsonConvert.DeserializeObject<List<MenuItemsQuantity>>(responseString);
-					_acceptedOrdersCache[orderId] = menuItems;
-				}
+					Quantity = 3,
+				});
 			}
 
-			SelectedAcceptedOrderMenuItems.Clear();
-			SelectedAcceptedOrderMenuItems.AddRange(menuItems);
+			//SelectedAcceptedOrderMenuItems.Clear();
+			//SelectedAcceptedOrderMenuItems.AddRange(menuItems);
 			NotifyOfPropertyChange(() => SelectedAcceptedOrderMenuItems);
 		}
 		#endregion

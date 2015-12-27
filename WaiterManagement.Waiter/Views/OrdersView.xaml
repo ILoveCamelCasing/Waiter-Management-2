@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WaiterManagement.Waiter.Views"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -55,14 +56,14 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Label Content="{Binding TableTitle}"></Label>
-                                    <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, AncestorLevel=4}}">
+                                    <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Label Content="{Binding Quantity}"></Label>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                </StackPanel>                                
+                                </StackPanel>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -128,7 +129,7 @@
                     <ListView ItemsSource="{Binding SelectedAcceptedOrderMenuItems}">
                     </ListView>
                 </DataTemplate>                
-            </TabControl.ContentTemplate>-->            
+            </TabControl.ContentTemplate>-->
         </TabControl>
     </DockPanel>
 </UserControl>
