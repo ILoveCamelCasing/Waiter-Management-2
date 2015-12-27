@@ -21,6 +21,7 @@ namespace WaiterManagement.Service.Hubs
 		{
 			_commandBus = commandBus;
 			callingService.SetRetriveWaiterMethod(() => Clients);
+			callingService.SetCallingWaiterMethod(() => Context.ConnectionId);
 		}
 		#endregion
 

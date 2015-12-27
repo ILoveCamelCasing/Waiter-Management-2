@@ -26,6 +26,7 @@ namespace WaiterManagement.Service.Hubs
 			_commundBus = commundBus;
 
 			callingService.SetRetriveTableMethod(() => Clients);
+			callingService.SetCallingTableMethod(() => Context.ConnectionId);
 		}
 
 		#endregion

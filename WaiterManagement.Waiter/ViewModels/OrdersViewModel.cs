@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Linq;
+using Caliburn.Micro;
 using System.Collections.Generic;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Waiter.Bootstrapper;
@@ -32,6 +33,7 @@ namespace WaiterManagement.Waiter.ViewModels
 
 			waiterApp.NewOrderHandler += WaiterApp_NotifyNewOrderHandler;
 			waiterApp.AcceptedOrderInfoUpdatedHandler += WaiterApp_AcceptedOrderInfoUpdatedHandler;
+			waiterApp.OrderWasAcceptedHandler += WaiterApp_OrderWasAcceptedHandler;
 		}
 		#endregion
 
@@ -85,6 +87,13 @@ namespace WaiterManagement.Waiter.ViewModels
 				SelectedAcceptedOrderMenuItems.Clear();
 				SelectedAcceptedOrderMenuItems.AddRange(_acceptedOrdersCache[orderCurrentState.OrderId]);
 			}				
+		}
+
+		private void WaiterApp_OrderWasAcceptedHandler(object sender, AcceptOrderModel e)
+		{
+			var orderToRemove = AwaitingOrders.FirstOrDefault(o => o.OrderId == e.OrderId);
+			if (orderToRemove != null)
+				AwaitingOrders.Remove(orderToRemove);
 		}
 
 		public void AcceptedOrderSelectionChanged()

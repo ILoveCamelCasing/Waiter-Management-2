@@ -36,6 +36,7 @@ namespace WaiterManagement.Waiter.Connection
 			_hubProxy = _hubConnection.CreateHubProxy("waiterHub");
 			_hubProxy.On<OrderModel>("NewOrderMade", order => _waiterApp.NewOrderMade(order));
 			_hubProxy.On<AcceptedOrderCurrentStateModel>("AcceptedOrderInfoUpdated", acceptedOrder => _waiterApp.AcceptedOrderInfoUpdated(acceptedOrder));
+			_hubProxy.On<AcceptOrderModel>("OrderWasAccepted", acceptedOrder => _waiterApp.OrderWasAccepted(acceptedOrder));
 			await _hubConnection.Start();
 		}
 
