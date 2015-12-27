@@ -1,12 +1,8 @@
 ﻿using Caliburn.Micro;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Net.Http;
-using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Waiter.Bootstrapper;
+using WaiterManagement.Waiter.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Waiter.ViewModels
@@ -16,19 +12,26 @@ namespace WaiterManagement.Waiter.ViewModels
 		#region Private Fields
 		private OrderModel _selectedAwaitingOrder;
 		private OrderModel _selectedAcceptedOrder;
-		private IDictionary<int, IEnumerable<MenuItemsQuantity>> _acceptedOrdersCache;
+		private IDictionary<int, IEnumerable<AcceptedOrderMenuItemQuantity>> _acceptedOrdersCache;
+		#endregion
+
+		#region Dependencies
+		private readonly IWaiterConnectionProvider _waiterConnectionProvider;
 		#endregion
 
 		#region Constructors
-		public OrdersViewModel(IViewModelResolver viewModelResolver, IWaiterAppSubscriber waiterApp) : base(viewModelResolver)
+		public OrdersViewModel(IViewModelResolver viewModelResolver, IWaiterAppSubscriber waiterApp, IWaiterConnectionProvider waiterConnectionProvider) : base(viewModelResolver)
 		{
+			_waiterConnectionProvider = waiterConnectionProvider;
+
 			AwaitingOrders = new BindableCollection<OrderModel>();
 			AcceptedOrders = new BindableCollection<OrderModel>();
-			SelectedAcceptedOrderMenuItems = new BindableCollection<MenuItemsQuantity>();
+			SelectedAcceptedOrderMenuItems = new BindableCollection<AcceptedOrderMenuItemQuantity>();
 
-			_acceptedOrdersCache = new Dictionary<int, IEnumerable<MenuItemsQuantity>>();
+			_acceptedOrdersCache = new Dictionary<int, IEnumerable<AcceptedOrderMenuItemQuantity>>();
 
-			waiterApp.NotifyNewOrder += NotifyNewOrder;
+			waiterApp.NewOrderHandler += WaiterApp_NotifyNewOrderHandler;
+			waiterApp.AcceptedOrderInfoUpdatedHandler += WaiterApp_AcceptedOrderInfoUpdatedHandler;
 		}
 		#endregion
 
@@ -53,7 +56,7 @@ namespace WaiterManagement.Waiter.ViewModels
 			}
 		}
 
-		public BindableCollection<MenuItemsQuantity> SelectedAcceptedOrderMenuItems
+		public BindableCollection<AcceptedOrderMenuItemQuantity> SelectedAcceptedOrderMenuItems
 		{ get; private set; }
 
 		public BindableCollection<OrderModel> AwaitingOrders
@@ -66,34 +69,39 @@ namespace WaiterManagement.Waiter.ViewModels
 		#endregion
 
 		#region Event Handlers
-		public void NotifyNewOrder(OrderModel order)
+		public void WaiterApp_NotifyNewOrderHandler(object sender, OrderModel order)
 		{
 			if (order != null)
 				AwaitingOrders.Add(order);
+		}
+
+
+		private void WaiterApp_AcceptedOrderInfoUpdatedHandler(object sender, AcceptedOrderCurrentStateModel orderCurrentState)
+		{
+			_acceptedOrdersCache[orderCurrentState.OrderId] = orderCurrentState.MenuItems;
+
+			if (orderCurrentState.OrderId == SelectedAcceptedOrder.OrderId)
+			{
+				SelectedAcceptedOrderMenuItems.Clear();
+				SelectedAcceptedOrderMenuItems.AddRange(_acceptedOrdersCache[orderCurrentState.OrderId]);
+			}				
+		}
+
+		public void AcceptedOrderSelectionChanged()
+		{
+			SelectedAcceptedOrderMenuItems.Clear();
+
+			IEnumerable<AcceptedOrderMenuItemQuantity> menuItems = null;
+			if(_acceptedOrdersCache.TryGetValue(SelectedAcceptedOrder.OrderId, out menuItems))
+				SelectedAcceptedOrderMenuItems.AddRange(menuItems);
 		}
 
 		public void AcceptOrder(OrderModel order)
 		{
 			AwaitingOrders.Remove(order); //TODO: Remove from db
 			AcceptedOrders.Add(order);
-		}
 
-		public void AcceptedOrderSelectionChanged()
-		{
-			var orderId = SelectedAcceptedOrder.OrderId;
-			IEnumerable<MenuItemsQuantity> menuItems = null;
-
-			if (!_acceptedOrdersCache.TryGetValue(orderId, out menuItems))
-			{
-				SelectedAcceptedOrderMenuItems.Add(new MenuItemsQuantity()
-				{
-					Quantity = 3,
-				});
-			}
-
-			//SelectedAcceptedOrderMenuItems.Clear();
-			//SelectedAcceptedOrderMenuItems.AddRange(menuItems);
-			NotifyOfPropertyChange(() => SelectedAcceptedOrderMenuItems);
+			_waiterConnectionProvider.AcceptOrder(order.OrderId);
 		}
 		#endregion
 	}

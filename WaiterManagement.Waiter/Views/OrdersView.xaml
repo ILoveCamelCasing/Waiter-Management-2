@@ -59,7 +59,20 @@
                                     <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <Label Content="{Binding Quantity}"></Label>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" Grid.Column="0">Item:</Label>
+                                                    <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=MenuItem.Title}"/>
+                                                    <Label Grid.Row="1" Grid.Column="0">Quantity:</Label>
+                                                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding Quantity}"/>
+                                                </Grid>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
@@ -69,67 +82,6 @@
                     </Setter>
                 </Style>
             </TabControl.ItemContainerStyle>
-            <!--<TabControl.ItemContainerStyle>
-                <Style TargetType="{x:Type TabItem}">
-                    <Setter Property="Header" Value="34"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ListView x:Name="SelectedAcceptedOrderMenuItems">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition/>
-                                                    <ColumnDefinition/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <Label Grid.Row="0" Grid.Column="0">Item:</Label>
-                                                <Label Grid.Row="0" Grid.Column="1" Content="{Binding Item.Title}"/>
-                                                <Label Grid.Row="1" Grid.Column="0">Quantity:</Label>
-                                                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Quantity}"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.ItemContainerStyle>-->
-            <!--<TabControl.ContentTemplate>
-                <DataTemplate>
-                    <ListView ItemsSource ="{Binding SelectedAcceptedOrderMenuItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Grid.Column="0">Item:</Label>
-                                    <Label Grid.Row="0" Grid.Column="1" Content="{Binding Id}"/>
-                                    <Label Grid.Row="1" Grid.Column="0">Quantity:</Label>
-                                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding Quantity}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </DataTemplate>               
-            </TabControl.ContentTemplate>-->
-            <!--<TabControl.ContentTemplate>
-                <DataTemplate>
-                    <ListView ItemsSource="{Binding SelectedAcceptedOrderMenuItems}">
-                    </ListView>
-                </DataTemplate>                
-            </TabControl.ContentTemplate>-->
         </TabControl>
     </DockPanel>
 </UserControl>
