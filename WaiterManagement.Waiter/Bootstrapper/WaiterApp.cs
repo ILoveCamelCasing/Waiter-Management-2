@@ -11,6 +11,7 @@ namespace WaiterManagement.Waiter.Bootstrapper
 		public event EventHandler<OrderModel> NewOrderHandler;
 		public event EventHandler<AcceptedOrderCurrentStateModel> AcceptedOrderInfoUpdatedHandler;
 		public event EventHandler<AcceptOrderModel> OrderWasAcceptedHandler;
+		public event EventHandler<String> CallWaiterHandler;
 		#endregion
 
 		#region IWaiterApp
@@ -21,7 +22,7 @@ namespace WaiterManagement.Waiter.Bootstrapper
 
 		public void CallWaiter(string tableLogin)
 		{
-			throw new NotImplementedException();
+			Task.Run(() => HandleSafely(CallWaiterHandler, tableLogin)); //Should be awaited...
 		}
 
 		public void AcceptedOrderInfoUpdated(AcceptedOrderCurrentStateModel acceptedOrder)
@@ -58,5 +59,6 @@ namespace WaiterManagement.Waiter.Bootstrapper
 		event EventHandler<OrderModel> NewOrderHandler;
 		event EventHandler<AcceptOrderModel> OrderWasAcceptedHandler;
 		event EventHandler<AcceptedOrderCurrentStateModel> AcceptedOrderInfoUpdatedHandler;
+		event EventHandler<String> CallWaiterHandler;
 	}
 }

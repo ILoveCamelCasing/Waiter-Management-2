@@ -25,7 +25,7 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 		public void Handle(AcceptedOrder @event)
 		{
 			var table = _callingService.GetTable(@event.TableLogin);
-			table.NotifyTable($"Your order was accepted by {@event.TableLogin}.");
+			table.NotifyTable($"Your order was accepted by {@event.WaiterLogin}.");
 		}
 		#endregion
 	}

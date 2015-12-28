@@ -5,6 +5,7 @@ using WaiterManagement.Common.Models;
 using WaiterManagement.Waiter.Bootstrapper;
 using WaiterManagement.Waiter.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
+using System;
 
 namespace WaiterManagement.Waiter.ViewModels
 {
@@ -28,12 +29,14 @@ namespace WaiterManagement.Waiter.ViewModels
 			AwaitingOrders = new BindableCollection<OrderModel>();
 			AcceptedOrders = new BindableCollection<OrderModel>();
 			SelectedAcceptedOrderMenuItems = new BindableCollection<AcceptedOrderMenuItemQuantity>();
+			TablesRequiringAssistance = new BindableCollection<String>();
 
 			_acceptedOrdersCache = new Dictionary<int, IEnumerable<AcceptedOrderMenuItemQuantity>>();
 
 			waiterApp.NewOrderHandler += WaiterApp_NotifyNewOrderHandler;
 			waiterApp.AcceptedOrderInfoUpdatedHandler += WaiterApp_AcceptedOrderInfoUpdatedHandler;
 			waiterApp.OrderWasAcceptedHandler += WaiterApp_OrderWasAcceptedHandler;
+			waiterApp.CallWaiterHandler += WaiterApp_CallWaiterHandler;
 		}
 		#endregion
 
@@ -68,6 +71,11 @@ namespace WaiterManagement.Waiter.ViewModels
 		{
 			get; private set;
 		}
+
+		public BindableCollection<String> TablesRequiringAssistance
+		{
+			get; private set;
+		}
 		#endregion
 
 		#region Event Handlers
@@ -76,7 +84,6 @@ namespace WaiterManagement.Waiter.ViewModels
 			if (order != null)
 				AwaitingOrders.Add(order);
 		}
-
 
 		private void WaiterApp_AcceptedOrderInfoUpdatedHandler(object sender, AcceptedOrderCurrentStateModel orderCurrentState)
 		{
@@ -89,11 +96,17 @@ namespace WaiterManagement.Waiter.ViewModels
 			}				
 		}
 
-		private void WaiterApp_OrderWasAcceptedHandler(object sender, AcceptOrderModel e)
+		private void WaiterApp_OrderWasAcceptedHandler(object sender, AcceptOrderModel acceptedOrder)
 		{
-			var orderToRemove = AwaitingOrders.FirstOrDefault(o => o.OrderId == e.OrderId);
+			var orderToRemove = AwaitingOrders.FirstOrDefault(o => o.OrderId == acceptedOrder.OrderId);
 			if (orderToRemove != null)
 				AwaitingOrders.Remove(orderToRemove);
+		}
+
+		private void WaiterApp_CallWaiterHandler(object sender, string callingTable)
+		{
+			if(!TablesRequiringAssistance.Contains(callingTable))
+				TablesRequiringAssistance.Add(callingTable);
 		}
 
 		public void AcceptedOrderSelectionChanged()
@@ -111,6 +124,11 @@ namespace WaiterManagement.Waiter.ViewModels
 			AcceptedOrders.Add(order);
 
 			_waiterConnectionProvider.AcceptOrder(order.OrderId);
+		}
+
+		public void MarkAssistanceRequirementAsSeen(string tableLogin)
+		{
+			TablesRequiringAssistance.Remove(tableLogin);
 		}
 		#endregion
 	}

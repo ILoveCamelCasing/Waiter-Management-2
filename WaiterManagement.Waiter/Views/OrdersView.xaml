@@ -10,43 +10,55 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <DockPanel>
-        <ListView x:Name="AwaitingOrders" DockPanel.Dock="Right">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0">Table:</Label>
-                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding TableTitle}"/>
-                        <Label Grid.Row="1" Grid.Column="0">Order:</Label>
-                        <Label Grid.Row="1" Grid.Column="1" Content="{Binding OrderId}"/>
-                        <Button x:Name="AcceptOrder" Grid.Row="2" Grid.ColumnSpan="2" cal:Message.Attach="[Event Click] = [Action AcceptOrder($dataContext)]">Accept</Button>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Style>
-                <Style TargetType="{x:Type ListView}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <TextBlock>No awaiting orders.</TextBlock>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.Style>
-        </ListView>
+        <DockPanel DockPanel.Dock="Right">
+            <ListView x:Name="AwaitingOrders" DockPanel.Dock="Top">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0">Table:</Label>
+                            <Label Grid.Row="0" Grid.Column="1" Content="{Binding TableTitle}"/>
+                            <Label Grid.Row="1" Grid.Column="0">Order:</Label>
+                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding OrderId}"/>
+                            <Button x:Name="AcceptOrder" Grid.Row="2" Grid.ColumnSpan="2" cal:Message.Attach="[Event Click] = [Action AcceptOrder($dataContext)]">Accept</Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Style>
+                    <Style TargetType="{x:Type ListView}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <TextBlock>No awaiting orders.</TextBlock>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Style>
+            </ListView>
+            <ListView x:Name="TablesRequiringAssistance" DockPanel.Dock="Bottom">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontWeight="Bold" Foreground="Red" Content="{Binding}" ContentStringFormat="Assistance required by {0}!"/>
+                            <Button cal:Message.Attach="[Event Click] = [Action MarkAssistanceRequirementAsSeen($dataContext)]">OK</Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>        
         <TabControl x:Name="AcceptedOrders" cal:Message.Attach="[Event SelectionChanged] = [Action AcceptedOrderSelectionChanged]" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="TabItem">
@@ -55,6 +67,10 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label>Table: </Label>
+                                        <Label Content="{Binding TableTitle}"/>
+                                    </StackPanel>
                                     <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>

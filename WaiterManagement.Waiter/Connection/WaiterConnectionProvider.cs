@@ -4,6 +4,7 @@ using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Security;
 using System.Threading.Tasks;
+using System;
 
 namespace WaiterManagement.Waiter.Connection
 {
@@ -37,6 +38,7 @@ namespace WaiterManagement.Waiter.Connection
 			_hubProxy.On<OrderModel>("NewOrderMade", order => _waiterApp.NewOrderMade(order));
 			_hubProxy.On<AcceptedOrderCurrentStateModel>("AcceptedOrderInfoUpdated", acceptedOrder => _waiterApp.AcceptedOrderInfoUpdated(acceptedOrder));
 			_hubProxy.On<AcceptOrderModel>("OrderWasAccepted", acceptedOrder => _waiterApp.OrderWasAccepted(acceptedOrder));
+			_hubProxy.On<String>("CallWaiter", tableLogin => _waiterApp.CallWaiter(tableLogin));
 			await _hubConnection.Start();
 		}
 
