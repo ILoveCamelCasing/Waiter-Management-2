@@ -47,7 +47,7 @@
                 </Style>
             </ListView.Style>
         </ListView>
-        <TabControl x:Name="AcceptedOrders" cal:Message.Attach="[Event SelectionChanged] = [Action AcceptedOrderSelectionChanged]" SelectedIndex="0" DisplayMemberPath="OrderId" >
+        <TabControl x:Name="AcceptedOrders" cal:Message.Attach="[Event SelectionChanged] = [Action AcceptedOrderSelectionChanged]" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="TabItem">
                     <Setter Property="Header" Value="{Binding}"/>
@@ -55,7 +55,6 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Label Content="{Binding TableTitle}"></Label>
                                     <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
