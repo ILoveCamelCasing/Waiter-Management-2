@@ -101,6 +101,7 @@
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendInfoToOtherWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendOrderInfo.cs" />
+    <Compile Include="Events\Handlers\Service\WhenAddedMoreItems_SendUpdatedOrderInfo.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyAllWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_SendOrderIdToTable.cs" />
