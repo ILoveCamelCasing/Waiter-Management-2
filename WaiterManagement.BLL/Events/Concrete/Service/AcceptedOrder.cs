@@ -6,5 +6,6 @@ namespace WaiterManagement.BLL.Events.Concrete.Service
 	{
 		public int OrderId { get; set; }
 		public string WaiterLogin { get; set; }
+		public string TableLogin { get; set; }
 	}
 }

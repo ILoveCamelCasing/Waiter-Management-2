@@ -98,6 +98,7 @@
     <Compile Include="Events\Concrete\Service\AcceptedOrder.cs" />
     <Compile Include="Events\Concrete\Service\AddedMoreItems.cs" />
     <Compile Include="Events\Concrete\Service\AddedOrder.cs" />
+    <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendInfoToOtherWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendOrderInfo.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyAllWaiters.cs" />

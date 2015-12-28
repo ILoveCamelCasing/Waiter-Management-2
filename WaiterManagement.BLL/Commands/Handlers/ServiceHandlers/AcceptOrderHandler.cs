@@ -13,6 +13,8 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 			{
 				//TODO: Otworzyć transakcję
 				var order = UnitOfWork.Get<Order>(command.OrderId);
+				UnitOfWork.Load(order, o => o.Table);
+
 				var waiter = UnitOfWork.GetActual<Waiter>(w => w.User.Login == command.WaiterLogin);
 
 				order.Waiter = waiter;
@@ -20,7 +22,7 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 
 				UnitOfWork.Commit();
 
-				EventBus.PublishEvent(new AcceptedOrder() { OrderId = command.OrderId, WaiterLogin = command.WaiterLogin });
+				EventBus.PublishEvent(new AcceptedOrder() { OrderId = command.OrderId, WaiterLogin = command.WaiterLogin, TableLogin = order.Table.Title});
 			}
 			catch
 			{
