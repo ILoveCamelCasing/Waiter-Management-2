@@ -29,29 +29,37 @@ namespace WaiterManagement.Common.Security
 			_passwordManager = passwordManager;
 		}
 
-		public async Task<bool> LogIn(string login, string password)
+		public async Task<LoginResult> LogIn(string login, string password)
 		{
 			Login = login;
 
 			
 			using (var client = new HttpClient())
 			{
-				client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				try
+				{
+					client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
+					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-				dynamic myObject = new JObject();
-				myObject.login = login;
-				myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
+					dynamic myObject = new JObject();
+					myObject.login = login;
+					myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
 
-				var result = await client.PostAsync(ConfigurationManager.AppSettings["LoginPath"], new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json"));
-				var resultString = (await result.Content.ReadAsStringAsync()).Replace("\"","");
-				
-				Guid guid;
-				if (!Guid.TryParse(resultString, out guid))
-					return false;
+					var result = await client.PostAsync(ConfigurationManager.AppSettings["LoginPath"], new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json"));
+					var resultString = (await result.Content.ReadAsStringAsync()).Replace("\"", "");
 
-				Token = resultString;
-				return true;
+					Guid guid;
+					if (!Guid.TryParse(resultString, out guid))
+						return LoginResult.LoginFailed;
+
+					Token = resultString;
+					return LoginResult.LoginOk;
+				}
+				catch(HttpRequestException e)
+				{
+					//TODO: Zalogować wyjątek
+					return LoginResult.ConnectionError;
+				}
 			}
 		}
 	}

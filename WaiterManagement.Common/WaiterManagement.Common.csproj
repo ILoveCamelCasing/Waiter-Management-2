@@ -93,6 +93,7 @@
     <Compile Include="Security\HashUtility.cs" />
     <Compile Include="Security\IAccessProvider.cs" />
     <Compile Include="Security\IPasswordManager.cs" />
+    <Compile Include="Security\LoginResult.cs" />
     <Compile Include="Security\PasswordManager.cs" />
     <Compile Include="SystemTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
