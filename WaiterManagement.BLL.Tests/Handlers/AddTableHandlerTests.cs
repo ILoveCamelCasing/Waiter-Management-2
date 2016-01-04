@@ -41,7 +41,7 @@ namespace WaiterManagement.BLL.Tests.Handlers
 
 		private void Execute(AddTableCommand command)
 		{
-			var handler = new AddTableHandler(UnitOfWorkMock,PasswordManagerMock);
+			var handler = new AddTableHandler(PasswordManagerMock) {UnitOfWork = UnitOfWorkMock};
 			handler.Handle(command);
 		}
 

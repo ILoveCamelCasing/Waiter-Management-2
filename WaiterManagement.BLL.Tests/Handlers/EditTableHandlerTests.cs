@@ -51,7 +51,7 @@ namespace WaiterManagement.BLL.Tests.Handlers
 				UnitOfWorkMock.Add(Arg.Any<Type>(), Arg.Any<Table>()).Returns(Edited);
 				UnitOfWorkMock.Add(Arg.Any<Type>(), Arg.Any<User>()).Returns(EditedUser);
 			}
-			var handler = new EditTableHandler(UnitOfWorkMock);
+			var handler = new EditTableHandler(){UnitOfWork = UnitOfWorkMock};
 			handler.Handle(command);
 		}
 

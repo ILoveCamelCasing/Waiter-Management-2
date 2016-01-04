@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Table.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Waiter", "WaiterManagement.Waiter\WaiterManagement.Waiter.csproj", "{A97FA24C-03C1-4B3C-A602-3EB381D459FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Web", "WaiterManagement.Web\WaiterManagement.Web.csproj", "{423D61C1-91C4-4484-BE39-69F46FF230E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterManagement.Web.Tests", "WaiterManagement.Web.Tests\WaiterManagement.Web.Tests.csproj", "{8D004724-4CB9-4181-92DC-8C962D5634A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A97FA24C-03C1-4B3C-A602-3EB381D459FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{423D61C1-91C4-4484-BE39-69F46FF230E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423D61C1-91C4-4484-BE39-69F46FF230E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423D61C1-91C4-4484-BE39-69F46FF230E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423D61C1-91C4-4484-BE39-69F46FF230E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D004724-4CB9-4181-92DC-8C962D5634A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D004724-4CB9-4181-92DC-8C962D5634A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D004724-4CB9-4181-92DC-8C962D5634A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D004724-4CB9-4181-92DC-8C962D5634A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
