@@ -6,6 +6,7 @@ namespace WaiterManagement.Common
 	{
 		ITableApp GetTables();
 		IWaiterApp GetWaiters();
+		IWaiterApp GetWaitersExcept(string login);
 		ITableApp GetTable(string login);
 		IWaiterApp GetWaiter(string login);
 	}

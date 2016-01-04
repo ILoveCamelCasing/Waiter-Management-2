@@ -9,6 +9,8 @@ namespace WaiterManagement.Service.Hubs
 	{
 		private Func<IHubCallerConnectionContext<ITableApp>> _tables;
 		private Func<IHubCallerConnectionContext<IWaiterApp>> _waiters;
+		private Func<string> _callingTableConnectionId;
+		private Func<string> _callingWaiterConnectionId;
 
 		public void SetRetriveTableMethod(Func<IHubCallerConnectionContext<ITableApp>> tables)
 		{
@@ -18,6 +20,16 @@ namespace WaiterManagement.Service.Hubs
 		public void SetRetriveWaiterMethod(Func<IHubCallerConnectionContext<IWaiterApp>> waiters)
 		{
 			_waiters = waiters;
+		}
+
+		public void SetCallingTableMethod(Func<string> callingTableConnectionId)
+		{
+			_callingTableConnectionId = callingTableConnectionId;
+		}
+
+		public void SetCallingWaiterMethod(Func<string> callingWaiterConnectionId)
+		{
+			_callingWaiterConnectionId = callingWaiterConnectionId;
 		}
 
 		public ITableApp GetTable(string login)
@@ -51,11 +63,28 @@ namespace WaiterManagement.Service.Hubs
 
 			return _waiters.Invoke().All;
 		}
+
+		public IWaiterApp GetWaitersExcept(string login)
+		{
+			if(_waiters == null)
+				throw new InvalidOperationException("Method to getting waiters not set.");
+
+			if (_callingWaiterConnectionId != null)
+			{
+				var callingWaiterConnectionId = _callingWaiterConnectionId.Invoke();
+				if (!String.IsNullOrWhiteSpace(callingWaiterConnectionId))
+					return _waiters.Invoke().AllExcept(new[] { callingWaiterConnectionId });
+			}
+
+			return _waiters.Invoke().All;
+		}
 	}
 
 	public interface ICallingServiceSubscriber
 	{
 		void SetRetriveTableMethod(Func<IHubCallerConnectionContext<ITableApp>> tables);
+		void SetCallingTableMethod(Func<string> callingTableConnectionId);
 		void SetRetriveWaiterMethod(Func<IHubCallerConnectionContext<IWaiterApp>> waiters);
+		void SetCallingWaiterMethod(Func<string> callingWaiterConnectionId);
 	}
 }

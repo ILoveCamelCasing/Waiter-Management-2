@@ -2,6 +2,7 @@
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete.ServiceCommands;
 using WaiterManagement.Common;
+using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Common.Views.Abstract;
@@ -23,11 +24,18 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 		{
 			var order =
 				_viewProvider.Get<OrderView>()
-					.FirstOrDefault(x => x.Status == OrderStatus.Assigned && x.TableTitle == command.TableLogin);
+					.FirstOrDefault(x => x.Status == OrderStatus.Assigned && x.TableTitle == command.TableLogin); //zawsze null...
+
+			IWaiterApp waiter = null;
+
 			if (order != null)
-				_callingService.GetWaiter(order.WaiterLogin);
+			{
+				waiter = _callingService.GetWaiter(order.WaiterLogin);
+			}
 			else
-				_callingService.GetWaiters().CallWaiter(command.TableLogin);
+				waiter = _callingService.GetWaiters();
+
+			waiter.CallWaiter(command.TableLogin);
 		}
 	}
 }

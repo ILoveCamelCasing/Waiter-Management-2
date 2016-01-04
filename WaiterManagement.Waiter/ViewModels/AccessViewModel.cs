@@ -19,6 +19,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		private string _login;
 		private string _userPassword;
 		private Visibility _wrongUsernameOrPassword;
+		private Visibility _connectionError;
 		private bool _isBusy;
 
 		#endregion
@@ -65,6 +66,20 @@ namespace WaiterManagement.Waiter.ViewModels
 				NotifyOfPropertyChange(() => WrongUsernameOrPassword);
 			}
 		}
+
+		public Visibility ConnectionError
+		{
+			get 
+			{
+				return _connectionError;
+			}
+			set
+			{
+				_connectionError = value;
+				NotifyOfPropertyChange(() => ConnectionError);
+			}
+		}
+
 		public bool IsBusy
 		{
 			get
@@ -85,24 +100,32 @@ namespace WaiterManagement.Waiter.ViewModels
 			_accessProvider = accessProvider;
 			_waiterConnectionProvider = waiterConnectionProvider;
 			_wrongUsernameOrPassword = Visibility.Hidden;
+			_connectionError = Visibility.Hidden;
 		}
 
 		public async void LoginToServer()
 		{
 			WrongUsernameOrPassword = Visibility.Hidden;
+			ConnectionError = Visibility.Hidden;
 
 			IsBusy = true;
-			var loginSucceeded = await _accessProvider.LogIn(Login, UserPassword);
+			var loginResult = await _accessProvider.LogIn(Login, UserPassword);
 			IsBusy = false;
 
-			if (loginSucceeded)
+			switch(loginResult)
 			{
-				_waiterConnectionProvider.Connect();
-				Close();
-				Get<OrdersViewModel>().ShowOn(ParentWindow);
-			}
-			else
-				WrongUsernameOrPassword = Visibility.Visible;
+				case LoginResult.LoginOk:
+					await _waiterConnectionProvider.Connect();
+					Close();
+					Get<OrdersViewModel>().ShowOn(ParentWindow);
+					break;
+				case LoginResult.LoginFailed:
+					WrongUsernameOrPassword = Visibility.Visible;
+					break;
+				case LoginResult.ConnectionError:
+					ConnectionError = Visibility.Visible;
+					break;
+			}			
 		}
 	}
 }
