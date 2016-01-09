@@ -59,7 +59,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </DockPanel>        
-        <TabControl x:Name="AcceptedOrders" cal:Message.Attach="[Event SelectionChanged] = [Action AcceptedOrderSelectionChanged]" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
+        <TabControl x:Name="AcceptedOrders" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="TabItem">
                     <Setter Property="Header" Value="{Binding}"/>

@@ -56,7 +56,12 @@ namespace WaiterManagement.Waiter.ViewModels
 			get { return _selectedAcceptedOrder; }
 			set
 			{
+				if (_selectedAcceptedOrder == value)
+					return;
+
 				_selectedAcceptedOrder = value;
+				UpdateSelectedAcceptedOrderMenuItems();
+
 				NotifyOfPropertyChange(() => SelectedAcceptedOrder);
 			}
 		}
@@ -109,15 +114,6 @@ namespace WaiterManagement.Waiter.ViewModels
 				TablesRequiringAssistance.Add(callingTable);
 		}
 
-		public void AcceptedOrderSelectionChanged()
-		{
-			SelectedAcceptedOrderMenuItems.Clear();
-
-			IEnumerable<AcceptedOrderMenuItemQuantity> menuItems = null;
-			if(_acceptedOrdersCache.TryGetValue(SelectedAcceptedOrder.OrderId, out menuItems))
-				SelectedAcceptedOrderMenuItems.AddRange(menuItems);
-		}
-
 		public void AcceptOrder(OrderModel order)
 		{
 			AwaitingOrders.Remove(order); //TODO: Remove from db
@@ -129,6 +125,17 @@ namespace WaiterManagement.Waiter.ViewModels
 		public void MarkAssistanceRequirementAsSeen(string tableLogin)
 		{
 			TablesRequiringAssistance.Remove(tableLogin);
+		}
+		#endregion
+
+		#region Private Methods
+		private void UpdateSelectedAcceptedOrderMenuItems()
+		{
+			SelectedAcceptedOrderMenuItems.Clear();
+
+			IEnumerable<AcceptedOrderMenuItemQuantity> menuItems = null;
+			if (_acceptedOrdersCache.TryGetValue(SelectedAcceptedOrder.OrderId, out menuItems))
+				SelectedAcceptedOrderMenuItems.AddRange(menuItems);
 		}
 		#endregion
 	}
