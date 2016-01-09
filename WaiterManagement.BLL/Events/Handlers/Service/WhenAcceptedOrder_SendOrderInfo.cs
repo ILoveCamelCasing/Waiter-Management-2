@@ -41,6 +41,8 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 				OrderId = @event.OrderId,
 				MenuItems = menuItems.Select(mi => new AcceptedOrderMenuItemQuantity()
 				{
+					Ready = mi.Ready,
+					MenuItemQuantityId = mi.Id,
 					Quantity = mi.Quantity,
 					MenuItem = new AcceptedOrderMenuItem()
 					{

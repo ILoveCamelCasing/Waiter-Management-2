@@ -7,5 +7,6 @@ namespace WaiterManagement.Common.Entities
 		public Order Order { get; set; }
 		public MenuItem Item { get; set; }
 		public int Quantity { get; set; }
+		public bool Ready { get; set; }
 	}
 }

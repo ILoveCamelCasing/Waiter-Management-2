@@ -49,6 +49,16 @@ namespace WaiterManagement.Waiter.Connection
 				OrderId = orderId
 			});
 		}
+
+		public void ChangeOrderItemState(int orderId, AcceptedOrderMenuItemQuantity menuItem)
+		{
+			_hubProxy.Invoke("ChangeOrderItemState", new ChangeOrderItemStateModel()
+			{
+				OrderId = orderId,
+				MenuItemQuantityId = menuItem.MenuItemQuantityId,
+				Ready = menuItem.Ready
+			});
+		}
 		#endregion
 	}
 }

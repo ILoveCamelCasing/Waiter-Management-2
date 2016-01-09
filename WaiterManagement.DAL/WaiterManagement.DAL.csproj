@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201512221906553_Added Waiter to Order and Orders View.Designer.cs">
       <DependentUpon>201512221906553_Added Waiter to Order and Orders View.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601091236564_Added Ready to MenuItemsQuantity.cs" />
+    <Compile Include="Migrations\201601091236564_Added Ready to MenuItemsQuantity.Designer.cs">
+      <DependentUpon>201601091236564_Added Ready to MenuItemsQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -185,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512221906553_Added Waiter to Order and Orders View.resx">
       <DependentUpon>201512221906553_Added Waiter to Order and Orders View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601091236564_Added Ready to MenuItemsQuantity.resx">
+      <DependentUpon>201601091236564_Added Ready to MenuItemsQuantity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

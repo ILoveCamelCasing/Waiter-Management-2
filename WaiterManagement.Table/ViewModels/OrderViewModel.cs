@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Windows;
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Views;
 using WaiterManagement.Table.Bootstrapper;
 using WaiterManagement.Table.Connection;
@@ -69,7 +70,8 @@ namespace WaiterManagement.Table.ViewModels
 		{
 			_tableConnectionProvider = tableConnectionProvider;
 
-			tableAppSubscriber.NotifyEvent += message => Application.Current.Dispatcher.Invoke(() => Message = message);
+			tableAppSubscriber.NotifyEvent += (sender, message) => Application.Current.Dispatcher.Invoke(() => Message = message);
+			tableAppSubscriber.OrderItemStateChangedEvent += TableAppSubscriber_OrderItemStateChangedEvent;
 
 			Elements = new BindableCollection<MenuItemView>();
 			AddedElements = new BindableCollection<OrderMenuItemModel>();
@@ -87,15 +89,15 @@ namespace WaiterManagement.Table.ViewModels
 				_tableConnectionProvider.OrderMoreItems(notOrderedItems);
 				foreach (var item in notOrderedItems)
 				{
-					AddedElements.Remove(item);
-					var sameTypeElement = AddedElements.FirstOrDefault(x => x.Title == item.Title);
-					if (sameTypeElement != null)
-						sameTypeElement.Quantities += item.Quantities;
-					else
-					{
+					//AddedElements.Remove(item);
+					//var sameTypeElement = AddedElements.FirstOrDefault(x => x.Title == item.Title);
+					//if (sameTypeElement != null)
+					//	sameTypeElement.Quantities += item.Quantities;
+					//else
+					//{
 						item.Ordered = true;
-						AddedElements.Add(item);
-					}
+						//AddedElements.Add(item);
+					//}
 				}
 			}
 			else
@@ -143,6 +145,19 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Event Handlers
+		private void TableAppSubscriber_OrderItemStateChangedEvent(object sender, OrderItemState e)
+		{
+			var element =
+				AddedElements.FirstOrDefault(omi => omi.Id == e.MenuItemId && omi.Quantities == e.Quantity && omi.Ready != e.Ready); //Może zamiast sprawdzania po menuitemid i quantities (nie gwarantuje unikalności), lepiej przekazywać menuitemquantityId i po tym sprawdzać ?
+
+			if (element != null)
+				element.Ready = e.Ready;
+
+			AddedElements.Refresh();
+		}
 		#endregion
 
 		#region Ovverrides

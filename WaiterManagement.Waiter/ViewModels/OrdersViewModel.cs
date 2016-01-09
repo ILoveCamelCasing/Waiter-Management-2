@@ -77,7 +77,7 @@ namespace WaiterManagement.Waiter.ViewModels
 			get; private set;
 		}
 
-		public BindableCollection<String> TablesRequiringAssistance
+		public BindableCollection<string> TablesRequiringAssistance
 		{
 			get; private set;
 		}
@@ -125,6 +125,11 @@ namespace WaiterManagement.Waiter.ViewModels
 		public void MarkAssistanceRequirementAsSeen(string tableLogin)
 		{
 			TablesRequiringAssistance.Remove(tableLogin);
+		}
+
+		public void OrderItemStateChanged(AcceptedOrderMenuItemQuantity orderItem)
+		{
+			_waiterConnectionProvider.ChangeOrderItemState(_selectedAcceptedOrder.OrderId, orderItem);
 		}
 		#endregion
 

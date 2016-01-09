@@ -8,7 +8,7 @@ namespace WaiterManagement.Table.Model
 
 		public CurrentOrder(ITableAppSubscriber tableApp)
 		{
-			tableApp.SendOrderIdEvent += id => CurrentOrderId = id;
+			tableApp.SendOrderIdEvent += (sender, id) => CurrentOrderId = id;
 		}
 	}
 }

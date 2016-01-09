@@ -34,6 +34,16 @@ namespace WaiterManagement.Service.Hubs
 				WaiterLogin = GetCallerLogin()
 			});
 		}
+
+		public void ChangeOrderItemState(ChangeOrderItemStateModel changedOrderItem)
+		{
+			_commandBus.SendCommand(new ChangeOrderItemStateCommand()
+			{
+				OrderId = changedOrderItem.OrderId,
+				MenuItemQuantityId = changedOrderItem.MenuItemQuantityId,
+				Ready = changedOrderItem.Ready
+			});
+		}
 		#endregion
 
 		#region Private Methods

@@ -70,6 +70,14 @@
 						<GridViewColumn DisplayMemberBinding="{Binding Ordered}">
 							<GridViewColumnHeader Tag="Description" Content="Ordered"/>
 						</GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumnHeader Content="Ready"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Ready}" IsHitTestVisible="False" Focusable="False"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 					</GridView>
 				</ListView.View>
 			</ListView>

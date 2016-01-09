@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using WaiterManagement.Common.Models;
 
 namespace WaiterManagement.Waiter.Connection
 {
@@ -7,5 +8,6 @@ namespace WaiterManagement.Waiter.Connection
 		Task Connect();
 
 		void AcceptOrder(int orderId);
+		void ChangeOrderItemState(int orderId, AcceptedOrderMenuItemQuantity changedOrderItem);
 	}
 }

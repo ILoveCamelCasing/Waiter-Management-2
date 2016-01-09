@@ -73,6 +73,7 @@
     <Compile Include="Commands\Concrete\ServiceCommands\AcceptOrderCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\AddOrderCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\CallWaiterCommand.cs" />
+    <Compile Include="Commands\Concrete\ServiceCommands\ChangeOrderItemStateCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\MoreItemsCommand.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\AddCategoryHandler.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\AddMenuItemHandler.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Commands\Handlers\ServiceHandlers\AcceptOrderHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\AddOrderHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\CallWaiterHandler.cs" />
+    <Compile Include="Commands\Handlers\ServiceHandlers\ChangeOrderItemStateHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\MoreItemsHandler.cs" />
     <Compile Include="Events\Base\EventBus.cs" />
     <Compile Include="Events\Base\IEvent.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Events\Concrete\Service\AcceptedOrder.cs" />
     <Compile Include="Events\Concrete\Service\AddedMoreItems.cs" />
     <Compile Include="Events\Concrete\Service\AddedOrder.cs" />
+    <Compile Include="Events\Concrete\Service\OrderItemStateChanged.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendInfoToOtherWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendOrderInfo.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyAllWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_SendOrderIdToTable.cs" />
+    <Compile Include="Events\Handlers\Service\WhenOrderItemStateChanged_NotifyTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

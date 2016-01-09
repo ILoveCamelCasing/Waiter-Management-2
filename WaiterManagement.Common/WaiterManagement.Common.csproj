@@ -85,9 +85,11 @@
     <Compile Include="Models\AcceptedOrderMenuItem.cs" />
     <Compile Include="Models\AcceptedOrderMenuItemQuantity.cs" />
     <Compile Include="Models\AcceptOrderModel.cs" />
+    <Compile Include="Models\ChangeOrderItemStateModel.cs" />
     <Compile Include="Models\MoreItemsModel.cs" />
     <Compile Include="Models\NewOrderModel.cs" />
     <Compile Include="Models\OrderingMenuItem.cs" />
+    <Compile Include="Models\OrderItemState.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Security\AccessProvider.cs" />
     <Compile Include="Security\HashUtility.cs" />
