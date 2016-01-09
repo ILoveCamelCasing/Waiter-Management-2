@@ -67,7 +67,7 @@
         <GridSplitter Grid.Column="1"/>
         <DockPanel Grid.Column="0" Margin="{StaticResource SplitLeft}" >
             <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading2}" >Accepted Orders</TextBlock>
-            <TabControl x:Name="AcceptedOrders" TabStripPlacement="Left" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
+            <TabControl x:Name="AcceptedOrders" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Header" Value="{Binding}"/>

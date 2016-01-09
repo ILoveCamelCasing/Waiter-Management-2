@@ -41,8 +41,19 @@ namespace WaiterManagement.Wpf.MVVM.Abstract
 		{
 			base.ActivateItem(parentViewModel);
 			_activatedItems.Push(parentViewModel);
+
+			Refresh();
 		}
 
+		#endregion
+
+		#region Protected Methods
+
+		protected void CloseAll()
+		{
+			while(_activatedItems.Any())
+				DeactivateItem(_activatedItems.Pop(), true);
+		}
 		#endregion
 	}
 }
