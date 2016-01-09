@@ -89,6 +89,8 @@ namespace WaiterManagement.Table.ViewModels
 				_tableConnectionProvider.OrderMoreItems(notOrderedItems);
 				foreach (var item in notOrderedItems)
 				{
+					//Zakomentowane, aby lepiej odzwierciedlić aktualny stan zamówienia. Ponadto, łatwiej tak będzie zaznaczyć konkretny element zamówienia jako gotowy.
+
 					//AddedElements.Remove(item);
 					//var sameTypeElement = AddedElements.FirstOrDefault(x => x.Title == item.Title);
 					//if (sameTypeElement != null)
