@@ -14,7 +14,8 @@
             <ColumnDefinition Width="6" />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Column="2">
+        <DockPanel Grid.Column="2" Margin="{StaticResource SplitRight}">
+            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading2}">Awaiting Orders</TextBlock>
             <ListView x:Name="AwaitingOrders" DockPanel.Dock="Top">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -64,49 +65,52 @@
             </ListView>
         </DockPanel>
         <GridSplitter Grid.Column="1"/>
-        <TabControl Grid.Column="0" x:Name="AcceptedOrders" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
-            <TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem">
-                    <Setter Property="Header" Value="{Binding}"/>
-                    <Setter Property="ContentTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label>Table:</Label>
-                                        <Label Content="{Binding TableTitle}"/>
+        <DockPanel Grid.Column="0" Margin="{StaticResource SplitLeft}" >
+            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading2}" >Accepted Orders</TextBlock>
+            <TabControl x:Name="AcceptedOrders" TabStripPlacement="Left" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Header" Value="{Binding}"/>
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label>Table:</Label>
+                                            <Label Content="{Binding TableTitle}"/>
+                                        </StackPanel>
+                                        <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Label Grid.Row="0" Grid.Column="0">Item:</Label>
+                                                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=MenuItem.Title}"/>
+                                                        <Label Grid.Row="1" Grid.Column="0">Quantity:</Label>
+                                                        <Label Grid.Row="1" Grid.Column="1" Content="{Binding Quantity}"/>
+                                                        <Label Grid.Row="2" Grid.Column="0">Ready:</Label>
+                                                        <Label Grid.Row="2" Grid.Column="1">
+                                                            <CheckBox IsChecked="{Binding Ready}" cal:Message.Attach="[Event Checked] = [Action OrderItemStateChanged($dataContext)]; [Event Unchecked] = [Action OrderItemStateChanged($dataContext)]"/>
+                                                        </Label>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </StackPanel>
-                                    <ListView ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition/>
-                                                        <RowDefinition/>
-                                                        <RowDefinition/>
-                                                    </Grid.RowDefinitions>
-                                                    <Label Grid.Row="0" Grid.Column="0">Item:</Label>
-                                                    <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=MenuItem.Title}"/>
-                                                    <Label Grid.Row="1" Grid.Column="0">Quantity:</Label>
-                                                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding Quantity}"/>
-                                                    <Label Grid.Row="2" Grid.Column="0">Ready:</Label>
-                                                    <Label Grid.Row="2" Grid.Column="1">
-                                                        <CheckBox IsChecked="{Binding Ready}" cal:Message.Attach="[Event Checked] = [Action OrderItemStateChanged($dataContext)]; [Event Unchecked] = [Action OrderItemStateChanged($dataContext)]"/>
-                                                    </Label>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </StackPanel>
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.ItemContainerStyle>
-        </TabControl>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.ItemContainerStyle>
+            </TabControl>
+        </DockPanel>
     </Grid>
 </UserControl>
