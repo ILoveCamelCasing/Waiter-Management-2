@@ -7,9 +7,9 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
-        <Grid>
-            <Grid.RowDefinitions>
+
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
@@ -19,7 +19,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1" Foreground="Red" Visibility="{Binding WrongUsernameOrPassword}">Wrong username or password</Label>
             <Label Grid.Row="0" Grid.Column="1" Foreground="Red" Visibility="{Binding ConnectionError}">Connection error.</Label>
