@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Models;
@@ -12,12 +13,18 @@ namespace WaiterManagement.Waiter.Bootstrapper
 		public event EventHandler<AcceptedOrderCurrentStateModel> AcceptedOrderInfoUpdatedHandler;
 		public event EventHandler<AcceptOrderModel> OrderWasAcceptedHandler;
 		public event EventHandler<String> CallWaiterHandler;
+		public event EventHandler<IEnumerable<OrderModel>> OrdersAwaitingHandler;
 		#endregion
 
 		#region IWaiterApp
 		public void NewOrderMade(OrderModel order)
 		{
 			Task.Run(() => HandleSafely(NewOrderHandler, order)); //Should be awaited...
+		}
+
+		public void OrdersAwaiting(IEnumerable<OrderModel> awaitingOrders)
+		{
+			Task.Run(() => HandleSafely(OrdersAwaitingHandler, awaitingOrders)); //Should be awaited...
 		}
 
 		public void CallWaiter(string tableLogin)
@@ -60,5 +67,6 @@ namespace WaiterManagement.Waiter.Bootstrapper
 		event EventHandler<AcceptOrderModel> OrderWasAcceptedHandler;
 		event EventHandler<AcceptedOrderCurrentStateModel> AcceptedOrderInfoUpdatedHandler;
 		event EventHandler<String> CallWaiterHandler;
+		event EventHandler<IEnumerable<OrderModel>> OrdersAwaitingHandler;
 	}
 }

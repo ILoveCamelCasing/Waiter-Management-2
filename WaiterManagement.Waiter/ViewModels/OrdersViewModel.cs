@@ -37,6 +37,9 @@ namespace WaiterManagement.Waiter.ViewModels
 			waiterApp.AcceptedOrderInfoUpdatedHandler += WaiterApp_AcceptedOrderInfoUpdatedHandler;
 			waiterApp.OrderWasAcceptedHandler += WaiterApp_OrderWasAcceptedHandler;
 			waiterApp.CallWaiterHandler += WaiterApp_CallWaiterHandler;
+			waiterApp.OrdersAwaitingHandler += WaiterApp_OrdersAwaitingHandler;
+
+			_waiterConnectionProvider.UpdateAfterLogin();
 		}
 		#endregion
 
@@ -88,6 +91,12 @@ namespace WaiterManagement.Waiter.ViewModels
 		{
 			if (order != null)
 				AwaitingOrders.Add(order);
+		}
+
+		private void WaiterApp_OrdersAwaitingHandler(object sender, IEnumerable<OrderModel> orders)
+		{
+			if(orders != null)
+				AwaitingOrders.AddRange(orders);
 		}
 
 		private void WaiterApp_AcceptedOrderInfoUpdatedHandler(object sender, AcceptedOrderCurrentStateModel orderCurrentState)
