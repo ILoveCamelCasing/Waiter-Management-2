@@ -99,7 +99,7 @@
         <GridSplitter Grid.Column="1"/>
         <DockPanel Grid.Column="0" Margin="{StaticResource SplitLeft}" >
             <TextBlock DockPanel.Dock="Top" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}" >Accepted Orders</TextBlock>
-            <TabControl x:Name="AcceptedOrders" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
+            <TabControl x:Name="AcceptedOrders" Margin="{StaticResource ContentMargin}" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Header" Value="{Binding}"/>
@@ -152,6 +152,21 @@
                         </Setter>
                     </Style>
                 </TabControl.ItemContainerStyle>
+                <TabControl.Style>
+                    <Style TargetType="{x:Type TabControl}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <TextBlock>No accepted orders.</TextBlock>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabControl.Style>
             </TabControl>
         </DockPanel>
     </Grid>
