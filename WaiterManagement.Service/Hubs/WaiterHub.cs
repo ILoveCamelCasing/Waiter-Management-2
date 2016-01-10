@@ -44,6 +44,14 @@ namespace WaiterManagement.Service.Hubs
 				Ready = changedOrderItem.Ready
 			});
 		}
+
+		public void UpdateAfterLogin()
+		{
+			_commandBus.SendCommand(new UpdateAfterWaiterLoginCommand()
+			{
+				WaiterLogin = GetCallerLogin()
+			});
+		}
 		#endregion
 
 		#region Private Methods

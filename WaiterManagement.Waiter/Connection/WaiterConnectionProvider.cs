@@ -5,6 +5,8 @@ using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Security;
 using System.Threading.Tasks;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace WaiterManagement.Waiter.Connection
 {
@@ -36,6 +38,7 @@ namespace WaiterManagement.Waiter.Connection
 			_hubConnection.Headers.Add("token", _accessProvider.Token);
 			_hubProxy = _hubConnection.CreateHubProxy("waiterHub");
 			_hubProxy.On<OrderModel>("NewOrderMade", order => _waiterApp.NewOrderMade(order));
+			_hubProxy.On<IEnumerable<OrderModel>>("OrdersAwaiting", awaitingOrders => _waiterApp.OrdersAwaiting(awaitingOrders));
 			_hubProxy.On<AcceptedOrderCurrentStateModel>("AcceptedOrderInfoUpdated", acceptedOrder => _waiterApp.AcceptedOrderInfoUpdated(acceptedOrder));
 			_hubProxy.On<AcceptOrderModel>("OrderWasAccepted", acceptedOrder => _waiterApp.OrderWasAccepted(acceptedOrder));
 			_hubProxy.On<String>("CallWaiter", tableLogin => _waiterApp.CallWaiter(tableLogin));
@@ -58,6 +61,11 @@ namespace WaiterManagement.Waiter.Connection
 				MenuItemQuantityId = menuItem.MenuItemQuantityId,
 				Ready = menuItem.Ready
 			});
+		}
+
+		public void UpdateAfterLogin()
+		{
+			_hubProxy.Invoke("UpdateAfterLogin");
 		}
 		#endregion
 	}

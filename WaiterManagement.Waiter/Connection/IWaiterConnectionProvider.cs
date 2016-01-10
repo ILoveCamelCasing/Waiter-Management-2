@@ -9,5 +9,6 @@ namespace WaiterManagement.Waiter.Connection
 
 		void AcceptOrder(int orderId);
 		void ChangeOrderItemState(int orderId, AcceptedOrderMenuItemQuantity changedOrderItem);
+		void UpdateAfterLogin();
 	}
 }
