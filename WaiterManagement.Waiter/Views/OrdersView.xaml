@@ -14,10 +14,18 @@
             <ColumnDefinition Width="6" />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Column="2" Margin="{StaticResource SplitRight}">
-            <TextBlock DockPanel.Dock="Top" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Awaiting Orders</TextBlock>
-            <ScrollViewer DockPanel.Dock="Top">
-                <ListView x:Name="AwaitingOrders">
+        <Grid Grid.Column ="2" Margin="{StaticResource SplitRight}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Notifications</TextBlock>
+            <TextBlock Grid.Row="1" Margin="{StaticResource ContentMargin}" Style="{StaticResource Heading2}">Awaiting Orders</TextBlock>
+            <ScrollViewer Grid.Row="2" Margin="{StaticResource ContentMargin}">
+                <ListView x:Name="AwaitingOrders" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -55,8 +63,9 @@
                     </ListView.Style>
                 </ListView>
             </ScrollViewer>
-            <ScrollViewer>
-                <ListView x:Name="TablesRequiringAssistance" DockPanel.Dock="Bottom">
+            <TextBlock Grid.Row="3" Margin="{StaticResource ContentMargin}" Style="{StaticResource Heading2}">Tables requring Assistance</TextBlock>
+            <ScrollViewer Grid.Row="4" Margin="{StaticResource ContentMargin}">
+                <ListView x:Name="TablesRequiringAssistance">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -71,7 +80,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
-        </DockPanel>
+        </Grid>
         <GridSplitter Grid.Column="1"/>
         <DockPanel Grid.Column="0" Margin="{StaticResource SplitLeft}" >
             <TextBlock DockPanel.Dock="Top" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}" >Accepted Orders</TextBlock>
