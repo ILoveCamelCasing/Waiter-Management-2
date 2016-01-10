@@ -38,11 +38,11 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" >Table:</TextBlock>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TableTitle}"/>
-                                <TextBlock Grid.Row="1" Grid.Column="0">Order:</TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding OrderId}"/>
-                                <Button x:Name="AcceptOrder" Grid.Row="2" Grid.ColumnSpan="2" cal:Message.Attach="[Event Click] = [Action AcceptOrder($dataContext)]">Accept</Button>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" >Table:</TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding TableTitle}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" >Order:</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding OrderId}"/>
+                                <Button x:Name="AcceptOrder" Grid.Row="2" Grid.Column="1" Margin="5" cal:Message.Attach="[Event Click] = [Action AcceptOrder($dataContext)]">Accept</Button>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
