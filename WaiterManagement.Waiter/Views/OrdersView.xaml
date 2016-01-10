@@ -25,7 +25,7 @@
             <TextBlock Grid.Row="0" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Notifications</TextBlock>
             <TextBlock Grid.Row="1" Margin="{StaticResource ContentMargin}" Style="{StaticResource Heading2}">Awaiting Orders</TextBlock>
             <ScrollViewer Grid.Row="2" Margin="{StaticResource ContentMargin}">
-                <ListView x:Name="AwaitingOrders" >
+                <ListView x:Name="AwaitingOrders" BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -65,7 +65,7 @@
             </ScrollViewer>
             <TextBlock Grid.Row="3" Margin="{StaticResource ContentMargin}" Style="{StaticResource Heading2}">Tables requring Assistance</TextBlock>
             <ScrollViewer Grid.Row="4" Margin="{StaticResource ContentMargin}">
-                <ListView x:Name="TablesRequiringAssistance">
+                <ListView x:Name="TablesRequiringAssistance" BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
