@@ -17,13 +17,13 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<TextBox x:Name="Message"/>
+		<TextBlock x:Name="Message"/>
 		<Grid Grid.Row="1" Grid.Column="0" Margin="{StaticResource SplitLeft}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<Label>Menu</Label>
+			<TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Menu</TextBlock>
 			<xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsBusy}">
 				<ListView x:Name="Elements" SelectionMode="Single">
 					<ListView.View>
@@ -58,7 +58,7 @@
 				<RowDefinition Height="50"/>
 				<RowDefinition Height="50"/>
 			</Grid.RowDefinitions>
-			<Label>Your order</Label>
+			<TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Your order</TextBlock>
 			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single">
 				<ListView.View>
 					<GridView>
