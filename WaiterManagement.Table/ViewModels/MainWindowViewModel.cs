@@ -1,15 +1,37 @@
-﻿using WaiterManagement.Wpf.MVVM.Abstract;
+﻿using System.Windows;
+using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Table.ViewModels
 {
 	public sealed class MainWindowViewModel : ParentViewModelBase
 	{
-		public MainWindowViewModel(IViewModelResolver viewModelResolver) 
+		#region Constructors
+		public MainWindowViewModel(IViewModelResolver viewModelResolver)
 			: base(viewModelResolver)
 		{
 			DisplayName = "Table application";
 
 			Get<AccessViewModel>().ShowOn(this);
 		}
+		#endregion
+
+		#region Public Properties
+		public Visibility LogoutButtonVisible => ActiveItem != null
+			? ActiveItem.GetType() == typeof(AccessViewModel)
+				? Visibility.Collapsed
+				: Visibility.Visible
+			: Visibility.Hidden;
+		#endregion
+
+		#region Public Methods
+
+		public void Logout()
+		{
+			//TODO: Przerwanie zamówień, etc
+			CloseAll();
+
+			Get<AccessViewModel>().ShowOn(this);
+		}
+		#endregion
 	}
 }

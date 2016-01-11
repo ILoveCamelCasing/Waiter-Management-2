@@ -4,30 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:WaiterManagement.Wpf.Controls;assembly=WaiterManagement.Wpf"
-             xmlns:xtdToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <xtdToolkit:BusyIndicator BusyContent="Please wait..." IsBusy="{Binding IsBusy}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="1" Foreground="Red" Visibility="{Binding WrongUsernameOrPassword}">Wrong username or password</Label>
-            <Label Grid.Row="0" Grid.Column="1" Foreground="Red" Visibility="{Binding ConnectionError}">Connection error.</Label>
-            <Label Grid.Row="1">Login</Label>
-            <TextBox Name="Login" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
-            <Label Grid.Row="2">Password</Label>
-            <PasswordBox Grid.Row="2" Grid.Column="1" Margin="10" controls:PasswordBoxHelper.BoundPassword="{Binding UserPassword, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"></PasswordBox>
-            <Button Name="LoginToServer" Grid.Row="3" Grid.Column="1" Margin="10">Login</Button>
-        </Grid>
-    </xtdToolkit:BusyIndicator>
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="Red" Visibility="{Binding WrongUsernameOrPassword}">Wrong username or password</Label>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="Red" Visibility="{Binding ConnectionError}">Connection error.</Label>
+        <Label Grid.Row="1">Login</Label>
+        <TextBox Name="Login" Margin="10" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Label Grid.Row="2">Password</Label>
+        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="10" controls:PasswordBoxHelper.BoundPassword="{Binding UserPassword, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"></PasswordBox>
+        <Button Name="LoginToServer" Grid.Row="3" Grid.Column="1" Margin="10">Login</Button>
+        <mui:ModernProgressRing Grid.Row="4" Grid.ColumnSpan="2" IsActive="{Binding IsBusy}" Style="{StaticResource CircleProgressRingStyle}"/>
+    </Grid>
 </UserControl>
