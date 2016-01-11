@@ -96,7 +96,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		private void WaiterApp_OrdersAwaitingHandler(object sender, IEnumerable<OrderModel> orders)
 		{
 			if(orders != null)
-				AwaitingOrders.AddRange(orders);
+				AwaitingOrders.AddRange(orders.Where(o => AwaitingOrders.All(ao => ao.OrderId != o.OrderId)));
 		}
 
 		private void WaiterApp_AcceptedOrderInfoUpdatedHandler(object sender, AcceptedOrderCurrentStateModel orderCurrentState)
