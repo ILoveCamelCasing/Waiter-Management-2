@@ -64,6 +64,10 @@
 			</Grid.RowDefinitions>
 			<TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Your order</TextBlock>
 			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single">
+                <ListView.Resources>
+                    <PathGeometry x:Key="OrderItemReadyData">F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z</PathGeometry>
+                    <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+                </ListView.Resources>
 				<ListView.View>
 					<GridView>
 						<GridViewColumn DisplayMemberBinding="{Binding Title}">
@@ -79,7 +83,15 @@
                             <GridViewColumnHeader Content="Ready"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Ready}" IsHitTestVisible="False" Focusable="False"/>
+                                    <Image Width="15" Height="15" Visibility="{Binding Ready, Converter={StaticResource BoolToVisConverter}}">
+                                        <Image.Source>
+                                            <DrawingImage>
+                                                <DrawingImage.Drawing>
+                                                    <GeometryDrawing Brush="Green" Geometry="{StaticResource OrderItemReadyData}"/>
+                                                </DrawingImage.Drawing>
+                                            </DrawingImage>
+                                        </Image.Source>
+                                    </Image>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
