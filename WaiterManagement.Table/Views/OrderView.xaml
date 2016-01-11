@@ -18,7 +18,7 @@
 			<RowDefinition Height="30"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<TextBlock x:Name="Message" Margin="{StaticResource HeaderMargin}"/>
+		<TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="Message" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Title}"/>
 		<Grid Grid.Row="1" Grid.Column="0" Margin="{StaticResource SplitLeft}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
