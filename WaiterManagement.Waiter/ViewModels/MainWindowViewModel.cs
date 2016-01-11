@@ -1,15 +1,10 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Waiter.ViewModels
 {
 	public sealed class MainWindowViewModel : ParentViewModelBase
 	{
-		#region Private Fields
-		private Visibility _logoutButtonVisible;
-		#endregion
-
 		#region Constructors
 		public MainWindowViewModel(IViewModelResolver viewModelResolver) 
 			: base(viewModelResolver)
