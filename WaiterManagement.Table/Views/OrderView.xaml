@@ -10,7 +10,7 @@
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
-			<ColumnDefinition Width="10"/>
+			<ColumnDefinition Width="6"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
@@ -18,7 +18,7 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<TextBox x:Name="Message"/>
-		<Grid Grid.Row="1">
+		<Grid Grid.Row="1" Grid.Column="0" Margin="{StaticResource SplitLeft}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
 				<RowDefinition/>
@@ -50,7 +50,8 @@
 				</ListView>
 			</xctk:BusyIndicator>
 		</Grid>
-		<Grid Grid.Row="1" Grid.Column="2">
+        <GridSplitter Grid.Row="1" Grid.Column="1"/>
+		<Grid Grid.Row="1" Grid.Column="2" Margin="{StaticResource SplitRight}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
 				<RowDefinition/>
