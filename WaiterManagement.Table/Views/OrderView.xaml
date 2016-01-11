@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
 	<Grid>
@@ -26,13 +27,16 @@
 			<TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Menu</TextBlock>
 			<xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsBusy}">
 				<ListView x:Name="Elements" SelectionMode="Single">
+                    <ListView.Resources>
+                        <PathGeometry x:Key="AddIconData">F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z</PathGeometry>
+                    </ListView.Resources>
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Width="60">
 								<GridViewColumnHeader Content="Add" />
 								<GridViewColumn.CellTemplate>
 									<DataTemplate >
-										<Button Width="40" Tag="{Binding}" Content="Add" cal:Message.Attach="[Event Click] = [Action AddNewItem($this.Tag)]" />
+										<mui:ModernButton Width="40" Tag="{Binding}" ToolTip="Add" IconData="{StaticResource AddIconData}" cal:Message.Attach="[Event Click] = [Action AddNewItem($this.Tag)]" />
 									</DataTemplate>
 								</GridViewColumn.CellTemplate>
 							</GridViewColumn>

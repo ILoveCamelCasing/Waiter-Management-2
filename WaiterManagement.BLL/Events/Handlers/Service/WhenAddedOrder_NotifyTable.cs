@@ -16,7 +16,7 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 		public void Handle(AddedOrder command)
 		{
 			var table = _callingService.GetTable(command.TableTitle);
-			table.NotifyTable(string.Format("Your order is {0}.", command.Order.Status));
+			table.NotifyTable(string.Format("Your order was {0}.", command.Order.Status));
 		}
 	}
 }
