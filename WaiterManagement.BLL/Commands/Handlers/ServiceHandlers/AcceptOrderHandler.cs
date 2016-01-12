@@ -9,26 +9,22 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 	{
 		public void Handle(AcceptOrderCommand command)
 		{
-			try
+			var order = UnitOfWork.Get<Order>(command.OrderId);
+			UnitOfWork.Load(order, o => o.Table);
+
+			var waiter = UnitOfWork.GetActual<Waiter>(w => w.User.Login == command.WaiterLogin);
+
+			order.Waiter = waiter;
+			order.Status = OrderStatus.Assigned;
+
+			UnitOfWork.Commit();
+
+			EventBus.PublishEvent(new AcceptedOrder()
 			{
-				//TODO: Otworzyć transakcję
-				var order = UnitOfWork.Get<Order>(command.OrderId);
-				UnitOfWork.Load(order, o => o.Table);
-
-				var waiter = UnitOfWork.GetActual<Waiter>(w => w.User.Login == command.WaiterLogin);
-
-				order.Waiter = waiter;
-				order.Status = OrderStatus.Assigned;
-
-				UnitOfWork.Commit();
-
-				EventBus.PublishEvent(new AcceptedOrder() { OrderId = command.OrderId, WaiterLogin = command.WaiterLogin, TableLogin = order.Table.Title});
-			}
-			catch
-			{
-				UnitOfWork.Revert();
-				throw;
-			}
+				OrderId = command.OrderId,
+				WaiterLogin = command.WaiterLogin,
+				TableLogin = order.Table.Title
+			});
 		}
 	}
 }
