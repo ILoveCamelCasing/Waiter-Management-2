@@ -1,36 +1,34 @@
-﻿using System.Linq;
-using WaiterManagement.BLL.Commands.Base;
+﻿using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Commands.Concrete.ServiceCommands;
 using WaiterManagement.Common;
 using WaiterManagement.Common.Apps;
 using WaiterManagement.Common.Entities;
-using WaiterManagement.Common.Views;
-using WaiterManagement.Common.Views.Abstract;
+using WaiterManagement.Common.Entities.Abstract;
 
 namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 {
 	public class CallWaiterHandler : Handler, IHandleCommand<CallWaiterCommand>
 	{
 		private readonly ICallingService _callingService;
-		private readonly IViewProvider _viewProvider;
+		private readonly IUnitOfWork _unitOfWork;
 
-		public CallWaiterHandler(ICallingService callingService, IViewProvider viewProvider)
+		public CallWaiterHandler(ICallingService callingService, IUnitOfWork unitOfWork)
 		{
 			_callingService = callingService;
-			_viewProvider = viewProvider;
+			_unitOfWork = unitOfWork;
 		}
 
 		public void Handle(CallWaiterCommand command)
 		{
-			var order =
-				_viewProvider.Get<OrderView>()
-					.FirstOrDefault(x => x.Status == OrderStatus.Assigned && x.TableTitle == command.TableLogin); //zawsze null...
+			var order = _unitOfWork.GetFirstOrDefault<Order>(o => o.Status == OrderStatus.Assigned && o.Table.Title == command.TableLogin);
 
-			IWaiterApp waiter = null;
+			IWaiterApp waiter;
 
 			if (order != null)
 			{
-				waiter = _callingService.GetWaiter(order.WaiterLogin);
+				_unitOfWork.Load(order, o => o.Waiter);
+				_unitOfWork.Load(order.Waiter, w => w.User);
+				waiter = _callingService.GetWaiter(order.Waiter.User.Login);
 			}
 			else
 				waiter = _callingService.GetWaiters();
