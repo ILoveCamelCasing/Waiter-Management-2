@@ -24,7 +24,7 @@
             <TextBlock Grid.Row="0" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Notifications</TextBlock>
             <TextBlock Grid.Row="1" Margin="{StaticResource ContentMargin}" Style="{StaticResource Heading2}">Awaiting Orders</TextBlock>
             <ScrollViewer Grid.Row="2" Margin="{StaticResource ContentMargin}">
-                <ListView x:Name="AwaitingOrders" BorderThickness="0">
+                <ListView x:Name="AwaitingOrders" BorderThickness="0" Background="{StaticResource DataGridBackground}">
                     <ListView.Resources>
                         <PathGeometry x:Key="AcceptIconData">F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z</PathGeometry>
                     </ListView.Resources>
@@ -40,10 +40,10 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" >Table:</TextBlock>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding TableTitle}"/>
-                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" >Order:</TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding OrderId}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Foreground="{StaticResource DataGridCellForeground}" >Table:</TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Foreground="{StaticResource DataGridCellForeground}" Text="{Binding TableTitle}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Foreground="{StaticResource DataGridCellForeground}" >Order:</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Foreground="{StaticResource DataGridCellForeground}" Text="{Binding OrderId}"/>
                                 <mui:ModernButton x:Name="AcceptOrder" Grid.Row="2" Grid.Column="1" Margin="5" IconData="{StaticResource AcceptIconData}" cal:Message.Attach="[Event Click] = [Action AcceptOrder($dataContext)]" ToolTip="Accept"/>
                             </Grid>
                         </DataTemplate>
@@ -55,7 +55,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <TextBlock>No awaiting orders.</TextBlock>
+                                                <TextBlock Foreground="{StaticResource DataGridCellForeground}">No awaiting orders.</TextBlock>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
@@ -65,9 +65,9 @@
                     </ListView.Style>
                 </ListView>
             </ScrollViewer>
-            <TextBlock Grid.Row="3" Margin="{StaticResource ContentMargin}" Style="{StaticResource Heading2}">Tables requring Assistance</TextBlock>
+            <TextBlock Grid.Row="3" Margin="{StaticResource ContentMargin}" Foreground="{StaticResource DataGridCellForeground}" Style="{StaticResource Heading2}">Tables requring Assistance</TextBlock>
             <ScrollViewer Grid.Row="4" Margin="{StaticResource ContentMargin}">
-                <ListView x:Name="TablesRequiringAssistance" BorderThickness="0">
+                <ListView Background="{StaticResource DataGridBackground}" x:Name="TablesRequiringAssistance" BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -87,7 +87,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <TextBlock>No tables requiring assistance.</TextBlock>
+                                                <TextBlock Foreground="{StaticResource DataGridCellForeground}" >No tables requiring assistance.</TextBlock>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
@@ -101,7 +101,7 @@
         <GridSplitter Grid.Column="1"/>
         <DockPanel Grid.Column="0" Margin="{StaticResource SplitLeft}" >
             <TextBlock DockPanel.Dock="Top" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}" >Accepted Orders</TextBlock>
-            <TabControl x:Name="AcceptedOrders" Margin="{StaticResource ContentMargin}" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
+            <TabControl Background="{StaticResource DataGridBackground}" x:Name="AcceptedOrders" Margin="{StaticResource ContentMargin}" SelectedIndex="0" DisplayMemberPath="OrderIdHeaderString">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Header" Value="{Binding}"/>
@@ -122,7 +122,7 @@
                                             <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}" FontWeight="Bold">Table:</TextBlock>
                                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource Title}" FontWeight="DemiBold" Text="{Binding TableTitle}"/>
                                             <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource Title}" FontWeight="Bold">Items:</TextBlock>
-                                            <ListView Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
+                                            <ListView Background="{StaticResource DataGridBackground}" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
                                                         <Grid>
@@ -161,7 +161,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <TextBlock>No accepted orders.</TextBlock>
+                                            <TextBlock Foreground="{StaticResource DataGridCellForeground}">No accepted orders.</TextBlock>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
