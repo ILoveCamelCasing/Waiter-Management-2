@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Windows;
 using Caliburn.Micro;
+using FirstFloor.ModernUI.Windows.Controls;
 using Newtonsoft.Json;
 using WaiterManagement.Common.Models;
 using WaiterManagement.Common.Views;
@@ -12,6 +13,7 @@ using WaiterManagement.Table.Bootstrapper;
 using WaiterManagement.Table.Connection;
 using WaiterManagement.Table.Model;
 using WaiterManagement.Wpf.MVVM.Abstract;
+using Action = System.Action;
 
 namespace WaiterManagement.Table.ViewModels
 {
@@ -71,12 +73,12 @@ namespace WaiterManagement.Table.ViewModels
 			_tableConnectionProvider = tableConnectionProvider;
 
 			tableAppSubscriber.NotifyEvent += (sender, message) => Application.Current.Dispatcher.Invoke(() => Message = message);
+			tableAppSubscriber.NotifyOrderEndedEvent += TableAppSubscriber_NotifyOrderEndedEvent;
 			tableAppSubscriber.OrderItemStateChangedEvent += TableAppSubscriber_OrderItemStateChangedEvent;
 
 			Elements = new BindableCollection<MenuItemView>();
 			AddedElements = new BindableCollection<OrderMenuItemModel>();
 		}
-
 		#endregion
 
 		#region Public methods
@@ -159,6 +161,30 @@ namespace WaiterManagement.Table.ViewModels
 				element.Ready = e.Ready;
 
 			AddedElements.Refresh();
+		}
+
+		private void TableAppSubscriber_NotifyOrderEndedEvent(object sender, EndOrderModel endOrderModel)
+		{
+			if (!IsSomethingOrdered) //TODO: Z jakiegoś powodu wykonuje się dwukrotnie...
+				return;
+
+			var dispatcher = Application.Current.Dispatcher;
+			var endOrderMessage = endOrderModel.OrderCancelled
+				? $"Your order was cancelled: {endOrderModel.OrderCancelledReason}"
+				: "Your order was processed successfully.";
+
+			Action showMessageAction = () =>
+			{
+				ModernDialog.ShowMessage(endOrderMessage, "Order was closed", MessageBoxButton.OK, Application.Current.MainWindow);
+			};
+
+			if(dispatcher == null || dispatcher.CheckAccess())
+				showMessageAction.Invoke();
+			else
+				dispatcher.Invoke(showMessageAction);
+			
+			IsSomethingOrdered = false;
+			AddedElements.Clear();
 		}
 		#endregion
 

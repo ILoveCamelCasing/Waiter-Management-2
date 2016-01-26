@@ -68,6 +68,7 @@ namespace WaiterManagement.Table.Connection
 			_hubConnection.Headers.Add("token", _accessProvider.Token);
 			_hubProxy = _hubConnection.CreateHubProxy("tableHub");
 			_hubProxy.On<string>("NotifyTable", message => _tableApp.NotifyTable(message));
+			_hubProxy.On<EndOrderModel>("NotifyOrderEnded", endedOrder => _tableApp.NotifyOrderEnded(endedOrder));
 			_hubProxy.On<int>("SendOrderId", id => _tableApp.SendOrderId(id));
 			_hubProxy.On<OrderItemState>("NotifyOrderItemStateChanged", state => _tableApp.NotifyOrderItemStateChanged(state));
 			_hubConnection.Start().Wait();

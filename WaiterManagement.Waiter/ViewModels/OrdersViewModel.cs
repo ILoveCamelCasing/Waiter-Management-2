@@ -6,6 +6,9 @@ using WaiterManagement.Waiter.Bootstrapper;
 using WaiterManagement.Waiter.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
 using System;
+using System.Windows;
+using WaiterManagement.Wpf.Controls;
+using Action = System.Action;
 
 namespace WaiterManagement.Waiter.ViewModels
 {
@@ -139,6 +142,31 @@ namespace WaiterManagement.Waiter.ViewModels
 			NotifyOfPropertyChange(() => CanEndOrder);
 		}
 
+		public void EndOrder(OrderModel order)
+		{
+			_waiterConnectionProvider.EndOrder(order.OrderId, false, string.Empty);
+			UpdateAfterEndOrder(order.OrderId);
+		}
+
+		public void CancelOrder(OrderModel order)
+		{
+			ModernInputDialogMessageBoxResult result = null;
+			Action showMessageAction = () =>
+			{
+				result = ModernInputDialog.ShowInputMessage("Cancelling reason: ", "Cancelling order", MessageBoxButton.OK,
+					Application.Current.MainWindow);
+			};
+
+			var dispatcher = Application.Current.Dispatcher;
+			if(dispatcher == null || dispatcher.CheckAccess())
+				showMessageAction.Invoke();
+			else
+				dispatcher.Invoke(showMessageAction);
+
+			_waiterConnectionProvider.EndOrder(order.OrderId, true, result.Input);
+			UpdateAfterEndOrder(order.OrderId);
+		}
+
 		public void MarkAssistanceRequirementAsSeen(string tableLogin)
 		{
 			TablesRequiringAssistance.Remove(tableLogin);
@@ -157,9 +185,20 @@ namespace WaiterManagement.Waiter.ViewModels
 		{
 			SelectedAcceptedOrderMenuItems.Clear();
 
+			if (SelectedAcceptedOrder == null)
+				return;
+
 			IEnumerable<AcceptedOrderMenuItemQuantity> menuItems = null;
 			if (_acceptedOrdersCache.TryGetValue(SelectedAcceptedOrder.OrderId, out menuItems))
 				SelectedAcceptedOrderMenuItems.AddRange(menuItems);
+		}
+
+		private void UpdateAfterEndOrder(int orderId)
+		{
+			_acceptedOrdersCache.Remove(orderId);
+
+			SelectedAcceptedOrderMenuItems.Clear();
+			AcceptedOrders.Remove(SelectedAcceptedOrder);
 		}
 		#endregion
 	}

@@ -149,8 +149,8 @@
                                                     </DataTemplate>
                                                 </ListView.ItemTemplate>
                                             </ListView>
-                                            <mui:ModernButton Grid.Row="3" Grid.Column="0" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource AcceptIconData}" IsEnabled="{Binding Path=DataContext.CanEndOrder, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ToolTip="End order"/>
-                                            <mui:ModernButton Grid.Row="3" Grid.Column="1" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource CancelIconData}" ToolTip="Cancel order"/>
+                                            <mui:ModernButton Grid.Row="3" Grid.Column="0" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource AcceptIconData}" cal:Message.Attach="[Event Click] = [Action EndOrder($dataContext)]" IsEnabled="{Binding Path=DataContext.CanEndOrder, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ToolTip="End order"/>
+                                            <mui:ModernButton Grid.Row="3" Grid.Column="1" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource CancelIconData}" cal:Message.Attach="[Event Click] = [Action CancelOrder($dataContext)]" ToolTip="Cancel order"/>
                                         </Grid>
                                     </ScrollViewer>
                                 </DataTemplate>

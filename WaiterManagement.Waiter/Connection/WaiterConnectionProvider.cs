@@ -53,6 +53,16 @@ namespace WaiterManagement.Waiter.Connection
 			});
 		}
 
+		public void EndOrder(int orderId, bool wasCancelled, string cancelledReason)
+		{
+			_hubProxy.Invoke("EndOrder", new EndOrderModel()
+			{
+				OrderId =  orderId,
+				OrderCancelled = wasCancelled,
+				OrderCancelledReason = cancelledReason
+			});
+		}
+
 		public void ChangeOrderItemState(int orderId, AcceptedOrderMenuItemQuantity menuItem)
 		{
 			_hubProxy.Invoke("ChangeOrderItemState", new ChangeOrderItemStateModel()

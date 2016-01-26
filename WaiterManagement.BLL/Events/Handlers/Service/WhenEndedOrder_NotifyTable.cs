@@ -2,19 +2,21 @@
 using WaiterManagement.BLL.Events.Base;
 using WaiterManagement.BLL.Events.Concrete.Service;
 using WaiterManagement.Common;
+using WaiterManagement.Common.Models;
 
 namespace WaiterManagement.BLL.Events.Handlers.Service
 {
-	public class WhenAcceptedOrder_NotifyTable : IHandleEvent<AcceptedOrder>
+	public class WhenEndedOrder_NotifyTable : IHandleEvent<EndedOrder>
 	{
 		#region Dependencies
 		private readonly ICallingService _callingService;
 		#endregion
 
 		#region Constructors
-		public WhenAcceptedOrder_NotifyTable(ICallingService callingService)
+
+		public WhenEndedOrder_NotifyTable(ICallingService callingService)
 		{
-			if (callingService == null)
+			if(callingService == null)
 				throw new ArgumentNullException(nameof(callingService));
 
 			_callingService = callingService;
@@ -22,10 +24,18 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 		#endregion
 
 		#region IHandleEvent
-		public void Handle(AcceptedOrder @event)
+		public void Handle(EndedOrder @event)
 		{
 			var table = _callingService.GetTable(@event.TableLogin);
-			table.NotifyTable($"Your order was accepted by {@event.WaiterLogin}.");
+
+			table.NotifyTable($"Your order (# {@event.OrderId}) was closed.");
+			
+			table.NotifyOrderEnded(new EndOrderModel()
+			{
+				OrderId = @event.OrderId,
+				OrderCancelled = @event.OrderCancelled,
+				OrderCancelledReason = @event.OrderCancelledReason
+			});
 		}
 		#endregion
 	}

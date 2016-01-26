@@ -9,6 +9,7 @@ namespace WaiterManagement.Table.Bootstrapper
 	{
 		#region ITableAppSubscriber
 		public event EventHandler<string> NotifyEvent;
+		public event EventHandler<EndOrderModel> NotifyOrderEndedEvent;
 		public event EventHandler<int> SendOrderIdEvent;
 		public event EventHandler<OrderItemState> OrderItemStateChangedEvent;
 		#endregion
@@ -22,6 +23,11 @@ namespace WaiterManagement.Table.Bootstrapper
 		public void NotifyOrderItemStateChanged(OrderItemState state)
 		{
 			Task.Run(() => HandleSafely(OrderItemStateChangedEvent, state)); //should be awaited...
+		}
+
+		public void NotifyOrderEnded(EndOrderModel endedOrder)
+		{
+			Task.Run(() => HandleSafely(NotifyOrderEndedEvent, endedOrder)); //should be awaited...
 		}
 
 		public void SendOrderId(int id)
@@ -51,6 +57,7 @@ namespace WaiterManagement.Table.Bootstrapper
 	public interface ITableAppSubscriber
 	{
 		event EventHandler<string> NotifyEvent;
+		event EventHandler<EndOrderModel> NotifyOrderEndedEvent;
 		event EventHandler<int> SendOrderIdEvent;
 		event EventHandler<OrderItemState> OrderItemStateChangedEvent;
 	}

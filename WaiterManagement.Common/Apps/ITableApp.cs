@@ -6,6 +6,7 @@ namespace WaiterManagement.Common.Apps
 	{
 		void NotifyTable(string message);
 		void NotifyOrderItemStateChanged(OrderItemState state);
+		void NotifyOrderEnded(EndOrderModel endedOrder);
 		void SendOrderId(int id);
 	}
 }

@@ -35,6 +35,16 @@ namespace WaiterManagement.Service.Hubs
 			});
 		}
 
+		public void EndOrder(EndOrderModel endedOrder)
+		{
+			_commandBus.SendCommand(new EndOrderCommand()
+			{
+				OrderId = endedOrder.OrderId,
+				OrderCancelled = endedOrder.OrderCancelled,
+				OrderCancelledReason = endedOrder.OrderCancelledReason
+			});
+		}
+
 		public void ChangeOrderItemState(ChangeOrderItemStateModel changedOrderItem)
 		{
 			_commandBus.SendCommand(new ChangeOrderItemStateCommand()

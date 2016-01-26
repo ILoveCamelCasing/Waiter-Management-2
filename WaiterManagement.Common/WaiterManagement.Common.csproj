@@ -86,6 +86,7 @@
     <Compile Include="Models\AcceptedOrderMenuItemQuantity.cs" />
     <Compile Include="Models\AcceptOrderModel.cs" />
     <Compile Include="Models\ChangeOrderItemStateModel.cs" />
+    <Compile Include="Models\EndOrderModel.cs" />
     <Compile Include="Models\MoreItemsModel.cs" />
     <Compile Include="Models\NewOrderModel.cs" />
     <Compile Include="Models\OrderingMenuItem.cs" />
