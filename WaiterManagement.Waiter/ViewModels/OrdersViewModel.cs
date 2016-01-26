@@ -84,6 +84,11 @@ namespace WaiterManagement.Waiter.ViewModels
 		{
 			get; private set;
 		}
+
+		public bool CanEndOrder
+		{
+			get { return SelectedAcceptedOrderMenuItems.Any() && SelectedAcceptedOrderMenuItems.All(mi => mi.Ready); }
+		}
 		#endregion
 
 		#region Event Handlers
@@ -107,7 +112,9 @@ namespace WaiterManagement.Waiter.ViewModels
 			{
 				SelectedAcceptedOrderMenuItems.Clear();
 				SelectedAcceptedOrderMenuItems.AddRange(_acceptedOrdersCache[orderCurrentState.OrderId]);
-			}				
+			}
+			
+			NotifyOfPropertyChange(() => CanEndOrder);				
 		}
 
 		private void WaiterApp_OrderWasAcceptedHandler(object sender, AcceptOrderModel acceptedOrder)
@@ -125,10 +132,11 @@ namespace WaiterManagement.Waiter.ViewModels
 
 		public void AcceptOrder(OrderModel order)
 		{
-			AwaitingOrders.Remove(order); //TODO: Remove from db
+			AwaitingOrders.Remove(order);
 			AcceptedOrders.Add(order);
 
 			_waiterConnectionProvider.AcceptOrder(order.OrderId);
+			NotifyOfPropertyChange(() => CanEndOrder);
 		}
 
 		public void MarkAssistanceRequirementAsSeen(string tableLogin)
@@ -139,6 +147,8 @@ namespace WaiterManagement.Waiter.ViewModels
 		public void OrderItemStateChanged(AcceptedOrderMenuItemQuantity orderItem)
 		{
 			_waiterConnectionProvider.ChangeOrderItemState(_selectedAcceptedOrder.OrderId, orderItem);
+
+			NotifyOfPropertyChange(() => CanEndOrder);
 		}
 		#endregion
 
