@@ -66,7 +66,8 @@
 		direction : 'r2l',
 		// callback: item that doesn´t have a submenu gets clicked
 		// onItemClick([event], [inner HTML of the clicked item])
-		onItemClick : function(ev, itemName) { return false; }
+		onItemClick: function (ev, itemName) { return false; },
+		onPartnerItemClick: function (ev, itemName) { return false; }
 	};
 
 	MLMenu.prototype._init = function() {
@@ -121,6 +122,7 @@
 						ev.preventDefault();
 						// open it
 						self._openSubMenu(subMenuEl, pos, itemName);
+						self.options.onPartnerItemClick(ev, itemName);
 					}
 					else {
 						// add class current

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<WaiterManagement.Common.Views.MenuItemView>
+
+@{
+	
+	Layout = null;
+}
+
+<h2>Menu</h2>
+
+@foreach (var menuItem in Model)
+{
+	@Html.DisplayFor(x => menuItem, "MenuItemTemplate")
+}
+
