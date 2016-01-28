@@ -6,9 +6,12 @@
 }
 
 <h2>Menu</h2>
-
-@foreach (var menuItem in Model)
-{
-	@Html.DisplayFor(x => menuItem, "MenuItemTemplate")
-}
+<ul id="barMenuList">
+	@foreach (var menuItem in Model)
+	{
+		<li class="barMenuItem">
+			@Html.DisplayFor(x => menuItem, "MenuItemTemplate")
+		</li>
+	}
+</ul>
 
