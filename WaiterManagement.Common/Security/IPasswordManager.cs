@@ -4,5 +4,6 @@
 	{
 		string CreateSecondHash(string login, string password);
 		string CreateFirstHash(string login, string password);
+		string CreateSecondHashFromFirst(string firstHash);
 	}
 }

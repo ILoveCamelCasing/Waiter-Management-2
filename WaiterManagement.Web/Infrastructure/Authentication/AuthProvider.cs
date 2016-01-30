@@ -27,6 +27,8 @@ namespace WaiterManagement.Web.Infrastructure.Authentication
 				HttpContext.Current.Session[LogInStatusSessionValueName] != null &&
 				(bool) HttpContext.Current.Session[LogInStatusSessionValueName];
 
+		public string Username => HttpContext.Current.Session[LoggedUserSessionValueName] as string;
+
 		public void LogIn(LogInUser logInUser)
 		{
 			var result = AsyncHelpers.RunSync(() => _logInStrategy.LogIn(logInUser.Username, logInUser.Password));
@@ -49,6 +51,11 @@ namespace WaiterManagement.Web.Infrastructure.Authentication
 		public void Register(RegisterUser user)
 		{
 			_registerWebUserStrategy.RegisterUser(user);
+		}
+
+		public void LogOut()
+		{
+			HttpContext.Current.Session[LogInStatusSessionValueName] = false;
 		}
 	}
 }

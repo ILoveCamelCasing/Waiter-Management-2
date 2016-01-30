@@ -72,6 +72,7 @@
     <Compile Include="Commands\Concrete\ManagerCommands\EditWaiterCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\AcceptOrderCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\AddOrderCommand.cs" />
+    <Compile Include="Commands\Concrete\ServiceCommands\AddWebClientCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\CallWaiterCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\ChangeOrderItemStateCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\EndOrderCommand.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Commands\Handlers\ManagerHandlers\EditWaiterHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\AcceptOrderHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\AddOrderHandler.cs" />
+    <Compile Include="Commands\Handlers\ServiceHandlers\AddWebClientHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\CallWaiterHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\ChangeOrderItemStateHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\EndOrderHandler.cs" />

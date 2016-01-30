@@ -29,6 +29,9 @@ namespace WaiterManagement.DAL
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<MenuItemsQuantity> MenuItemsQuantities { get; set; }
 
+		// Web entities
+		public DbSet<WebClient> WebClients { get; set; }
+
 		#endregion
 
 		#region Views
@@ -38,7 +41,8 @@ namespace WaiterManagement.DAL
 		public DbSet<WaiterView> WaitersView { get; set; }
 		public DbSet<MenuItemView> MenuItemsView { get; set; }
 		public DbSet<AuthenticatedUsersView> AuthenticatedUsersView { get; set; }
-		public DbSet<OrderView> OrdersView { get; set; } 
+		public DbSet<OrderView> OrdersView { get; set; }
+		public DbSet<WebClientView> WebClientsView { get; set; }  
 
 		#endregion
 	}

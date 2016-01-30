@@ -112,6 +112,7 @@
     <Compile Include="Views\OrderView.cs" />
     <Compile Include="Views\TableView.cs" />
     <Compile Include="Views\WaiterView.cs" />
+    <Compile Include="Views\WebClientView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

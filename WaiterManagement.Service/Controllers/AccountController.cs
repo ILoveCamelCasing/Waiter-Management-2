@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WaiterManagement.BLL.Commands.Base;
+using WaiterManagement.BLL.Commands.Concrete.ServiceCommands;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
@@ -18,18 +20,22 @@ namespace WaiterManagement.Service.Controllers
 		#region Private Fields
 		private readonly IUnitOfWork _unitOfWork; //TODO: DI (?), TODO: Jakiś rozszerzony interfejs dostępu do danych (zarówno widoki jak i tabele, zwracanie IQueryable ?
 		private readonly IViewProvider _viewProvider;
+		private readonly ICommandBus _commandBus;
 		#endregion
 
 		#region Constructors
-		public AccountController(IUnitOfWork unitOfWork, IViewProvider viewProvider)
+		public AccountController(IUnitOfWork unitOfWork, IViewProvider viewProvider, ICommandBus commandBus)
 		{
 			if (unitOfWork == null)
-				throw new ArgumentNullException("unitOfWork");
+				throw new ArgumentNullException(nameof(unitOfWork));
 			if (viewProvider == null)
-				throw new ArgumentNullException("viewProvider");
+				throw new ArgumentNullException(nameof(viewProvider));
+			if(commandBus == null)
+				throw new ArgumentNullException(nameof(commandBus));
 
 			_unitOfWork = unitOfWork;
 			_viewProvider = viewProvider;
+			_commandBus = commandBus;
 		}
 		#endregion
 
@@ -47,12 +53,40 @@ namespace WaiterManagement.Service.Controllers
 		{
 			return Login<TableView>(loginModel);
 		}
+
+		[ResponseType(typeof (Guid))]
+		[HttpPost]
+		public IHttpActionResult LoginWebClient([FromBody] LoginModel loginModel)
+		{
+			return Login<WebClientView>(loginModel);
+		}
+
+		[HttpPost]
+		public IHttpActionResult RegisterWebClient([FromBody] RegisterWebClientModel client )
+		{
+			try
+			{
+				_commandBus.SendCommand(new AddWebClientCommand()
+				{
+					Login = client.Login,
+					FirstHash = client.FirstHash,
+					FirstName = client.FirstName,
+					LastName = client.LastName,
+					Phone = client.Phone,
+					Mail = client.Mail
+				});
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
 		#endregion
 
 		#region Private methods
 		private IHttpActionResult Login<T>([FromBody] LoginModel loginModel) where T : class, ILoginableView
 		{
-			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
 			//Sprawdzenie istnienie użytkownik w bazie danych
 			var user = _viewProvider.Get<T>().FirstOrDefault(w => w.Login == loginModel.Login);
 			if (user == null)

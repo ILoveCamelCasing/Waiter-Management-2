@@ -11,5 +11,10 @@
 		{
 			return HashUtility.CreateFirstHash(password, login);
 		}
+
+		public string CreateSecondHashFromFirst(string firstHash)
+		{
+			return HashUtility.CreateSecondHashFromFirst(firstHash);
+		}
 	}
 }

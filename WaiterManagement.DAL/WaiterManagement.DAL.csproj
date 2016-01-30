@@ -128,6 +128,14 @@
     <Compile Include="Migrations\201601091236564_Added Ready to MenuItemsQuantity.Designer.cs">
       <DependentUpon>201601091236564_Added Ready to MenuItemsQuantity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601301914437_WebClients.cs" />
+    <Compile Include="Migrations\201601301914437_WebClients.Designer.cs">
+      <DependentUpon>201601301914437_WebClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601301927266_WebClientsView.cs" />
+    <Compile Include="Migrations\201601301927266_WebClientsView.Designer.cs">
+      <DependentUpon>201601301927266_WebClientsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -192,6 +200,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601091236564_Added Ready to MenuItemsQuantity.resx">
       <DependentUpon>201601091236564_Added Ready to MenuItemsQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601301914437_WebClients.resx">
+      <DependentUpon>201601301914437_WebClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601301927266_WebClientsView.resx">
+      <DependentUpon>201601301927266_WebClientsView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

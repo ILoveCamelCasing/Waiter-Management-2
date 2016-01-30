@@ -4,9 +4,8 @@
 	@if (Model.IsLogged)
 	{
 		<b>Hello: </b>
-			<b>@HttpContext.Current.User.Identity.Name</b>
-			@Html.ActionLink("Logout", "Logout", null, new { returnUrl = Request.Url }, new { @class = "btn btn-default btn-sm" })
-			@Html.ActionLink("Orders", "Orders", null, null, new { @class = "btn btn-default btn-sm" })
+			<b>@Model.Username</b>
+			@Html.ActionLink("logout", "LogOut", null, new { returnUrl = Request.Url }, new { @class = "btn btn-default btn-sm" })
 	}
 	else
 	{

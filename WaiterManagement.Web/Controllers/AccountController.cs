@@ -36,6 +36,13 @@ namespace WaiterManagement.Web.Controllers
 			return View(logInUser);
 		}
 
+		public ActionResult LogOut()
+		{
+			_authProvider.LogOut();
+
+			return RedirectToAction("Index", "Home");
+		}
+
 		public ActionResult Register()
 		{
 			return View();
