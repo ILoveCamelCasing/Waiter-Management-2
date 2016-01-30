@@ -1,0 +1,19 @@
+﻿@model WaiterManagement.Web.Infrastructure.Authentication.IAuthProvider
+
+<span class="caption">
+	@if (Model.IsLogged)
+	{
+		<b>Hello: </b>
+			<b>@HttpContext.Current.User.Identity.Name</b>
+			@Html.ActionLink("Logout", "Logout", null, new { returnUrl = Request.Url }, new { @class = "btn btn-default btn-sm" })
+			@Html.ActionLink("Orders", "Orders", null, null, new { @class = "btn btn-default btn-sm" })
+	}
+	else
+	{
+		<b>You are not logged.</b>
+		@Html.ActionLink("Login", "Login", null, null, new { @class = "btn btn-default btn-sm" })
+		<text> or </text>
+		@Html.ActionLink("register", "Register", null, null, new { @class = "btn btn-default btn-sm" })
+		<text>.</text>
+	}
+</span>

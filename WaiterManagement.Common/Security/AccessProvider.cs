@@ -1,11 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace WaiterManagement.Common.Security
 {
@@ -13,7 +6,7 @@ namespace WaiterManagement.Common.Security
 	{
 		#region Dependencies
 
-		private readonly IPasswordManager _passwordManager;
+		private readonly ILogInStrategy _logInStrategy;
 
 		#endregion
 
@@ -24,43 +17,20 @@ namespace WaiterManagement.Common.Security
 
 		#endregion
 
-		public AccessProvider(IPasswordManager passwordManager)
+		public AccessProvider(ILogInStrategy logInStrategy)
 		{
-			_passwordManager = passwordManager;
+			_logInStrategy = logInStrategy;
 		}
 
-		public async Task<LoginResult> LogIn(string login, string password)
+		public async Task<LoginResultType> LogIn(string login, string password)
 		{
 			Login = login;
 
-			
-			using (var client = new HttpClient())
-			{
-				try
-				{
-					client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
-					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			var result = _logInStrategy.LogIn(login, password);
 
-					dynamic myObject = new JObject();
-					myObject.login = login;
-					myObject.firstHash = _passwordManager.CreateFirstHash(login, password);
+			Token = result.Result.Token;
 
-					var result = await client.PostAsync(ConfigurationManager.AppSettings["LoginPath"], new StringContent(JsonConvert.SerializeObject(myObject).ToString(), Encoding.UTF8, "application/json"));
-					var resultString = (await result.Content.ReadAsStringAsync()).Replace("\"", "");
-
-					Guid guid;
-					if (!Guid.TryParse(resultString, out guid))
-						return LoginResult.LoginFailed;
-
-					Token = resultString;
-					return LoginResult.LoginOk;
-				}
-				catch(HttpRequestException e)
-				{
-					//TODO: Zalogować wyjątek
-					return LoginResult.ConnectionError;
-				}
-			}
+			return result.Result.Result;
 		}
 	}
 }

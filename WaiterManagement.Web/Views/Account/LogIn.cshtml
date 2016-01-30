@@ -1,0 +1,31 @@
+﻿@model WaiterManagement.Web.Models.LogInUser
+
+@{
+	ViewBag.Title = "Log In";
+	Layout = null;
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+	<table>
+		<tr>
+			<td>@Html.LabelFor(x => x.Username)</td>
+			<td>@Html.TextBoxFor(x => x.Username)</td>
+			<td>@Html.ValidationMessageFor(x => x.Username)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(x => x.Password)</td>
+			<td>@Html.TextBoxFor(x => x.Password)</td>
+			<td>@Html.ValidationMessageFor(x => x.Password)</td>
+		</tr>
+		<tr>
+			<td/>
+			<td><input type="submit" value="Login"/></td>
+			<td/>
+		</tr>
+	</table>
+}

@@ -1,0 +1,51 @@
+﻿@model WaiterManagement.Web.Models.RegisterUser
+
+@{
+	ViewBag.Title = "Register User";
+	Layout = null;
+}
+
+<h2>Register User</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+	<table>
+		<tr>
+			<td>@Html.LabelFor(x => x.Username)</td>
+			<td>@Html.TextBoxFor(x => x.Username)</td>
+			<td>@Html.ValidationMessageFor(x => x.Username)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(x => x.Password)</td>
+			<td>@Html.TextBoxFor(x => x.Password)</td>
+			<td>@Html.ValidationMessageFor(x => x.Password)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(x => x.FirstName)</td>
+			<td>@Html.TextBoxFor(x => x.FirstName)</td>
+			<td>@Html.ValidationMessageFor(x => x.FirstName)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(x => x.LastName)</td>
+			<td>@Html.TextBoxFor(x => x.LastName)</td>
+			<td>@Html.ValidationMessageFor(x => x.LastName)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(x => x.Phone)</td>
+			<td>@Html.TextBoxFor(x => x.Phone)</td>
+			<td>@Html.ValidationMessageFor(x => x.Phone)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(x => x.Mail)</td>
+			<td>@Html.TextBoxFor(x => x.Mail)</td>
+			<td>@Html.ValidationMessageFor(x => x.Mail)</td>
+		</tr>
+		<tr>
+			<td />
+			<td><input type="submit" value="Register" /></td>
+			<td />
+		</tr>
+	</table>
+}

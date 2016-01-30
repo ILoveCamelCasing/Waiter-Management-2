@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WaiterManagement.Common.Entities;
@@ -50,6 +52,7 @@ namespace WaiterManagement.Service.Controllers
 		#region Private methods
 		private IHttpActionResult Login<T>([FromBody] LoginModel loginModel) where T : class, ILoginableView
 		{
+			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
 			//Sprawdzenie istnienie użytkownik w bazie danych
 			var user = _viewProvider.Get<T>().FirstOrDefault(w => w.Login == loginModel.Login);
 			if (user == null)

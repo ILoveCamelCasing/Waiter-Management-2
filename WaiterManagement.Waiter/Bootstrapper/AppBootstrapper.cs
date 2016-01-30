@@ -32,6 +32,7 @@ namespace WaiterManagement.Waiter.Bootstrapper
 			_kernel = new StandardKernel();
 			_kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
 			_kernel.Bind<IAccessProvider>().To<AccessProvider>().InSingletonScope();
+			_kernel.Bind<ILogInStrategy>().To<LogInStrategy>().InSingletonScope();
 			_kernel.Bind<IWaiterConnectionProvider>().To<WaiterConnectionProvider>().InSingletonScope();
 
 			RegisterViewModels();

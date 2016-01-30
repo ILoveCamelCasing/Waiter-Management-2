@@ -114,15 +114,15 @@ namespace WaiterManagement.Waiter.ViewModels
 
 			switch(loginResult)
 			{
-				case LoginResult.LoginOk:
+				case LoginResultType.LoginOk:
 					await _waiterConnectionProvider.Connect();
 					Close();
 					Get<OrdersViewModel>().ShowOn(ParentWindow);
 					break;
-				case LoginResult.LoginFailed:
+				case LoginResultType.LoginFailed:
 					WrongUsernameOrPassword = Visibility.Visible;
 					break;
-				case LoginResult.ConnectionError:
+				case LoginResultType.ConnectionError:
 					ConnectionError = Visibility.Visible;
 					break;
 			}			
