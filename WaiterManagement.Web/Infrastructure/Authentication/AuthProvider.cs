@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using WaiterManagement.Common.Security;
+using WaiterManagement.Web.Helpers;
 using WaiterManagement.Web.Models;
 
 namespace WaiterManagement.Web.Infrastructure.Authentication
@@ -28,14 +29,13 @@ namespace WaiterManagement.Web.Infrastructure.Authentication
 
 		public void LogIn(LogInUser logInUser)
 		{
-			var result = _logInStrategy.LogIn(logInUser.Username, logInUser.Password);
-			result.Wait();
-			switch (result.Result.Result)
+			var result = AsyncHelpers.RunSync(() => _logInStrategy.LogIn(logInUser.Username, logInUser.Password));
+			switch (result.Result)
 			{
 				case LoginResultType.LoginOk:
 					HttpContext.Current.Session[LogInStatusSessionValueName] = true;
 					HttpContext.Current.Session[LoggedUserSessionValueName] = logInUser.Username;
-					HttpContext.Current.Session[TokenSessionValueName] = result.Result.Token;
+					HttpContext.Current.Session[TokenSessionValueName] = result.Result;
 					break;
 				case LoginResultType.LoginFailed:
 					throw new Exception("Wrong username or password.");

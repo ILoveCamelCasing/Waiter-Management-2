@@ -140,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AsyncHelpers.cs" />
     <Compile Include="Infrastructure\Authentication\AuthProvider.cs" />
     <Compile Include="Infrastructure\Authentication\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Authentication\IRegisterWebUserStrategy.cs" />
@@ -268,7 +269,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
