@@ -111,7 +111,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		#region Event Handlers
 		public void WaiterApp_NotifyNewOrderHandler(object sender, OrderModel order)
 		{
-			if (order != null)
+			if (order != null && AwaitingOrders.All(o => o.OrderId != order.OrderId))
 				AwaitingOrders.Add(order);
 		}
 
@@ -227,6 +227,28 @@ namespace WaiterManagement.Waiter.ViewModels
 			else
 			{
 				SelectedAcceptedOrderTotalPrice = SelectedAcceptedOrderMenuItems.Select(mi => mi.MenuItem.Price*mi.Quantity).Sum();
+			}
+		}
+		#endregion
+
+		#region Overrides
+		protected override void OnDeactivate(bool close)
+		{
+			base.OnDeactivate(close);
+
+			if (close)
+			{
+				var cachedOrderIds = new List<int>();
+				foreach (var cachedOrder in _acceptedOrdersCache)
+				{
+					_waiterConnectionProvider.EndOrder(cachedOrder.Key, true, "Waiter has logged out.");
+					cachedOrderIds.Add(cachedOrder.Key);
+				}
+
+				foreach(var orderId in cachedOrderIds)
+					UpdateAfterEndOrder(orderId);
+
+				_waiterConnectionProvider.Disconnect();
 			}
 		}
 		#endregion

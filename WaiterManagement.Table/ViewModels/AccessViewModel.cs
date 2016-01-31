@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WaiterManagement.Common.Security;
+using WaiterManagement.Table.Connection;
 using WaiterManagement.Wpf.MVVM.Abstract;
 
 namespace WaiterManagement.Table.ViewModels
@@ -9,7 +10,7 @@ namespace WaiterManagement.Table.ViewModels
 		#region Dependencies
 
 		private readonly IAccessProvider _accessProvider;
-
+		private readonly ITableConnectionProvider _tableConnectionProvider;
 		#endregion
 
 		#region Private fields
@@ -93,10 +94,11 @@ namespace WaiterManagement.Table.ViewModels
 
 		#endregion
 
-		public AccessViewModel(IViewModelResolver viewModelResolver, IAccessProvider accessProvider)
+		public AccessViewModel(IViewModelResolver viewModelResolver, IAccessProvider accessProvider, ITableConnectionProvider tableConnectionProvider)
 			: base(viewModelResolver)
 		{
 			_accessProvider = accessProvider;
+			_tableConnectionProvider = tableConnectionProvider;
 			_wrongUsernameOrPassword = Visibility.Hidden;
 			_connectionError = Visibility.Hidden;
 		}
@@ -112,6 +114,7 @@ namespace WaiterManagement.Table.ViewModels
 			switch(loginResult)
 			{
 				case LoginResultType.LoginOk:
+					await _tableConnectionProvider.Connect();
 					Close();
 					Get<OrderViewModel>().ShowOn(ParentWindow);
 					break;

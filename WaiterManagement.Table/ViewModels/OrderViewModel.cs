@@ -234,6 +234,16 @@ namespace WaiterManagement.Table.ViewModels
 			IsBusy = false;
 		}
 
+		protected override void OnDeactivate(bool close)
+		{
+			base.OnDeactivate(close);
+
+			if (close)
+			{
+				_tableConnectionProvider.Disconnect();
+			}
+		}
+
 		#endregion
 	}
 }
