@@ -25,9 +25,9 @@ namespace WaiterManagement.Manager.ViewModels.Waiter
       : base(viewModelResolver)
     {
       if (viewProvider == null)
-        throw new ArgumentNullException("viewProvider");
+        throw new ArgumentNullException(nameof(viewProvider));
       if (commandBus == null)
-        throw new ArgumentNullException("commandBus");
+        throw new ArgumentNullException(nameof(commandBus));
 
       _viewProvider = viewProvider;
       _commandBus = commandBus;
