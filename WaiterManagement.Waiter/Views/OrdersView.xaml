@@ -119,11 +119,12 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="*"/>
+                                                <RowDefinition Height="50"/>
                                                 <RowDefinition Height="100"/>
                                             </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}" FontWeight="Bold">Table:</TextBlock>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource Title}" FontWeight="DemiBold" Text="{Binding TableTitle}"/>
-                                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource Title}" FontWeight="Bold">Items:</TextBlock>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}" FontWeight="Bold">Table:</TextBlock>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}" FontWeight="DemiBold" Text="{Binding TableTitle}"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}" FontWeight="Bold">Items:</TextBlock>
                                             <ListView Background="{StaticResource DataGridBackground}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Path=DataContext.SelectedAcceptedOrderMenuItems, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, diag:PresentationTraceSources.TraceLevel=High}">
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
@@ -149,8 +150,10 @@
                                                     </DataTemplate>
                                                 </ListView.ItemTemplate>
                                             </ListView>
-                                            <mui:ModernButton Grid.Row="3" Grid.Column="0" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource AcceptIconData}" cal:Message.Attach="[Event Click] = [Action EndOrder($dataContext)]" IsEnabled="{Binding Path=DataContext.CanEndOrder, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ToolTip="End order"/>
-                                            <mui:ModernButton Grid.Row="3" Grid.Column="1" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource CancelIconData}" cal:Message.Attach="[Event Click] = [Action CancelOrder($dataContext)]" ToolTip="Cancel order"/>
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}">Total price:</TextBlock>
+                                            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}" Text="{Binding  Path=DataContext.SelectedAcceptedOrderTotalPrice, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                                            <mui:ModernButton Grid.Row="4" Grid.Column="0" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource AcceptIconData}" cal:Message.Attach="[Event Click] = [Action EndOrder($dataContext)]" IsEnabled="{Binding Path=DataContext.CanEndOrder, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ToolTip="End order"/>
+                                            <mui:ModernButton Grid.Row="4" Grid.Column="1" Foreground="{StaticResource ButtonText}" Margin="{StaticResource ContentMargin}" IconData="{StaticResource CancelIconData}" cal:Message.Attach="[Event Click] = [Action CancelOrder($dataContext)]" ToolTip="Cancel order"/>
                                         </Grid>
                                     </ScrollViewer>
                                 </DataTemplate>

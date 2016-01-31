@@ -18,6 +18,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		private OrderModel _selectedAwaitingOrder;
 		private OrderModel _selectedAcceptedOrder;
 		private IDictionary<int, IEnumerable<AcceptedOrderMenuItemQuantity>> _acceptedOrdersCache;
+		private double _selectedAcceptedOrderTotalPrice;
 		#endregion
 
 		#region Dependencies
@@ -72,6 +73,19 @@ namespace WaiterManagement.Waiter.ViewModels
 			}
 		}
 
+		public double SelectedAcceptedOrderTotalPrice
+		{
+			get
+			{
+				return _selectedAcceptedOrderTotalPrice;
+			}
+			set
+			{
+				_selectedAcceptedOrderTotalPrice = value;
+				NotifyOfPropertyChange(() => SelectedAcceptedOrderTotalPrice);
+			}
+		}
+
 		public BindableCollection<AcceptedOrderMenuItemQuantity> SelectedAcceptedOrderMenuItems
 		{ get; private set; }
 
@@ -115,6 +129,7 @@ namespace WaiterManagement.Waiter.ViewModels
 			{
 				SelectedAcceptedOrderMenuItems.Clear();
 				SelectedAcceptedOrderMenuItems.AddRange(_acceptedOrdersCache[orderCurrentState.OrderId]);
+				RecalculateTotalPrice();
 			}
 			
 			NotifyOfPropertyChange(() => CanEndOrder);				
@@ -191,6 +206,8 @@ namespace WaiterManagement.Waiter.ViewModels
 			IEnumerable<AcceptedOrderMenuItemQuantity> menuItems = null;
 			if (_acceptedOrdersCache.TryGetValue(SelectedAcceptedOrder.OrderId, out menuItems))
 				SelectedAcceptedOrderMenuItems.AddRange(menuItems);
+
+			RecalculateTotalPrice();
 		}
 
 		private void UpdateAfterEndOrder(int orderId)
@@ -199,6 +216,18 @@ namespace WaiterManagement.Waiter.ViewModels
 
 			SelectedAcceptedOrderMenuItems.Clear();
 			AcceptedOrders.Remove(SelectedAcceptedOrder);
+
+			RecalculateTotalPrice();
+		}
+
+		private void RecalculateTotalPrice()
+		{
+			if (SelectedAcceptedOrderMenuItems == null || !SelectedAcceptedOrderMenuItems.Any())
+				SelectedAcceptedOrderTotalPrice = 0d;
+			else
+			{
+				SelectedAcceptedOrderTotalPrice = SelectedAcceptedOrderMenuItems.Select(mi => mi.MenuItem.Price*mi.Quantity).Sum();
+			}
 		}
 		#endregion
 	}

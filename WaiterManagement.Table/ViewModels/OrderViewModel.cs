@@ -30,7 +30,7 @@ namespace WaiterManagement.Table.ViewModels
 		private bool _isBusy;
 		private string _message;
 		private bool _isSomethingOrdered;
-
+		private double _totalPrice;
 		#endregion
 
 		#region Public Properties
@@ -64,6 +64,18 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
+		public double TotalPrice
+		{
+			get
+			{
+				return _totalPrice;
+			}
+			set
+			{
+				_totalPrice = value;
+				NotifyOfPropertyChange(() => TotalPrice);
+			}
+	}
 		#endregion
 
 		#region Constructor
@@ -135,6 +147,8 @@ namespace WaiterManagement.Table.ViewModels
 					Title = addingMenuItem.Title
 				});
 			}
+
+			//TotalPrice += addingMenuItem.Price; TODO: Odkomentować
 		}
 
 		public void CallWaiter()

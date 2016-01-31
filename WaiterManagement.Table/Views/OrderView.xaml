@@ -43,7 +43,10 @@
 							<GridViewColumn DisplayMemberBinding="{Binding Title}">
 								<GridViewColumnHeader Tag="Title" Content="Title"/>
 							</GridViewColumn>
-							<GridViewColumn DisplayMemberBinding="{Binding CategoryTitle}">
+                            <GridViewColumn DisplayMemberBinding="{Binding Price}">
+                                <GridViewColumnHeader Tag="Price" Content="Price"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding CategoryTitle}">
 								<GridViewColumnHeader Tag="Category" Content="Category"/>
 							</GridViewColumn>
 							<GridViewColumn DisplayMemberBinding="{Binding Description}">
@@ -56,14 +59,19 @@
 		</Grid>
         <GridSplitter Grid.Row="1" Grid.Column="1"/>
 		<Grid Grid.Row="1" Grid.Column="2" Margin="{StaticResource SplitRight}">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="30"/>
-				<RowDefinition/>
-				<RowDefinition Height="50"/>
-				<RowDefinition Height="50"/>
-			</Grid.RowDefinitions>
-			<TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Your order</TextBlock>
-			<ListView x:Name="AddedElements"  Grid.Row="1" SelectionMode="Single">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Margin="{StaticResource HeaderMargin}" Style="{StaticResource Heading1}">Your order</TextBlock>
+			<ListView x:Name="AddedElements" Grid.ColumnSpan="2" Grid.Row="1" SelectionMode="Single">
                 <ListView.Resources>
                     <PathGeometry x:Key="OrderItemReadyData">F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z</PathGeometry>
                     <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
@@ -73,7 +81,10 @@
 						<GridViewColumn DisplayMemberBinding="{Binding Title}">
 							<GridViewColumnHeader Tag="Title" Content="Title"/>
 						</GridViewColumn>
-						<GridViewColumn DisplayMemberBinding="{Binding Quantities}">
+                        <GridViewColumn DisplayMemberBinding="{Binding Price}">
+                            <GridViewColumnHeader Tag="Price" Content="Price"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Quantities}">
 							<GridViewColumnHeader Tag="Category" Content="Quantities"/>
 						</GridViewColumn>
 						<GridViewColumn DisplayMemberBinding="{Binding Ordered}">
@@ -98,8 +109,10 @@
 					</GridView>
 				</ListView.View>
 			</ListView>
-			<Button Grid.Row="2" Margin="0 10" x:Name="Order" Content="{Binding OrderText}" />
-			<Button Grid.Row="3" Margin="0 10" x:Name="CallWaiter">Call the waiter</Button>
+            <TextBlock Grid.Row="2" Grid.Column="0"  Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}">Total price:</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1"  Style="{StaticResource Title}" Foreground="{StaticResource DataGridCellForeground}" x:Name="TotalPrice"/>
+			<Button Grid.Row="3" Grid.ColumnSpan="2" Margin="0 10" x:Name="Order" Content="{Binding OrderText}" />
+			<Button Grid.Row="4" Grid.ColumnSpan="2" Margin="0 10" x:Name="CallWaiter">Call the waiter</Button>
 		</Grid>
 	</Grid>
 </UserControl>
