@@ -6,6 +6,7 @@ namespace WaiterManagement.Common.Entities
 	public class ReservationOrder : NonVersionableEntity
 	{
 		public DateTime Created { get; set; }
+		public DateTime ReservationTime { get; set; }
 		public WebClient Client { get; set; }
 		public ReservationOrderStatus Status { get; set; }
 		public string Comment { get; set; }
