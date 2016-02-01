@@ -136,6 +136,14 @@
     <Compile Include="Migrations\201601301927266_WebClientsView.Designer.cs">
       <DependentUpon>201601301927266_WebClientsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601312113057_Added Price to MenuItem.cs" />
+    <Compile Include="Migrations\201601312113057_Added Price to MenuItem.Designer.cs">
+      <DependentUpon>201601312113057_Added Price to MenuItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602010743584_ReservationOrders.cs" />
+    <Compile Include="Migrations\201602010743584_ReservationOrders.Designer.cs">
+      <DependentUpon>201602010743584_ReservationOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -206,6 +214,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601301927266_WebClientsView.resx">
       <DependentUpon>201601301927266_WebClientsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601312113057_Added Price to MenuItem.resx">
+      <DependentUpon>201601312113057_Added Price to MenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602010743584_ReservationOrders.resx">
+      <DependentUpon>201602010743584_ReservationOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

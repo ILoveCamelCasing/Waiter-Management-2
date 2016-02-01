@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 using WaiterManagement.Common.Views.Abstract;
 
 namespace WaiterManagement.Common.Views
@@ -15,5 +16,6 @@ namespace WaiterManagement.Common.Views
 		public string Description { get; set; }
 		public int CategoryId { get; set; }
 		public string CategoryTitle { get; set; }
+		public decimal Price { get; set; }
 	}
 }

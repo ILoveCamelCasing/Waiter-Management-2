@@ -26,6 +26,7 @@
 				<a class="bp-nav__item bp-icon bp-icon--drop" href="http://tympanus.net/codrops/?p=25521" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
 				<a class="bp-nav__item bp-icon bp-icon--archive" href="http://tympanus.net/codrops/category/blueprints/" data-info="Blueprints archive"><span>Go to the archive</span></a>
 			</nav>*@
+			@{ Html.RenderAction("Summary", "Order");}
 			@{ Html.RenderAction("Summary", "Account"); }
 		</div>
 	</header>
@@ -38,7 +39,7 @@
 		<div class="menu__wrap">
 			<ul data-menu="main" class="menu__level">
 				<li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-				<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="Menu">Menu</a></li>
+				<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="Menu" afterLoadFunction="onLoadedMenuItemsElements()">Menu</a></li>
 				<li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
 				<li class="menu__item"><a class="menu__link" href="#">Info</a></li>
 			</ul>
@@ -67,6 +68,7 @@
 </div>
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/Menu")
+	@Scripts.Render("~/bundles/logic")
 	<script>
 		(function () {
 			var menuEl = document.getElementById('ml-menu'),
@@ -99,11 +101,16 @@
 
 			function loadData(ev, itemName) {
 				ev.preventDefault();
+				var urlPath = ev.target.getAttribute("href");
+				var functionAfter = ev.target.getAttribute("afterLoadFunction");
 
+				openAsContent(urlPath, functionAfter);
+			}
+
+			openAsContent = function(urlPath, functionAfter) {
 				closeMenu();
 				gridWrapper.innerHTML = '';
 				classie.add(gridWrapper, 'content--loading');
-				var urlPath = ev.target.getAttribute("href");
 				//setTimeout(function () {
 				//	classie.remove(gridWrapper, 'content--loading');
 				//	gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
@@ -112,9 +119,10 @@
 				$.ajax({
 					type: 'GET',
 					url: urlPath,
-					success: function(result) {
+					success: function (result) {
 						classie.remove(gridWrapper, 'content--loading');
 						gridWrapper.innerHTML = result;
+						eval(functionAfter);
 					}
 				});
 			}

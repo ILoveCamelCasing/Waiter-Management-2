@@ -31,6 +31,8 @@ namespace WaiterManagement.DAL
 
 		// Web entities
 		public DbSet<WebClient> WebClients { get; set; }
+		public DbSet<ReservationOrder> ReservationOrders { get; set; }
+		public DbSet<ReservationMenuItemQuantity> ReservationMenuItemQuantities { get; set; }
 
 		#endregion
 

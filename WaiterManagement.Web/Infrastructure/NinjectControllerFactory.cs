@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Ninject;
 using WaiterManagement.Common.Security;
 using WaiterManagement.Web.Infrastructure.Authentication;
+using WaiterManagement.Web.Infrastructure.Ordering;
 using WaiterManagement.Web.Infrastructure.ServerProviders;
 
 namespace WaiterManagement.Web.Infrastructure
@@ -32,6 +33,7 @@ namespace WaiterManagement.Web.Infrastructure
 			_kernel.Bind<ILogInStrategy>().To<LogInStrategy>().InSingletonScope();
 			_kernel.Bind<IRegisterWebUserStrategy>().To<RegisterWebUserStrategy>().InSingletonScope();
 			_kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
+			_kernel.Bind<ICartProvider>().To<CartProvider>().InSingletonScope();
 		}
 	}
 }

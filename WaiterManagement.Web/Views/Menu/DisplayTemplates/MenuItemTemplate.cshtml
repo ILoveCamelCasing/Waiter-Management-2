@@ -1,7 +1,10 @@
 ﻿@model WaiterManagement.Common.Views.MenuItemView
-
+@{
+	var itemId = string.Format("item{0}", Model.MenuItemId);
+}
 <div>
 	@Model.Title<br />
 	@Model.CategoryTitle<br />
 	@Model.Description
+	<button class="orderItemButton" id="@itemId">Add item to cart.</button>
 </div>

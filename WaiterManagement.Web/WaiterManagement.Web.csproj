@@ -137,6 +137,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,7 +146,9 @@
     <Compile Include="Infrastructure\Authentication\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Authentication\IRegisterWebUserStrategy.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Infrastructure\Ordering\ICartProvider.cs" />
     <Compile Include="Infrastructure\ServerProviders\IMenuProvider.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\LogInUser.cs" />
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -248,6 +251,7 @@
     <Content Include="Scripts\Menu\main.js" />
     <Content Include="Scripts\Menu\modernizr-custom.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -266,6 +270,8 @@
     <Content Include="Views\Account\Summary.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Order\Summary.cshtml" />
+    <None Include="Views\Order\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

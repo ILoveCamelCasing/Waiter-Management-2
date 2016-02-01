@@ -1,0 +1,29 @@
+﻿@model WaiterManagement.Web.Models.Cart
+
+<h2>Your order</h2>
+
+<table>
+	<thead>
+		<tr>
+			<td>Item name</td>
+			<td>Item quantity</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var cartItem in Model.CartItems)
+		{
+			<tr>
+				<td>@cartItem.ItemName</td>
+				<td>@cartItem.Quantity</td>
+			</tr>
+		}
+	</tbody>
+	<tfoot>
+	<tr>
+		<td>Full cost</td>
+		<td>@Model.ComputeTotalValue() PLN</td>
+		<td><button onclick="checkoutOrder()">Checkout</button></td>
+	</tr>
+	</tfoot>
+
+</table>

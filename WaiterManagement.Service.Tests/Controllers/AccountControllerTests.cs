@@ -3,6 +3,7 @@ using Moq;
 using System;
 using System.Linq;
 using System.Web.Http.Results;
+using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.Common.Entities;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
@@ -54,7 +55,7 @@ namespace WaiterManagement.Service.Tests.Controllers
 			var unitOfWorkMock = new Mock<IUnitOfWork>();
 			unitOfWorkMock.Setup(uow => uow.Add(It.IsAny<ActiveUser>())).Returns<ActiveUser>(au => au);
 
-			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object);
+			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object, new Mock<ICommandBus>().Object);
 
       var loginModel = new LoginModel() { Login = waiterLogin, FirstHash = waiterFirstHash };
 
@@ -83,7 +84,7 @@ namespace WaiterManagement.Service.Tests.Controllers
 			var unitOfWorkMock = new Mock<IUnitOfWork>();
 			unitOfWorkMock.Setup(uow => uow.Add(It.IsAny<ActiveUser>())).Returns<ActiveUser>(au => au);
 
-			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object);
+			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object, new Mock<ICommandBus>().Object);
 
       var loginModel = new LoginModel() { Login = tableLogin, FirstHash = tableFirstHash };
 
