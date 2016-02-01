@@ -9,7 +9,7 @@ namespace WaiterManagement.BLL.Commands.Handlers.ManagerHandlers
 		public void Handle(AddMenuItemCommand command)
 		{
 			var category = UnitOfWork.Get<Category>(command.CategoryId);
-			UnitOfWork.Add(new MenuItem{Title = command.Title, Description = command.Description, Category = category}); //TODO: Uzupełnić cenę
+			UnitOfWork.Add(new MenuItem{Title = command.Title, Description = command.Description, Category = category, Price = command.Price});
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		private OrderModel _selectedAwaitingOrder;
 		private OrderModel _selectedAcceptedOrder;
 		private IDictionary<int, IEnumerable<AcceptedOrderMenuItemQuantity>> _acceptedOrdersCache;
-		private double _selectedAcceptedOrderTotalPrice;
+		private decimal _selectedAcceptedOrderTotalPrice;
 		#endregion
 
 		#region Dependencies
@@ -73,7 +73,7 @@ namespace WaiterManagement.Waiter.ViewModels
 			}
 		}
 
-		public double SelectedAcceptedOrderTotalPrice
+		public decimal SelectedAcceptedOrderTotalPrice
 		{
 			get
 			{
@@ -223,7 +223,7 @@ namespace WaiterManagement.Waiter.ViewModels
 		private void RecalculateTotalPrice()
 		{
 			if (SelectedAcceptedOrderMenuItems == null || !SelectedAcceptedOrderMenuItems.Any())
-				SelectedAcceptedOrderTotalPrice = 0d;
+				SelectedAcceptedOrderTotalPrice = 0;
 			else
 			{
 				SelectedAcceptedOrderTotalPrice = SelectedAcceptedOrderMenuItems.Select(mi => mi.MenuItem.Price*mi.Quantity).Sum();

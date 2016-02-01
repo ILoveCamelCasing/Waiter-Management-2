@@ -30,7 +30,7 @@ namespace WaiterManagement.Table.ViewModels
 		private bool _isBusy;
 		private string _message;
 		private bool _isSomethingOrdered;
-		private double _totalPrice;
+		private decimal _totalPrice;
 		#endregion
 
 		#region Public Properties
@@ -64,7 +64,7 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
-		public double TotalPrice
+		public decimal TotalPrice
 		{
 			get
 			{
@@ -142,13 +142,14 @@ namespace WaiterManagement.Table.ViewModels
 				AddedElements.Add(new OrderMenuItemModel()
 				{
 					Id = addingMenuItem.MenuItemId,
+					Price = addingMenuItem.Price,
 					Ordered = false,
 					Quantities = 1,
 					Title = addingMenuItem.Title
 				});
 			}
 
-			//TotalPrice += addingMenuItem.Price; TODO: Odkomentować
+			TotalPrice += addingMenuItem.Price;
 		}
 
 		public void CallWaiter()
@@ -179,7 +180,7 @@ namespace WaiterManagement.Table.ViewModels
 
 		private void TableAppSubscriber_NotifyOrderEndedEvent(object sender, EndOrderModel endOrderModel)
 		{
-			if (!IsSomethingOrdered) //TODO: Z jakiegoś powodu wykonuje się dwukrotnie...
+			if (!IsSomethingOrdered) //Z jakiegoś powodu wykonuje się dwukrotnie...
 				return;
 
 			var dispatcher = Application.Current.Dispatcher;

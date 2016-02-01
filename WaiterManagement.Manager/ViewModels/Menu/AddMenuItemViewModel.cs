@@ -40,8 +40,8 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		{
 			get
 			{
-				double priceVal;
-				return SelectedCategory != null && !string.IsNullOrEmpty(Title) && double.TryParse(Price, out priceVal) && priceVal >= 0d  && !string.IsNullOrEmpty(Description);
+				decimal priceVal;
+				return SelectedCategory != null && !string.IsNullOrEmpty(Title) && decimal.TryParse(Price, out priceVal) && priceVal >= 0  && !string.IsNullOrEmpty(Description);
 			}
 		}
 
@@ -64,8 +64,8 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 
 		public void Save()
 		{
-			double priceVal;
-			double.TryParse(Price, out priceVal);
+			decimal priceVal;
+			decimal.TryParse(Price, out priceVal);
 
 			_commandBus.SendCommand(new AddMenuItemCommand() { Title = Title, Price = priceVal, Description = Description, CategoryId = SelectedCategory.CategoryId });
 			Close();
