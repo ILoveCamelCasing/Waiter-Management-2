@@ -11,7 +11,7 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 	{
 		Cart GetCartForLoggedUser();
 		Cart AddElementTuCurrentOrder(int elementId);
-		void Checkout();
+		void Checkout(DateTime date);
 	}
 
 	public class CartProvider : ICartProvider
@@ -60,7 +60,7 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 			return cart;
 		}
 
-		public void Checkout()
+		public void Checkout(DateTime date)
 		{
 			throw new NotImplementedException();
 		}

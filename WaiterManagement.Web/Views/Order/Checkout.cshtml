@@ -11,19 +11,23 @@
 	</thead>
 	<tbody>
 		@foreach (var cartItem in Model.CartItems)
-		{
+			{
 			<tr>
 				<td>@cartItem.ItemName</td>
 				<td>@cartItem.Quantity</td>
 			</tr>
-		}
+			}
+	<tr>
+		<td>day</td>
+		<td><input type="text" id="datepicker" class="hasDatePicker"/></td>
+	</tr>
 	</tbody>
 	<tfoot>
-	<tr>
-		<td>Full cost</td>
-		<td>@Model.ComputeTotalValue() PLN</td>
-		<td><button onclick="checkoutOrder()">Checkout</button></td>
-	</tr>
+		<tr>
+			<td>Full cost</td>
+			<td>@Model.ComputeTotalValue() PLN</td>
+			<td><button onclick="checkoutOrder()">Checkout</button></td>
+		</tr>
 	</tfoot>
 
 </table>

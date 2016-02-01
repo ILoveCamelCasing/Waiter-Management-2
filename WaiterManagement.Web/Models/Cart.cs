@@ -6,7 +6,7 @@ namespace WaiterManagement.Web.Models
 	public class Cart
 	{
 		private readonly Dictionary<int,CartItem> _cartItems;
-		public IEnumerable<CartItem> CartItems => _cartItems.Select(x => x.Value);
+		public List<CartItem> CartItems => _cartItems.Select(x => x.Value).ToList();
 
 		public Cart()
 		{

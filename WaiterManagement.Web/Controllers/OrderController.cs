@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using WaiterManagement.Web.Infrastructure.Authentication;
 using WaiterManagement.Web.Infrastructure.Ordering;
 
@@ -34,9 +35,9 @@ namespace WaiterManagement.Web.Controllers
 			if(HttpContext.Request.HttpMethod == "GET")
 				return PartialView(_cartProvider.GetCartForLoggedUser());
 
-			_cartProvider.Checkout();
+			_cartProvider.Checkout(DateTime.Now);
 
-			return new EmptyResult();
+			return RedirectToAction("Index", "Home");
 		}
 	}
 }
