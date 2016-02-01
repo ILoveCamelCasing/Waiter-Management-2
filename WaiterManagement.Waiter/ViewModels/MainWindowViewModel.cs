@@ -25,7 +25,6 @@ namespace WaiterManagement.Waiter.ViewModels
 		#region Public Methods
 		public void Logout()
 		{
-			//TODO: Przerwanie zamówień, etc
 			CloseAll();
 
 			Get<AccessViewModel>().ShowOn(this);

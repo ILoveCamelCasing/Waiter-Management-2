@@ -26,7 +26,10 @@
 					<GridViewColumn x:Name="TitleColumn" DisplayMemberBinding="{Binding Title}">
 						<GridViewColumnHeader Tag="Title" Content="Title"/>
 					</GridViewColumn>
-					<GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding CategoryTitle}">
+                        <GridViewColumn x:Name="PriceColumn" DisplayMemberBinding="{Binding Price}">
+                            <GridViewColumnHeader Tag="Price" Content="Price"/>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="CategoryColumn" DisplayMemberBinding="{Binding CategoryTitle}">
 						<GridViewColumnHeader Tag="Category" Content="Category"/>
 					</GridViewColumn>
 					<GridViewColumn x:Name="DescriptionColumn" DisplayMemberBinding="{Binding Description}">

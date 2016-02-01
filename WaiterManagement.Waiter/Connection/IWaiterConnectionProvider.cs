@@ -6,6 +6,7 @@ namespace WaiterManagement.Waiter.Connection
 	public interface IWaiterConnectionProvider
 	{
 		Task Connect();
+		void Disconnect();
 
 		void AcceptOrder(int orderId);
 		void EndOrder(int orderId, bool wasCancelled, string cancelledReason);

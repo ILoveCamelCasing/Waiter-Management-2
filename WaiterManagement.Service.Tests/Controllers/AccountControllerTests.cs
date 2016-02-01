@@ -55,7 +55,9 @@ namespace WaiterManagement.Service.Tests.Controllers
 			var unitOfWorkMock = new Mock<IUnitOfWork>();
 			unitOfWorkMock.Setup(uow => uow.Add(It.IsAny<ActiveUser>())).Returns<ActiveUser>(au => au);
 
-			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object, new Mock<ICommandBus>().Object);
+			var commandBusMock = new Mock<ICommandBus>();
+
+			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object, commandBusMock.Object);
 
       var loginModel = new LoginModel() { Login = waiterLogin, FirstHash = waiterFirstHash };
 
@@ -84,7 +86,9 @@ namespace WaiterManagement.Service.Tests.Controllers
 			var unitOfWorkMock = new Mock<IUnitOfWork>();
 			unitOfWorkMock.Setup(uow => uow.Add(It.IsAny<ActiveUser>())).Returns<ActiveUser>(au => au);
 
-			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object, new Mock<ICommandBus>().Object);
+			var commandBusMock = new Mock<ICommandBus>();
+
+			var accountController = new AccountController(unitOfWorkMock.Object, viewProviderMock.Object, commandBusMock.Object);
 
       var loginModel = new LoginModel() { Login = tableLogin, FirstHash = tableFirstHash };
 

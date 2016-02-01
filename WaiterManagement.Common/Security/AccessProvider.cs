@@ -26,11 +26,11 @@ namespace WaiterManagement.Common.Security
 		{
 			Login = login;
 
-			var result = _logInStrategy.LogIn(login, password);
+			var result = await _logInStrategy.LogIn(login, password);
 
-			Token = result.Result.Token;
+			Token = result.Token;
 
-			return result.Result.Result;
+			return result.Result;
 		}
 	}
 }

@@ -27,7 +27,6 @@ namespace WaiterManagement.Table.ViewModels
 
 		public void Logout()
 		{
-			//TODO: Przerwanie zamówień, etc
 			CloseAll();
 
 			Get<AccessViewModel>().ShowOn(this);

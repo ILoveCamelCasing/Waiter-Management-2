@@ -23,6 +23,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 
 		private string _title;
 		private string _description;
+		private string _price;
 		private CategoryView _selectedCategory;
 
 		#endregion
@@ -30,6 +31,7 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		#region Public properties
 
 		public string Title { get { return _title; } set { _title = value; NotifyOfPropertyChange(() => CanSave); } }
+		public string Price { get { return _price; } set { _price = value; NotifyOfPropertyChange(() => CanSave); } }
 		public string Description { get { return _description; } set { _description = value; NotifyOfPropertyChange(() => CanSave); } }
 		public CategoryView SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; NotifyOfPropertyChange(() => CanSave); } }
 
@@ -38,7 +40,8 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 		{
 			get
 			{
-				return SelectedCategory != null && !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Description);
+				double priceVal;
+				return SelectedCategory != null && !string.IsNullOrEmpty(Title) && double.TryParse(Price, out priceVal) && priceVal >= 0d  && !string.IsNullOrEmpty(Description);
 			}
 		}
 
@@ -61,7 +64,10 @@ namespace WaiterManagement.Manager.ViewModels.Menu
 
 		public void Save()
 		{
-			_commandBus.SendCommand(new AddMenuItemCommand() { Title = Title, Description = Description, CategoryId = SelectedCategory.CategoryId });
+			double priceVal;
+			double.TryParse(Price, out priceVal);
+
+			_commandBus.SendCommand(new AddMenuItemCommand() { Title = Title, Price = priceVal, Description = Description, CategoryId = SelectedCategory.CategoryId });
 			Close();
 		}
 

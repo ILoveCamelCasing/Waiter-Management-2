@@ -45,6 +45,11 @@ namespace WaiterManagement.Waiter.Connection
 			await _hubConnection.Start();
 		}
 
+		public void Disconnect()
+		{
+			_hubConnection.Stop();
+		}
+
 		public void AcceptOrder(int orderId)
 		{
 			_hubProxy.Invoke("AcceptOrder", new AcceptOrderModel()

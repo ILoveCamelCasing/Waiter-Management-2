@@ -10,6 +10,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50"/>
 			<RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
 			<RowDefinition/>
 			<RowDefinition Height="50"/>
 		</Grid.RowDefinitions>
@@ -29,8 +30,10 @@
 				</DataTemplate>
 			</ComboBox.ItemTemplate>
 		</ComboBox>
-		<Label Grid.Row="2">Description</Label>
-		<TextBox Name="Description" Margin="10" Grid.Row="2" Grid.Column="1"></TextBox>
-		<Button Name="Save" Grid.Row="3" Grid.Column="1" Margin="10">Save</Button>
+        <Label Grid.Row="2" Grid.Column="0">Price</Label>
+        <TextBox Name ="Price" Margin="10" Grid.Row="2" Grid.Column="1"></TextBox>
+		<Label Grid.Column="0" Grid.Row="3">Description</Label>
+        <TextBox Name="Description" Margin="10" Grid.Row="3" Grid.Column="1"></TextBox>
+        <Button Name="Save" Grid.Row="4" Grid.Column="1" Margin="10">Save</Button>
 	</Grid>
 </UserControl>
