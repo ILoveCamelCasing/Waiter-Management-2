@@ -20,9 +20,9 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 		public WhenAcceptedOrder_SendOrderInfo(IUnitOfWork unitOfWork,  ICallingService callingService)
 		{
 			if (unitOfWork == null)
-				throw new ArgumentNullException("unitOfWork");
+				throw new ArgumentNullException(nameof(unitOfWork));
 			if (callingService == null)
-				throw new ArgumentNullException("callingService");
+				throw new ArgumentNullException(nameof(callingService));
 
 			_unitOfWork = unitOfWork;
 			_callingService = callingService;
@@ -48,7 +48,7 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 					{
 						Title = mi.Item.Title,
 						Description = mi.Item.Description,
-						//Price = mi.Item.Price TODO: Odkomentować
+						Price = mi.Item.Price
 					}
 				})
 			});

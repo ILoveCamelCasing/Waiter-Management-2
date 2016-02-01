@@ -50,7 +50,8 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 					MenuItem = new AcceptedOrderMenuItem()
 					{
 						Title = mi.Item.Title,
-						Description = mi.Item.Description
+						Description = mi.Item.Description,
+						Price = mi.Item.Price
 					}
 				})
 			});
