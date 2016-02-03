@@ -3,5 +3,5 @@
 <span id="cartSummary">
 	<b>Your cart: </b> @Model.CartItems.Sum(x => x.Quantity) items.
 	@Model.ComputeTotalValue() PLN
-	<button onClick="openAsContent('/Order/Checkout','')">Checkout</button>
+	<button onClick="openAsContent('/Order/Checkout','getPickers()')">Checkout</button>
 </span>

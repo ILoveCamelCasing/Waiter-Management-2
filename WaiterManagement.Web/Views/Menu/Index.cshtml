@@ -1,17 +1,15 @@
 ﻿@model IEnumerable<WaiterManagement.Common.Views.MenuItemView>
 
 @{
-	
+
 	Layout = null;
 }
 
 <h2>Menu</h2>
-<ul id="barMenuList">
-	@foreach (var menuItem in Model)
-	{
-		<li class="barMenuItem">
-			@Html.DisplayFor(x => menuItem, "MenuItemTemplate")
-		</li>
-	}
-</ul>
+@foreach (var menuItem in Model)
+{
+	<div class="barMenuItem">
+		@Html.DisplayFor(x => menuItem, "MenuItemTemplate")
+	</div>
+}
 

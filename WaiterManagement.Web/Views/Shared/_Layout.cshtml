@@ -33,13 +33,13 @@
 	</header>
 	<!-- Menu toggle for mobile version -->
 	<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
-	<!-- Menu -->
+	@*<!-- Menu -->
 	<nav id="ml-menu" class="menu">
 		<!-- Close button for mobile version -->
 		<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
 		<div class="menu__wrap">
 			<ul data-menu="main" class="menu__level">
-				<li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+				<li class="menu__item"><a class="menu__link" href="Home/IndexInside">Home</a></li>
 				<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="Menu" afterLoadFunction="onLoadedMenuItemsElements()">Menu</a></li>
 				<li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
 				<li class="menu__item"><a class="menu__link" href="#">Info</a></li>
@@ -61,7 +61,8 @@
 				<li class="menu__item"><a class="menu__link" href="#">Homemade</a></li>
 			</ul>
 		</div>
-	</nav>
+	</nav>*@
+	@{ Html.RenderAction("Menu", "Home");}
 	<div class="content">
 		@RenderBody()
 		<!-- Ajax loaded content here -->

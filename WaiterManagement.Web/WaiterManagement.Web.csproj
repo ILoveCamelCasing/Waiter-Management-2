@@ -150,6 +150,8 @@
     <Compile Include="Infrastructure\ServerProviders\IMenuProvider.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\LogInUser.cs" />
+    <Compile Include="Models\MenuCategory.cs" />
+    <Compile Include="Models\MenuData.cs" />
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,6 +161,8 @@
     <Content Include="Content\fonts\feather\feather.svg" />
     <Content Include="Content\fonts\organicfoodicons\organicfoodicons.svg" />
     <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\restauracja.jpg" />
+    <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\Menu\component.css" />
     <Content Include="Content\Menu\demo.css" />
     <Content Include="Content\Menu\organicfoodicons.css" />
@@ -218,6 +222,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -251,6 +257,8 @@
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Order\Summary.cshtml" />
+    <Content Include="Views\Home\IndexInside.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
     <None Include="Views\Order\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>

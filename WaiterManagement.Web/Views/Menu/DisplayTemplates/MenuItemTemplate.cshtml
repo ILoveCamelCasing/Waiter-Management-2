@@ -3,8 +3,16 @@
 	var itemId = string.Format("item{0}", Model.MenuItemId);
 }
 <div>
-	@Model.Title<br />
-	@Model.CategoryTitle<br />
-	@Model.Description
-	<button class="orderItemButton" id="@itemId">Add item to cart.</button>
+	<div>
+		<table>
+			<tr><td>@Model.Title</tr>
+			<tr><td>@Model.CategoryTitle</tr>
+			<tr><td>@Model.Description</tr>
+		</table>
+	</div>
+	<div>
+		<div>
+			<button class="orderItemButton" id="@itemId">Add item to cart.</button>
+		</div>
+	</div>
 </div>

@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Net.Http;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using WaiterManagement.Common.Views;
+using WaiterManagement.Web.Models;
 
 namespace WaiterManagement.Web.Infrastructure.ServerProviders
 {
 	public interface IMenuProvider
 	{
 		List<MenuItemView> GetMenu();
+		List<MenuCategory> GetCategories();
 	}
 
 	public class MenuProvider : IMenuProvider
@@ -30,6 +34,11 @@ namespace WaiterManagement.Web.Infrastructure.ServerProviders
 			}
 
 			return elements;
+		}
+
+		public List<MenuCategory> GetCategories()
+		{
+			return GetMenu().Select(x => new MenuCategory(x.CategoryId, x.CategoryTitle)).DistinctBy(x => x.CategoryId).ToList();
 		}
 	}
 }

@@ -12,7 +12,8 @@ namespace WaiterManagement.Web
 						"~/Scripts/jquery-{version}.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-						"~/Scripts/jquery-ui-{version}.js"));
+						"~/Scripts/jquery-ui-{version}.js",
+						"~/Scripts/jquery.timepicker*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.unobtrusive*",
@@ -39,7 +40,8 @@ namespace WaiterManagement.Web
 						"~/Content/themes/base/jquery.ui.tabs.css",
 						"~/Content/themes/base/jquery.ui.datepicker.css",
 						"~/Content/themes/base/jquery.ui.progressbar.css",
-						"~/Content/themes/base/jquery.ui.theme.css"));
+						"~/Content/themes/base/jquery.ui.theme.css",
+						"~/Content/jquery.timepicker.css"));
 
 			bundles.Add(new StyleBundle("~/Content/Menu").Include("~/Content/Menu/*.css"));
 			bundles.Add(new ScriptBundle("~/bundles/Menu").Include("~/Scripts/Menu/*.js"));

@@ -1,0 +1,30 @@
+﻿@model WaiterManagement.Web.Models.MenuData
+
+@{
+	Layout = null;
+}
+
+<!-- Menu -->
+<nav id="ml-menu" class="menu">
+	<!-- Close button for mobile version -->
+	<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+	<div class="menu__wrap">
+		<ul data-menu="main" class="menu__level">
+			<li class="menu__item"><a class="menu__link" href="Home/IndexInside">Home</a></li>
+			@if (Model.IsLoggedUser)
+			{
+				<li class="menu__item"><a class="menu__link" href="Order/All">Orders</a></li>
+			}
+			<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="Menu" afterLoadFunction="onLoadedMenuItemsElements()">Menu</a></li>
+			<li class="menu__item"><a class="menu__link" href="Home/Contact">Contact</a></li>
+			<li class="menu__item"><a class="menu__link" href="Home/Info">Info</a></li>
+		</ul>
+		<!-- Submenu 1 -->
+		<ul data-menu="submenu-1" class="menu__level">
+			@foreach (var menuCategory in Model.MenuCategories)
+			{
+				<li class="menu__item"><a class="menu__link" href="Menu/Category?=@menuCategory.CategoryId">@menuCategory.CategoryName</a></li>
+			}
+		</ul>
+	</div>
+</nav>

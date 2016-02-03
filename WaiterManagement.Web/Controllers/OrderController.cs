@@ -32,10 +32,13 @@ namespace WaiterManagement.Web.Controllers
 
 		public ActionResult Checkout()
 		{
-			if(HttpContext.Request.HttpMethod == "GET")
-				return PartialView(_cartProvider.GetCartForLoggedUser());
+			return PartialView(_cartProvider.GetCartForLoggedUser());
+		}
 
-			_cartProvider.Checkout(DateTime.Now);
+		[HttpPost]
+		public ActionResult Checkout(DateTime date)
+		{
+			_cartProvider.Checkout(date);
 
 			return RedirectToAction("Index", "Home");
 		}
