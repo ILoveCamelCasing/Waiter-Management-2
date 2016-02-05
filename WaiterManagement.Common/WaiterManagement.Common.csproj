@@ -95,6 +95,7 @@
     <Compile Include="Models\OrderingMenuItem.cs" />
     <Compile Include="Models\OrderItemState.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\ReservationOrderScheduledModel.cs" />
     <Compile Include="Security\AccessProvider.cs" />
     <Compile Include="Security\HashUtility.cs" />
     <Compile Include="Security\IAccessProvider.cs" />

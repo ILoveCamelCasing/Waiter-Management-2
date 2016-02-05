@@ -42,6 +42,7 @@ namespace WaiterManagement.BLL.Scheduling.Base
 
 				EventBus.PublishEvent(new ReservationOrderScheduled()
 				{
+					UnlockCode = awaitingOrder.UnlockCode,
 					Order = awaitingOrder.Order
 				});
 

@@ -8,5 +8,6 @@ namespace WaiterManagement.Common.Apps
 		void NotifyOrderItemStateChanged(OrderItemState state);
 		void NotifyOrderEnded(EndOrderModel endedOrder);
 		void SendOrderId(int id);
+		void LockTable(ReservationOrderScheduledModel orderScheduled);
 	}
 }
