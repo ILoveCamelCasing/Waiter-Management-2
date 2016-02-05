@@ -7,6 +7,7 @@ namespace WaiterManagement.Common.Entities
 	{
 		public DateTime Created { get; set; }
 		public DateTime ReservationTime { get; set; }
+		public string UnlockCode { get; set; }
 		public WebClient Client { get; set; }
 		public ReservationOrderStatus Status { get; set; }
 		public string Comment { get; set; }

@@ -119,6 +119,7 @@
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_SendOrderIdToTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenEndedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenOrderItemStateChanged_NotifyTable.cs" />
+    <Compile Include="Events\Handlers\Service\WhenReservationOrderScheduled_LockTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenWaiterLoggedIn_SendAwaitingOrders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduling\Base\ReservationOrderScheduler.cs" />
