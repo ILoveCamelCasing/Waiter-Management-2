@@ -8,6 +8,7 @@ using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using WaiterManagement.BLL.Commands.Base;
 using WaiterManagement.BLL.Events.Base;
+using WaiterManagement.BLL.Scheduling.Base;
 using WaiterManagement.Common;
 using WaiterManagement.Common.Entities.Abstract;
 using WaiterManagement.Common.Security;
@@ -103,6 +104,8 @@ namespace WaiterManagement.Service
 
 			RegisterHandlers(kernel);
 
+			kernel.Bind<IReservationOrderScheduler>().To<ReservationOrderScheduler>().InSingletonScope();
+			kernel.Get<IReservationOrderScheduler>(); //Uruchomienie schedulera
 
 			var idProvider = new CustomIdUserProvider();
 			kernel.Bind<IUserIdProvider>().ToConstant(idProvider);

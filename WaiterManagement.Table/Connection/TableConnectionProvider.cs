@@ -39,6 +39,7 @@ namespace WaiterManagement.Table.Connection
 			_hubProxy.On<EndOrderModel>("NotifyOrderEnded", endedOrder => _tableApp.NotifyOrderEnded(endedOrder));
 			_hubProxy.On<int>("SendOrderId", id => _tableApp.SendOrderId(id));
 			_hubProxy.On<OrderItemState>("NotifyOrderItemStateChanged", state => _tableApp.NotifyOrderItemStateChanged(state));
+			_hubProxy.On<ReservationOrderScheduledModel>("LockTable", scheduledOrder => _tableApp.LockTable(scheduledOrder));
 			await _hubConnection.Start();
 		}
 

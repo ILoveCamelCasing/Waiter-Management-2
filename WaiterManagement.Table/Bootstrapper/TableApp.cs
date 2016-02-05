@@ -12,6 +12,7 @@ namespace WaiterManagement.Table.Bootstrapper
 		public event EventHandler<EndOrderModel> NotifyOrderEndedEvent;
 		public event EventHandler<int> SendOrderIdEvent;
 		public event EventHandler<OrderItemState> OrderItemStateChangedEvent;
+		public event EventHandler<ReservationOrderScheduledModel> ReservationOrderScheduledEvent;
 		#endregion
 
 		#region ITableApp
@@ -33,6 +34,11 @@ namespace WaiterManagement.Table.Bootstrapper
 		public void SendOrderId(int id)
 		{
 			Task.Run(() => HandleSafely(SendOrderIdEvent, id)); //should be awaited...
+		}
+
+		public void LockTable(ReservationOrderScheduledModel orderScheduled)
+		{
+			Task.Run(() => HandleSafely(ReservationOrderScheduledEvent, orderScheduled)); //should be awaited...
 		}
 		#endregion
 
@@ -60,5 +66,6 @@ namespace WaiterManagement.Table.Bootstrapper
 		event EventHandler<EndOrderModel> NotifyOrderEndedEvent;
 		event EventHandler<int> SendOrderIdEvent;
 		event EventHandler<OrderItemState> OrderItemStateChangedEvent;
+		event EventHandler<ReservationOrderScheduledModel> ReservationOrderScheduledEvent;
 	}
 }

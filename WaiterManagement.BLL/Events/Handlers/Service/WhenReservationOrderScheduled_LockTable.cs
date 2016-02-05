@@ -31,6 +31,8 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 
 
 		#region IHandleEvent
+		private bool alreadyHandled = false;
+
 		public void Handle(ReservationOrderScheduled @event)
 		{
 			var menuItems = _unitOfWork.GetWhere<MenuItemsQuantity>(miq => miq.Order.Id == @event.Order.Id);
@@ -43,15 +45,34 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 				return;
 			}
 
+			if (alreadyHandled)
+				return;
+
 			table.LockTable(new ReservationOrderScheduledModel()
 			{
 				UnlockCode = @event.UnlockCode,
-				MenuItems =  menuItems.Select(miq => new OrderingMenuItem()
+				MenuItems = menuItems.Select(miq => new OrderingMenuItem()
 				{
 					MenuItemId = miq.Item.Id,
 					Quantities = miq.Quantity
 				})
+
+				//MenuItems = new []
+				//{
+				//	new OrderingMenuItem()
+				//	{
+				//		MenuItemId = 5,
+				//		Quantities = 2
+				//	},
+				//	new OrderingMenuItem()
+				//	{
+				//		MenuItemId = 6,
+				//		Quantities = 3
+				//	}
+				//}
 			});
+
+			alreadyHandled = true;
 		}
 		#endregion
 	}

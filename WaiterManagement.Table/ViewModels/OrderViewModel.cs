@@ -12,6 +12,7 @@ using WaiterManagement.Common.Views;
 using WaiterManagement.Table.Bootstrapper;
 using WaiterManagement.Table.Connection;
 using WaiterManagement.Table.Model;
+using WaiterManagement.Wpf.Controls;
 using WaiterManagement.Wpf.MVVM.Abstract;
 using Action = System.Action;
 
@@ -51,9 +52,9 @@ namespace WaiterManagement.Table.ViewModels
 			}
 		}
 
-		public bool IsSomethingOrdered { get { return _isSomethingOrdered; } set { _isSomethingOrdered = value; NotifyOfPropertyChange(() => OrderText); }}
+		public bool IsSomethingOrdered { get { return _isSomethingOrdered; } set { _isSomethingOrdered = value; NotifyOfPropertyChange(() => OrderText); } }
 		public string OrderText { get { return IsSomethingOrdered ? "Order more items" : "Send new order"; } }
-		
+
 		public string Message
 		{
 			get { return _message; }
@@ -75,7 +76,7 @@ namespace WaiterManagement.Table.ViewModels
 				_totalPrice = value;
 				NotifyOfPropertyChange(() => TotalPrice);
 			}
-	}
+		}
 		#endregion
 
 		#region Constructor
@@ -87,6 +88,7 @@ namespace WaiterManagement.Table.ViewModels
 			tableAppSubscriber.NotifyEvent += (sender, message) => Application.Current.Dispatcher.Invoke(() => Message = message);
 			tableAppSubscriber.NotifyOrderEndedEvent += TableAppSubscriber_NotifyOrderEndedEvent;
 			tableAppSubscriber.OrderItemStateChangedEvent += TableAppSubscriber_OrderItemStateChangedEvent;
+			tableAppSubscriber.ReservationOrderScheduledEvent += TableAppSubscriberOnReservationOrderScheduledEvent;
 
 			Elements = new BindableCollection<MenuItemView>();
 			AddedElements = new BindableCollection<OrderMenuItemModel>();
@@ -111,8 +113,8 @@ namespace WaiterManagement.Table.ViewModels
 					//	sameTypeElement.Quantities += item.Quantities;
 					//else
 					//{
-						item.Ordered = true;
-						//AddedElements.Add(item);
+					item.Ordered = true;
+					//AddedElements.Add(item);
 					//}
 				}
 			}
@@ -193,17 +195,54 @@ namespace WaiterManagement.Table.ViewModels
 				ModernDialog.ShowMessage(endOrderMessage, "Order was closed", MessageBoxButton.OK, Application.Current.MainWindow);
 			};
 
-			if(dispatcher == null || dispatcher.CheckAccess())
+			if (dispatcher == null || dispatcher.CheckAccess())
 				showMessageAction.Invoke();
 			else
 				dispatcher.Invoke(showMessageAction);
-			
+
 			IsSomethingOrdered = false;
 			AddedElements.Clear();
 		}
+
+		private void TableAppSubscriberOnReservationOrderScheduledEvent(object sender, ReservationOrderScheduledModel reservationOrderScheduledModel)
+		{
+			//TODO: Przerwać trwające zamówienie
+			IsSomethingOrdered = false;
+			AddedElements.Clear();
+
+			foreach (var menuItem in reservationOrderScheduledModel.MenuItems)
+			{
+				var item = Elements.FirstOrDefault(el => el.MenuItemId == menuItem.MenuItemId);
+
+				for (int i = 0; i < menuItem.Quantities; i++) //TODO: Napisać to mądrzej...
+					AddNewItem(item);
+			}
+
+			ModernInputDialogMessageBoxResult result = null;
+
+			Action showMessageAction = () =>
+			{
+				result = ModernInputDialog.ShowInputMessage("Unlock code:", "RESERVATION",
+					MessageBoxButton.OKCancel, Application.Current.MainWindow);
+			};
+
+			var dispatcher = Application.Current.Dispatcher;
+
+			do
+			{
+				if(dispatcher == null || dispatcher.CheckAccess())
+					showMessageAction.Invoke();
+				else
+				{
+					dispatcher.Invoke(showMessageAction);
+				}
+				
+			} while (result.MessageBoxResult != MessageBoxResult.OK ||
+			         !result.Input.Equals(reservationOrderScheduledModel.UnlockCode));
+		}
 		#endregion
 
-		#region Ovverrides
+		#region Overrides
 
 		protected override void OnActivate()
 		{
