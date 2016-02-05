@@ -108,6 +108,7 @@
     <Compile Include="Events\Concrete\Service\AddedOrder.cs" />
     <Compile Include="Events\Concrete\Service\EndedOrder.cs" />
     <Compile Include="Events\Concrete\Service\OrderItemStateChanged.cs" />
+    <Compile Include="Events\Concrete\Service\ReservationOrderScheduled.cs" />
     <Compile Include="Events\Concrete\Service\WaiterLoggedIn.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAcceptedOrder_SendInfoToOtherWaiters.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Events\Handlers\Service\WhenOrderItemStateChanged_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenWaiterLoggedIn_SendAwaitingOrders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduling\Base\ReservationOrderScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaiterManagement.Common\WaiterManagement.Common.csproj">
