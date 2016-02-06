@@ -44,7 +44,8 @@ namespace WaiterManagement.DAL
 		public DbSet<MenuItemView> MenuItemsView { get; set; }
 		public DbSet<AuthenticatedUsersView> AuthenticatedUsersView { get; set; }
 		public DbSet<OrderView> OrdersView { get; set; }
-		public DbSet<WebClientView> WebClientsView { get; set; }  
+		public DbSet<WebClientView> WebClientsView { get; set; }
+		public DbSet<ReservationView> ReservationsView { get; set; } 
 
 		#endregion
 	}

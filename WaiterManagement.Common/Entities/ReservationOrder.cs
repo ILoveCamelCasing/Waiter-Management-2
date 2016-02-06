@@ -12,6 +12,7 @@ namespace WaiterManagement.Common.Entities
 		public ReservationOrderStatus Status { get; set; }
 		public string Comment { get; set; }
 		public Order Order { get; set; }
+		public Table Table { get; set; }
 	}
 
 	public enum ReservationOrderStatus

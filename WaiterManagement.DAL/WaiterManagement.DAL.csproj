@@ -152,6 +152,10 @@
     <Compile Include="Migrations\201602052007206_Added UnlockCode to ReservationOrder.Designer.cs">
       <DependentUpon>201602052007206_Added UnlockCode to ReservationOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602061752398_Added Table to ReservationOrder.cs" />
+    <Compile Include="Migrations\201602061752398_Added Table to ReservationOrder.Designer.cs">
+      <DependentUpon>201602061752398_Added Table to ReservationOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -234,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602052007206_Added UnlockCode to ReservationOrder.resx">
       <DependentUpon>201602052007206_Added UnlockCode to ReservationOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602061752398_Added Table to ReservationOrder.resx">
+      <DependentUpon>201602061752398_Added Table to ReservationOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

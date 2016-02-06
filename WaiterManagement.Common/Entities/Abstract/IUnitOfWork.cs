@@ -9,6 +9,9 @@ namespace WaiterManagement.Common.Entities.Abstract
 	{
 		void Commit();
 		void Revert();
+
+		IQueryable<T> All<T>() where T :class, IEntity;
+
 		object Add(Type entityType, object item);
 		T Add<T>(T item) where T : class, IEntity;
 		bool AnyActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity;

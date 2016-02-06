@@ -194,6 +194,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,9 +204,12 @@
     <Compile Include="Hubs\WaiterHub.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
+    <Compile Include="Models\NewWebOrderModel.cs" />
     <Compile Include="Models\RegisterWebClientModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Security\IAuthorizeStrategy.cs" />
+    <Compile Include="Security\WebAuthorizeAttribiute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

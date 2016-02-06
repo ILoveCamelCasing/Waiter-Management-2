@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Ninject;
-using WaiterManagement.Common.Views;
-using WaiterManagement.Common.Views.Abstract;
 
 namespace WaiterManagement.Service.Security
 {
 	public class CustomAuthorizeAttribute : AuthorizeAttribute
 	{
-		private readonly IViewProvider _viewProvider;
+		private readonly IAuthorizeStrategy _authorizeStrategy;
 
 		public CustomAuthorizeAttribute()
 		{
-			_viewProvider = ServiceBootstrapper.GetInstance().Kernel.Get<IViewProvider>();
+			_authorizeStrategy = ServiceBootstrapper.GetInstance().Kernel.Get<IAuthorizeStrategy>();
 		}
 
 		public override bool AuthorizeHubConnection(HubDescriptor hubDescriptor, IRequest request)
@@ -23,8 +20,7 @@ namespace WaiterManagement.Service.Security
 			{
 				var login = request.Headers["login"];
 				var token = new Guid(request.Headers["token"]);
-				var authenticated = _viewProvider.Get<AuthenticatedUsersView>().Any(x => x.Login == login && x.Token == token);
-				return authenticated;
+				return _authorizeStrategy.Authorize(login, token);
 			}
 			catch (Exception ex)
 			{

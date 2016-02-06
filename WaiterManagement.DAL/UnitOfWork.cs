@@ -17,6 +17,11 @@ namespace WaiterManagement.DAL
 			_dbContext = new WaiterManagementContext();
 		}
 
+		public IQueryable<T> All<T>() where T : class , IEntity
+		{
+			return _dbContext.Set<T>();
+		}
+
 		public object Add(Type entityType, object item)
 		{
 			return _dbContext.Set(entityType).Add(item);

@@ -15,6 +15,7 @@ using WaiterManagement.Common.Security;
 using WaiterManagement.Common.Views.Abstract;
 using WaiterManagement.DAL;
 using WaiterManagement.Service.Hubs;
+using WaiterManagement.Service.Security;
 
 namespace WaiterManagement.Service
 {
@@ -97,6 +98,7 @@ namespace WaiterManagement.Service
 			kernel.Bind<IViewProvider>().To<ViewProvider>().InSingletonScope();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
 			kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
+			kernel.Bind<IAuthorizeStrategy>().To<AuthorizeStrategy>().InSingletonScope();
 
 			var callingService = new CallingService();
 			kernel.Bind<ICallingService>().ToConstant(callingService);//.To<CallingService>().InSingletonScope();

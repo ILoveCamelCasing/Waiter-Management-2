@@ -28,6 +28,7 @@ namespace WaiterManagement.Web.Infrastructure.Authentication
 				(bool) HttpContext.Current.Session[LogInStatusSessionValueName];
 
 		public string Username => HttpContext.Current.Session[LoggedUserSessionValueName] as string;
+		public string Token => HttpContext.Current.Session[TokenSessionValueName] as string;
 
 		public void LogIn(LogInUser logInUser)
 		{

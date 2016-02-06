@@ -113,6 +113,7 @@
     <Compile Include="Views\CategoryView.cs" />
     <Compile Include="Views\MenuItemView.cs" />
     <Compile Include="Views\OrderView.cs" />
+    <Compile Include="Views\ReservationView.cs" />
     <Compile Include="Views\TableView.cs" />
     <Compile Include="Views\WaiterView.cs" />
     <Compile Include="Views\WebClientView.cs" />

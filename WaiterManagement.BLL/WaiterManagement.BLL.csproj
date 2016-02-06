@@ -86,6 +86,7 @@
     <Compile Include="Commands\Concrete\ServiceCommands\ChangeOrderItemStateCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\EndOrderCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\MoreItemsCommand.cs" />
+    <Compile Include="Commands\Concrete\ServiceCommands\NewWebOrderCommand.cs" />
     <Compile Include="Commands\Concrete\ServiceCommands\UpdateAfterLoginCommand.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\AddCategoryHandler.cs" />
     <Compile Include="Commands\Handlers\ManagerHandlers\AddMenuItemHandler.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Commands\Handlers\ServiceHandlers\ChangeOrderItemStateHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\EndOrderHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\MoreItemsHandler.cs" />
+    <Compile Include="Commands\Handlers\ServiceHandlers\NewWebOrderHandler.cs" />
     <Compile Include="Commands\Handlers\ServiceHandlers\UpdateAfterWaiterLoginHandler.cs" />
     <Compile Include="Events\Base\EventBus.cs" />
     <Compile Include="Events\Base\IEvent.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Events\Concrete\Service\AcceptedOrder.cs" />
     <Compile Include="Events\Concrete\Service\AddedMoreItems.cs" />
     <Compile Include="Events\Concrete\Service\AddedOrder.cs" />
+    <Compile Include="Events\Concrete\Service\AddedWebOrder.cs" />
     <Compile Include="Events\Concrete\Service\EndedOrder.cs" />
     <Compile Include="Events\Concrete\Service\OrderItemStateChanged.cs" />
     <Compile Include="Events\Concrete\Service\ReservationOrderScheduled.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyAllWaiters.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenAddedOrder_SendOrderIdToTable.cs" />
+    <Compile Include="Events\Handlers\Service\WhenAddedWebOrder_SendEmailToClient.cs" />
     <Compile Include="Events\Handlers\Service\WhenEndedOrder_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenOrderItemStateChanged_NotifyTable.cs" />
     <Compile Include="Events\Handlers\Service\WhenReservationOrderScheduled_LockTable.cs" />
