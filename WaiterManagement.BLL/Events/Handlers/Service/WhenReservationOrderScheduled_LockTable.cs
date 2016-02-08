@@ -35,9 +35,7 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 
 		public void Handle(ReservationOrderScheduled @event)
 		{
-			var menuItems = _unitOfWork.GetWhere<MenuItemsQuantity>(miq => miq.Order.Id == @event.Order.Id);
-
-			var table = _callingService.GetTable(@event.Order.Table.Title);
+			var table = _callingService.GetTable(@event.TableLogin);
 
 			if (table == null)
 			{
@@ -51,7 +49,7 @@ namespace WaiterManagement.BLL.Events.Handlers.Service
 			table.LockTable(new ReservationOrderScheduledModel()
 			{
 				UnlockCode = @event.UnlockCode,
-				MenuItems = menuItems.Select(miq => new OrderingMenuItem()
+				MenuItems = @event.MenuItems.Select(miq => new OrderingMenuItem()
 				{
 					MenuItemId = miq.Item.Id,
 					Quantities = miq.Quantity
