@@ -49,7 +49,7 @@ namespace WaiterManagement.DAL
 
 		public T GetActual<T>(Expression<Func<T, bool>> predicate) where T : VersionableEntity
 		{
-			return _dbContext.Set<T>().First(GetActualPredicate(predicate));
+			return _dbContext.Set<T>().FirstOrDefault(GetActualPredicate(predicate));
 		}
 
 		async Task IUnitOfWork.AddAsync<T>(T item)
@@ -59,7 +59,7 @@ namespace WaiterManagement.DAL
 
 		public T Get<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity
 		{
-			return _dbContext.Set<T>().First(predicate);
+			return _dbContext.Set<T>().FirstOrDefault(predicate);
 		}
 
 		public object Get(Type entityType ,int id)
@@ -69,7 +69,7 @@ namespace WaiterManagement.DAL
 
 		public T Get<T>(int id) where T : class, IEntity
 		{
-			return _dbContext.Set<T>().First(x => x.Id == id);
+			return _dbContext.Set<T>().FirstOrDefault(x => x.Id == id);
 		}
 
 		public void Load<TEntity, TProperty>(TEntity item, Expression<Func<TEntity, TProperty>> navigationProperty)

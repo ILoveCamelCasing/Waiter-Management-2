@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using WaiterManagement.BLL.Commands.Base;
@@ -52,8 +53,7 @@ namespace WaiterManagement.BLL.Commands.Handlers.ServiceHandlers
 						!allReservations
 							.Any(
 								r =>
-									r.Status != ReservationOrderStatus.Cancelled && r.Table == x && r.ReservationTime.Year == orderDate.Year &&
-									r.ReservationTime.Month == orderDate.Month && r.ReservationTime.Day == orderDate.Day));
+									r.Status != ReservationOrderStatus.Cancelled && r.Table == x && DbFunctions.DiffMinutes(r.ReservationTime, orderDate) < 30));
 			return table;
 		}
 

@@ -51,23 +51,30 @@ namespace WaiterManagement.BLL.Scheduling.Base
 		{
 			try
 			{
-				var awaitingOrders = _unitOfWork.GetWhere<ReservationOrder>(resO => resO.Status == ReservationOrderStatus.Created && DbFunctions.DiffMilliseconds(resO.ReservationTime, DateTime.Now) < ReservationInterval);
-
-				if (awaitingOrders == null || !awaitingOrders.Any())
+				var awaitingOrders = _unitOfWork.GetWhere<ReservationOrder>(resO => resO.Status == ReservationOrderStatus.Created && DbFunctions.DiffMilliseconds(resO.ReservationTime, DateTime.Now) < ReservationInterval).ToList();
+				if (!awaitingOrders.Any())
 					return;
 
 				foreach (var awaitingOrder in awaitingOrders)
 				{
-					_unitOfWork.Load(awaitingOrder, o => o.Order);
-					_unitOfWork.Load(awaitingOrder.Order, o => o.Table);
+					var menuItems =
+						_unitOfWork.GetWhere<ReservationMenuItemQuantity>(miq => miq.ReservationOrder.Id == awaitingOrder.Id).ToList();
+
+					foreach(var menuItem in menuItems)
+						_unitOfWork.Load(menuItem, mi => mi.Item);
+
+					_unitOfWork.Load(awaitingOrder, o => o.Table);
 
 					_eventBus.PublishEvent(new ReservationOrderScheduled()
 					{
 						UnlockCode = awaitingOrder.UnlockCode,
-						Order = awaitingOrder.Order
+						MenuItems = menuItems,
+						TableLogin = awaitingOrder.Table.Title
 					});
 
 					awaitingOrder.Status = ReservationOrderStatus.Finished;
+
+					_unitOfWork.Commit();
 				}
 
 				//_eventBus.PublishEvent(new ReservationOrderScheduled()
@@ -85,6 +92,8 @@ namespace WaiterManagement.BLL.Scheduling.Base
 			catch (Exception ex)
 			{
 				_logger.Fatal("Scheduling reservation order failed. Exception {0}. Message {1}. Stacktrace {2}", ex.GetType().FullName, ex.Message, ex.StackTrace);
+				_unitOfWork.Revert();
+
 				throw;
 			}
 
