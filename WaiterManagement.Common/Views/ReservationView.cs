@@ -2,11 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WaiterManagement.Common.Entities;
+using WaiterManagement.Common.Views.Abstract;
 
 namespace WaiterManagement.Common.Views
 {
 	[Table("ReservationsView")]
-	public class ReservationView
+	public class ReservationView : IView
 	{
 		[Key]
 		public int ReservationId { get; set; }

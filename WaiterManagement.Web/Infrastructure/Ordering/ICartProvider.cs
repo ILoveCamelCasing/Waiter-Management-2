@@ -75,7 +75,7 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 				{
 					client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
 					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-					client.DefaultRequestHeaders.Add("token", _authProvider.Token); ;
+					client.DefaultRequestHeaders.Add("token", _authProvider.Token);
 					dynamic myObject = new JObject();
 					myObject.login = _authProvider.Username;
 					myObject.orderDate = date;

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using WaiterManagement.Web.Infrastructure.Authentication;
 using WaiterManagement.Web.Infrastructure.Ordering;
+using WaiterManagement.Web.Infrastructure.ServerProviders;
 
 namespace WaiterManagement.Web.Controllers
 {
@@ -9,11 +10,13 @@ namespace WaiterManagement.Web.Controllers
 	{
 		private readonly ICartProvider _cartProvider;
 		private readonly IAuthProvider _authProvider;
+		private readonly IReservationOrdersProvider _reservationOrdersProvider;
 
-		public OrderController(ICartProvider cartProvider, IAuthProvider authProvider)
+		public OrderController(ICartProvider cartProvider, IAuthProvider authProvider, IReservationOrdersProvider reservationOrdersProvider)
 		{
 			_cartProvider = cartProvider;
 			_authProvider = authProvider;
+			_reservationOrdersProvider = reservationOrdersProvider;
 		}
 
 		public ActionResult Summary()
@@ -41,6 +44,11 @@ namespace WaiterManagement.Web.Controllers
 			_cartProvider.Checkout(date);
 
 			return RedirectToAction("Index", "Home");
+		}
+
+		public ActionResult All()
+		{
+			return PartialView(_reservationOrdersProvider.GetReservations());
 		}
 	}
 }

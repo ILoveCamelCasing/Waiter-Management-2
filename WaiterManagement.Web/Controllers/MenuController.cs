@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using WaiterManagement.Web.Infrastructure.ServerProviders;
 
 namespace WaiterManagement.Web.Controllers
@@ -20,5 +21,11 @@ namespace WaiterManagement.Web.Controllers
 			return View(_menuProvider.GetMenu());
         }
 
-    }
+	    public ActionResult Category(int categoryId)
+	    {
+		    return View("Index", _menuProvider.GetMenu().Where(x => x.CategoryId == categoryId));
+	    }
+
+
+	}
 }

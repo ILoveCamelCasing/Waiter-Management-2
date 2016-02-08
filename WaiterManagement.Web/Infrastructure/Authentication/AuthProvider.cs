@@ -38,7 +38,7 @@ namespace WaiterManagement.Web.Infrastructure.Authentication
 				case LoginResultType.LoginOk:
 					HttpContext.Current.Session[LogInStatusSessionValueName] = true;
 					HttpContext.Current.Session[LoggedUserSessionValueName] = logInUser.Username;
-					HttpContext.Current.Session[TokenSessionValueName] = result.Result;
+					HttpContext.Current.Session[TokenSessionValueName] = result.Token;
 					break;
 				case LoginResultType.LoginFailed:
 					throw new Exception("Wrong username or password.");

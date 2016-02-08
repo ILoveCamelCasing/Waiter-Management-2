@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Web.Http.Controllers;
 using Ninject;
 
 namespace WaiterManagement.Service.Security
@@ -14,12 +16,13 @@ namespace WaiterManagement.Service.Security
 			_authorizeStrategy = ServiceBootstrapper.GetInstance().Kernel.Get<IAuthorizeStrategy>();
 		}
 
-		protected override bool AuthorizeCore(HttpContextBase httpContext)
+		protected override bool IsAuthorized(HttpActionContext actionContext)
 		{
 			try
 			{
-				var login = httpContext.Request.Headers["login"];
-				var token = new Guid(httpContext.Request.Headers["token"]);
+				var login = actionContext.Request.Headers.GetValues("login").FirstOrDefault();//["login"];
+				var tokenString = actionContext.Request.Headers.GetValues("token").FirstOrDefault();
+				var token = new Guid(tokenString);
 
 				return _authorizeStrategy.Authorize(login, token);
 			}
@@ -28,5 +31,20 @@ namespace WaiterManagement.Service.Security
 				return false;
 			}
 		}
+
+		//protected override bool AuthorizeCore(HttpContextBase httpContext)
+		//{
+		//	try
+		//	{
+		//		var login = httpContext.Request.Headers["login"];
+		//		var token = new Guid(httpContext.Request.Headers["token"]);
+
+		//		return _authorizeStrategy.Authorize(login, token);
+		//	}
+		//	catch
+		//	{
+		//		return false;
+		//	}
+		//}
 	}
 }

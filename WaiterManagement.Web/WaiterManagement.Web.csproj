@@ -152,6 +152,7 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Infrastructure\Ordering\ICartProvider.cs" />
     <Compile Include="Infrastructure\ServerProviders\IMenuProvider.cs" />
+    <Compile Include="Infrastructure\ServerProviders\IReservationOrdersProvider.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\LogInUser.cs" />
     <Compile Include="Models\MenuCategory.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Views\Order\Summary.cshtml" />
     <Content Include="Views\Home\IndexInside.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
+    <None Include="Views\Order\All.cshtml" />
     <None Include="Views\Order\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>

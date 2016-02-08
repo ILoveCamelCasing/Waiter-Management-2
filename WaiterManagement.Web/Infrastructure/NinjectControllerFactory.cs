@@ -34,6 +34,7 @@ namespace WaiterManagement.Web.Infrastructure
 			_kernel.Bind<IRegisterWebUserStrategy>().To<RegisterWebUserStrategy>().InSingletonScope();
 			_kernel.Bind<IPasswordManager>().To<PasswordManager>().InSingletonScope();
 			_kernel.Bind<ICartProvider>().To<CartProvider>().InSingletonScope();
+			_kernel.Bind<IReservationOrdersProvider>().To<ReservationOrdersProvider>().InSingletonScope();
 		}
 	}
 }

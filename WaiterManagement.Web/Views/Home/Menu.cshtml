@@ -23,7 +23,7 @@
 		<ul data-menu="submenu-1" class="menu__level">
 			@foreach (var menuCategory in Model.MenuCategories)
 			{
-				<li class="menu__item"><a class="menu__link" href="Menu/Category?=@menuCategory.CategoryId">@menuCategory.CategoryName</a></li>
+				<li class="menu__item"><a class="menu__link" href="Menu/Category?categoryId=@menuCategory.CategoryId" afterLoadFunction="onLoadedMenuItemsElements()">@menuCategory.CategoryName</a></li>
 			}
 		</ul>
 	</div>

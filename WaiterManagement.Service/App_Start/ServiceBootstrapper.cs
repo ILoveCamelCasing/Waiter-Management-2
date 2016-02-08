@@ -107,7 +107,7 @@ namespace WaiterManagement.Service
 			RegisterHandlers(kernel);
 
 			kernel.Bind<IReservationOrderScheduler>().To<ReservationOrderScheduler>().InSingletonScope();
-			kernel.Get<IReservationOrderScheduler>(); //Uruchomienie schedulera
+			//kernel.Get<IReservationOrderScheduler>(); //Uruchomienie schedulera
 
 			var idProvider = new CustomIdUserProvider();
 			kernel.Bind<IUserIdProvider>().ToConstant(idProvider);
