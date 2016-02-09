@@ -23,7 +23,7 @@
 
 		public static LoginResult GetConnectionErrorFailed()
 		{
-			return new LoginResult(LoginResultType.LoginFailed, null);
+			return new LoginResult(LoginResultType.ConnectionError, null);
 		}
 	}
 }

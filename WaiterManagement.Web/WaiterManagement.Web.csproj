@@ -220,6 +220,7 @@
     <Content Include="Content\fonts\organicfoodicons\organicfoodicons.ttf" />
     <Content Include="Content\fonts\organicfoodicons\organicfoodicons.woff" />
     <Content Include="Content\fonts\organicfoodicons\organicfoodicons.woff2" />
+    <None Include="Properties\PublishProfiles\WM_Web.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
