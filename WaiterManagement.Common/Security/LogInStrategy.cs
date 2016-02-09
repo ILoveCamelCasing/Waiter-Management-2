@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NLog;
 
 namespace WaiterManagement.Common.Security
 {
@@ -55,7 +56,7 @@ namespace WaiterManagement.Common.Security
 				}
 				catch (HttpRequestException e)
 				{
-					//TODO: Zalogować wyjątek
+					LogManager.GetCurrentClassLogger().Fatal("Exception performing login at ServerPath: {0} LoginPath: {1}: {2} {3}", ConfigurationManager.AppSettings["ServerPath"], ConfigurationManager.AppSettings["LoginPath"], e.Message, e.StackTrace);
 					return LoginResult.GetConnectionErrorFailed();
 				}
 			}
