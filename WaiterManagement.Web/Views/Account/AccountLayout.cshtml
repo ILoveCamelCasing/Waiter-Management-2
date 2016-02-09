@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Styles.Render("~/Content/Menu")
+	@Styles.Render("~/Content/themes/base/css")
+	@Scripts.Render("~/bundles/modernizr")
+	<style>
+		form {
+			display: inline-block;
+			text-align: center;
+		}
+	</style>
+</head>
+<body style="text-align:center">
+	<div >
+		@RenderBody()
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/Menu")
+		@Scripts.Render("~/bundles/logic")
+		@Scripts.Render("~/bundles/jqueryui")
+	</div>
+</body>
+</html>

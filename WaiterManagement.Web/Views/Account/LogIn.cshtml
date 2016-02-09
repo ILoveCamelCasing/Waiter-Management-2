@@ -1,13 +1,14 @@
-﻿@model WaiterManagement.Web.Models.LogInUser
+﻿@using WaiterManagement.Web.Controllers
+@model WaiterManagement.Web.Models.LogInUser
 
 @{
 	ViewBag.Title = "Log In";
-	Layout = null;
+	Layout = "AccountLayout.cshtml";
 }
 
 <h2>Login</h2>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { Id = "my_form" }))
 {
 	@Html.AntiForgeryToken()
 	@Html.ValidationSummary(true)
@@ -19,13 +20,13 @@
 		</tr>
 		<tr>
 			<td>@Html.LabelFor(x => x.Password)</td>
-			<td>@Html.TextBoxFor(x => x.Password)</td>
+			<td>@Html.PasswordFor(x => x.Password)</td>
 			<td>@Html.ValidationMessageFor(x => x.Password)</td>
 		</tr>
 		<tr>
-			<td/>
-			<td><input type="submit" value="Login"/></td>
-			<td/>
+			<td></td>
+			<td><a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Login</a></td>
+			<td><a href="Register">Register</a></td>
 		</tr>
 	</table>
 }
