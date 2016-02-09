@@ -4,6 +4,7 @@ namespace WaiterManagement.Web.Models
 {
 	public class LogInUser
 	{
+		[Display(Name="Login")]
 		[Required(ErrorMessage = "Please provide Username",AllowEmptyStrings = false)]
 		public string Username { get; set; }
 

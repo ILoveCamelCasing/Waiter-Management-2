@@ -40,13 +40,16 @@ function checkoutOrder() {
 	if (hour !== 12 && time.split(':')[1].substring(2) === 'pm')
 		hour += 12;
 	var minutes = parseInt(time.split(':')[1].substring(0, 2));
-	var orderDate = new Date(year, month, day, hour, 0);
+	var orderDate = new Date(year, month, day, hour, minutes, 0);
 
 	$.ajax({
 		type: 'POST',
 		url: "/Order/Checkout?date="+orderDate.toISOString(),
 		success: function(result) {
 			location.reload();
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.responseText);
 		}
 	});
 }

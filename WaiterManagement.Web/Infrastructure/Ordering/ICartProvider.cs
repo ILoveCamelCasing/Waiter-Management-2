@@ -69,12 +69,15 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 
 		public void Checkout(DateTime date)
 		{
+			CheckCheckout(date);
+
 			using (var client = new HttpClient())
 			{
 				try
 				{
 					client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServerPath"]);
 					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+					client.DefaultRequestHeaders.Add("login", _authProvider.Username);
 					client.DefaultRequestHeaders.Add("token", _authProvider.Token);
 					dynamic myObject = new JObject();
 					myObject.login = _authProvider.Username;
@@ -100,6 +103,15 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 					throw new Exception("Internal server error.");
 				}
 			}
+		}
+
+		private void CheckCheckout(DateTime date)
+		{
+			if(date.Hour < 10 || date.Hour > 22 || (date.Hour == 22 && date.Minute > 0))
+				throw new InvalidOperationException("Reservation should be set between 10-22");
+
+			if(GetCartForLoggedUser().CartItems.Count == 0)
+				throw new InvalidOperationException("Set menu items to your checkout.");
 		}
 	}
 }

@@ -129,3 +129,11 @@ img {
 		background: #800000;
 		text-decoration: none;
 	}
+
+#cartSummary a {
+	font-weight: bold;
+}
+
+#accountSummary a {
+	font-weight: bold;
+}

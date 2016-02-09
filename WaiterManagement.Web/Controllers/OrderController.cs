@@ -41,7 +41,15 @@ namespace WaiterManagement.Web.Controllers
 		[HttpPost]
 		public ActionResult Checkout(DateTime date)
 		{
-			_cartProvider.Checkout(date);
+			try
+			{
+				_cartProvider.Checkout(date);
+			}
+			catch (Exception ex)
+			{
+				Response.StatusCode = 400;
+				return View("SmallError",(object)ex.Message);
+			}
 
 			return RedirectToAction("Index", "Home");
 		}

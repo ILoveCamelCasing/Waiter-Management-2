@@ -43,7 +43,8 @@ namespace WaiterManagement.Service.Controllers
 		{
 			var login = HttpContext.Current.Request.Headers["login"];
 
-			return Ok(_viewProvider.Get<ReservationView>().Where(x => x.ClientLogin == login).AsEnumerable());
+			var reservations = _viewProvider.Get<ReservationView>().Where(x => x.ClientLogin == login).ToArray();
+			return Ok(reservations);
 		}
 
 		

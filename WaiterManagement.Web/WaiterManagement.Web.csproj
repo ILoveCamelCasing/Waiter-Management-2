@@ -267,6 +267,7 @@
     <Content Include="Views\Account\AccountLayout.cshtml" />
     <None Include="Views\Order\All.cshtml" />
     <None Include="Views\Order\Checkout.cshtml" />
+    <Content Include="Views\Shared\SmallError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
