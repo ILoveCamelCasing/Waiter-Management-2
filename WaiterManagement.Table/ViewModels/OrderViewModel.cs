@@ -202,6 +202,7 @@ namespace WaiterManagement.Table.ViewModels
 
 			IsSomethingOrdered = false;
 			AddedElements.Clear();
+			TotalPrice = 0;
 		}
 
 		private void TableAppSubscriberOnReservationOrderScheduledEvent(object sender, ReservationOrderScheduledModel reservationOrderScheduledModel)
@@ -209,6 +210,7 @@ namespace WaiterManagement.Table.ViewModels
 			//TODO: Przerwać trwające zamówienie
 			IsSomethingOrdered = false;
 			AddedElements.Clear();
+			TotalPrice = 0;
 
 			foreach (var menuItem in reservationOrderScheduledModel.MenuItems)
 			{
