@@ -13,7 +13,7 @@
 			<li class="menu__item"><a class="menu__link" href="Home/IndexInside">Home</a></li>
 			@if (Model.IsLoggedUser)
 			{
-				<li class="menu__item"><a class="menu__link" href="Order/All">Orders</a></li>
+				<li class="menu__item"><a class="menu__link" href="Order/All" afterLoadFunction="setEvenRows()">Orders</a></li>
 			}
 			<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="Menu" afterLoadFunction="onLoadedMenuItemsElements()">Menu</a></li>
 			<li class="menu__item"><a class="menu__link" href="Home/Contact">Contact</a></li>

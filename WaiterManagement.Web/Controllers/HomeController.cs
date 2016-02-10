@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using WaiterManagement.Web.Infrastructure.Authentication;
 using WaiterManagement.Web.Infrastructure.ServerProviders;
 using WaiterManagement.Web.Models;
@@ -33,6 +29,16 @@ namespace WaiterManagement.Web.Controllers
 	    }
 
 	    public ActionResult IndexInside()
+	    {
+		    return View();
+	    }
+
+	    public ActionResult Contact()
+	    {
+		    return View();
+	    }
+
+	    public ActionResult Info()
 	    {
 		    return View();
 	    }

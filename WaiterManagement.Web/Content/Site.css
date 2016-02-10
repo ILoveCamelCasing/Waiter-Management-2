@@ -137,3 +137,30 @@ img {
 #accountSummary a {
 	font-weight: bold;
 }
+
+#orders-table
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	padding: 45px;
+	margin-top: 45px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+#orders-table th
+{
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 8px;
+	color: #fff;
+}
+#orders-table td
+{
+	padding: 8px;
+	color: #5c5edc;
+}
+#orders-table .odd
+{
+	background: #3a3b40; 
+}

@@ -29,7 +29,16 @@ namespace WaiterManagement.Web.Controllers
 
 		public ActionResult AddElement(int elementId)
 		{
-			_cartProvider.AddElementTuCurrentOrder(elementId);
+			try
+			{
+				_cartProvider.AddElementTuCurrentOrder(elementId);
+			}
+			catch (Exception ex)
+			{
+				Response.StatusCode = 400;
+				return View("SmallError", (object)ex.Message);
+			}
+
 			return new EmptyResult();
 		}
 

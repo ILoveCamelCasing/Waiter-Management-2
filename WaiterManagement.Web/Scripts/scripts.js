@@ -23,7 +23,9 @@ function addItemToCart(itemId) {
 		url: "/Order/AddElement?elementId="+itemId,
 		success: function (result) {
 			refreshCart();
-			alert('Added');
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.responseText);
 		}
 	});
 }
@@ -60,5 +62,10 @@ function getPickers() {
 		'minTime': '10:00am',
 		'maxTime': '10:00pm'
 	});
+}
+
+function setEvenRows() {
+	$("table tr:even").addClass("odd");
+	$("table tr:even").first().removeClass("odd");
 }
 

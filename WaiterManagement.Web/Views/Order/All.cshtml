@@ -1,14 +1,23 @@
 ﻿@model System.Collections.Generic.List<WaiterManagement.Common.Views.ReservationView>
 
-<table>
-	<tbody>
-	@foreach (var item in Model.GroupBy(x => x.ReservationId))
-	{
+<table id="orders-table">
+	<thead>
 		<tr>
-			<td>@item.First().ReservationTime</td>
-			<td>@item.First().TableTitle</td>
-			<td>@item.First().Status</td>
+			<th>Reservation time</th>
+			<th>Table title</th>
+			<th>Status</th>
+			<th>Unlock code</th>
 		</tr>
-	}
+	</thead>
+	<tbody>
+		@foreach (var item in Model.GroupBy(x => x.ReservationId))
+		{
+			<tr>
+				<td>@item.First().ReservationTime</td>
+				<td>@item.First().TableTitle</td>
+				<td>@item.First().Status</td>
+				<td>@item.First().UnlockCode</td>
+			</tr>
+		}
 	</tbody>
 </table>

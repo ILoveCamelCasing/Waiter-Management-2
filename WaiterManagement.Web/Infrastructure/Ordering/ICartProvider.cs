@@ -37,13 +37,8 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 			if(!_authProvider.IsLogged)
 				throw new InvalidOperationException("User is not logged in.");
 
-			var userCartSessoinKey = $"{_authProvider.Username}_Cart";
-			var cart = (Cart) HttpContext.Current.Session[userCartSessoinKey];
-			if (cart == null)
-			{
-				cart = new Cart();
-				HttpContext.Current.Session[userCartSessoinKey] = cart;
-			}
+			var userCartSessoinKey = GetUserCartSessionKey();
+			var cart = (Cart) HttpContext.Current.Session[userCartSessoinKey] ?? CreateNewCart(userCartSessoinKey);
 
 			return cart;
 		}
@@ -97,6 +92,8 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 					{
 						throw new Exception($"Server error. Status: {result.StatusCode}. Message: {result.RequestMessage}");
 					}
+
+					CreateNewCart(GetUserCartSessionKey());
 				}
 				catch (HttpRequestException e)
 				{
@@ -112,6 +109,20 @@ namespace WaiterManagement.Web.Infrastructure.Ordering
 
 			if(GetCartForLoggedUser().CartItems.Count == 0)
 				throw new InvalidOperationException("Set menu items to your checkout.");
+		}
+
+		private string GetUserCartSessionKey()
+		{
+			var userCartSessoinKey = $"{_authProvider.Username}_Cart";
+			return userCartSessoinKey;
+		}
+
+		private static Cart CreateNewCart(string userCartSessoinKey)
+		{
+			Cart cart;
+			cart = new Cart();
+			HttpContext.Current.Session[userCartSessoinKey] = cart;
+			return cart;
 		}
 	}
 }

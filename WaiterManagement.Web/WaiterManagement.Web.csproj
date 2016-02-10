@@ -266,6 +266,8 @@
     <Content Include="Views\Home\IndexInside.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Account\AccountLayout.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Info.cshtml" />
     <None Include="Views\Order\All.cshtml" />
     <None Include="Views\Order\Checkout.cshtml" />
     <Content Include="Views\Shared\SmallError.cshtml" />
